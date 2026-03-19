@@ -650,10 +650,11 @@ footer{background:var(--ink);color:rgba(250,247,242,.5);padding:2.8rem 1.5rem;te
     </div>
     <div class="admin-tabs">
       <button class="atab on" onclick="switchTab('bookings',this)">&#128203; Bookings</button>
-      <button class="atab" onclick="switchTab('analytics',this)">&#128202; Analytics</button>
-      <button class="atab" onclick="switchTab('reviews',this)">&#11088; Reviews</button>
-      <button class="atab" onclick="switchTab('images',this)">&#128247; Room Images</button>
+      <button class="atab" id="tab-btn-analytics" onclick="switchTab('analytics',this)">&#128202; Analytics</button>
+      <button class="atab" id="tab-btn-reviews" onclick="switchTab('reviews',this)">&#11088; Reviews</button>
+      <button class="atab" id="tab-btn-images" onclick="switchTab('images',this)">&#128247; Room Images</button>
       <button class="atab" onclick="switchTab('settings',this)">&#9881; Settings</button>
+      <button class="atab" id="tab-btn-subadmin" onclick="switchTab('subadmin',this)">&#128100; Sub-Admins</button>
     </div>
     <div class="atab-panel on" id="tab-bookings">
       <div class="dsts">
@@ -711,6 +712,19 @@ footer{background:var(--ink);color:rgba(250,247,242,.5);padding:2.8rem 1.5rem;te
         <button class="fsub" onclick="changePassword()">Update Password</button>
       </div>
     </div>
+    <div class="atab-panel" id="tab-subadmin">
+      <div class="cpw-card" style="max-width:100%">
+        <div class="fst">&#128100; Manage Sub-Admins</div>
+        <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.6">Sub-admins can view bookings, approve, reject, assign rooms and check out guests. They cannot generate access codes or access other sections.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1rem">
+          <div class="fg" style="margin-bottom:0"><label>Username</label><input type="text" id="sa-user" placeholder="e.g. staff01" autocomplete="off"/></div>
+          <div class="fg" style="margin-bottom:0"><label>Password</label><input type="password" id="sa-pass" placeholder="Enter password"/></div>
+        </div>
+        <button class="fsub" onclick="addSubAdmin()" style="margin-bottom:1.5rem">&#43; Add Sub-Admin</button>
+        <div class="fst" style="margin-top:.5rem">Current Sub-Admins</div>
+        <div id="subadmin-list"><div class="emst"><span class="ei">&#128100;</span>Loading...</div></div>
+      </div>
+    </div>
     <footer style="margin-top:1.75rem;border-radius:13px">
       <div class="fcrown">&#9819; OCROWN Suites - Admin</div>
       <div class="fcts"><a href="tel:07080951392">&#128222; 07080951392</a><a href="/cdn-cgi/l/email-protection#2e414d5c4159405d5b475a4b5d6e49434f4742004d4143">&#9993; <span class="__cf_email__" data-cfemail="620d01100d150c11170b16071122050f030b0e4c010d0f">[email&#160;protected]</span></a></div>
@@ -740,6 +754,8 @@ var EJS_TPL = "template_nm4cjm9";
 
 // STATE
 var _adminIn = false;
+var _isSuperAdmin = false;
+var _currentSubAdmin = "";
 var _allBk = [];
 var _adminPwd = "1234";
 var _rating = 0;
@@ -1028,18 +1044,45 @@ function adminLogin() {
   var u = document.getElementById("au").value.trim();
   var p = document.getElementById("ap").value;
   document.getElementById("aerr").classList.remove("show");
+  // Check super admin first
   if (u === "OCROWN" && p === _adminPwd) {
     _adminIn = true;
-    document.getElementById("alpanel").style.display = "none";
-    document.getElementById("adash").style.display = "block";
-    loadBookings();
-  } else {
+    _isSuperAdmin = true;
+    _currentSubAdmin = "";
+    loginSuccess();
+    return;
+  }
+  // Check sub-admins in Firebase
+  db.collection("subadmins").where("username","==",u).where("password","==",p).get().then(function(snap) {
+    if (!snap.empty) {
+      _adminIn = true;
+      _isSuperAdmin = false;
+      _currentSubAdmin = u;
+      loginSuccess();
+    } else {
+      document.getElementById("aerr").classList.add("show");
+      document.getElementById("ap").value = "";
+    }
+  }).catch(function() {
     document.getElementById("aerr").classList.add("show");
     document.getElementById("ap").value = "";
-  }
+  });
+}
+function loginSuccess() {
+  document.getElementById("alpanel").style.display = "none";
+  document.getElementById("adash").style.display = "block";
+  // Show/hide tabs based on role
+  var superOnlyTabs = ["tab-btn-analytics","tab-btn-reviews","tab-btn-images","tab-btn-subadmin"];
+  superOnlyTabs.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = _isSuperAdmin ? "" : "none";
+  });
+  loadBookings();
 }
 function adminLogout() {
   _adminIn = false;
+  _isSuperAdmin = false;
+  _currentSubAdmin = "";
   document.getElementById("alpanel").style.display = "block";
   document.getElementById("adash").style.display = "none";
   document.getElementById("au").value = "";
@@ -1053,6 +1096,10 @@ function switchTab(name, btn) {
   if (name === "analytics") buildAnalytics();
   if (name === "reviews") loadAdminReviews();
   if (name === "images") loadImageManager();
+  if (name === "subadmin") loadSubAdmins();
+  // Hide sub-admin tab from sub-admins
+  var saBtn = document.getElementById("tab-btn-subadmin");
+  if (saBtn) saBtn.style.display = _isSuperAdmin ? "" : "none";
 }
 function changePassword() {
   var cur = document.getElementById("cp-cur").value;
@@ -1117,21 +1164,34 @@ function saveRoom(id) {
   }).catch(function() { T("Error", "Could not save."); });
 }
 function approveBk(id) {
-  var code = String(Math.floor(100000 + Math.random() * 900000));
   var bk = _allBk.find(function(b) { return b.id === id; });
   if (!bk) return;
   var rn = document.getElementById("rn-" + id).value.trim() || bk.roomNumber || "See Reception";
-  var exp = new Date(bk.checkOut + "T23:59:59");
-  db.collection("bookings").doc(id).update({
-    status:"Approved", accessCode:code, codeStatus:"active",
-    codeExpiry:firebase.firestore.Timestamp.fromDate(exp), roomNumber:rn
-  }).then(function() {
-    var i = _allBk.findIndex(function(b) { return b.id === id; });
-    if (i > -1) Object.assign(_allBk[i], {status:"Approved", accessCode:code, codeStatus:"active", roomNumber:rn});
-    updateStats(); renderAdmin(_allBk);
-    T("Approved!", "Code " + code + " for " + bk.name);
-    sendEmail({name:bk.name, email:bk.email, roomType:bk.roomType, roomNumber:rn, checkIn:bk.checkIn, checkOut:bk.checkOut, code:code});
-  }).catch(function(e) { T("Error", "Could not approve."); console.error(e); });
+  if (_isSuperAdmin) {
+    // Super admin: approve WITH access code
+    var code = String(Math.floor(100000 + Math.random() * 900000));
+    var exp = new Date(bk.checkOut + "T23:59:59");
+    db.collection("bookings").doc(id).update({
+      status:"Approved", accessCode:code, codeStatus:"active",
+      codeExpiry:firebase.firestore.Timestamp.fromDate(exp), roomNumber:rn
+    }).then(function() {
+      var i = _allBk.findIndex(function(b) { return b.id === id; });
+      if (i > -1) Object.assign(_allBk[i], {status:"Approved", accessCode:code, codeStatus:"active", roomNumber:rn});
+      updateStats(); renderAdmin(_allBk);
+      T("Approved!", "Code " + code + " generated for " + bk.name);
+      sendEmail({name:bk.name, email:bk.email, roomType:bk.roomType, roomNumber:rn, checkIn:bk.checkIn, checkOut:bk.checkOut, code:code});
+    }).catch(function(e) { T("Error", "Could not approve."); console.error(e); });
+  } else {
+    // Sub-admin: approve WITHOUT access code
+    db.collection("bookings").doc(id).update({
+      status:"Approved", roomNumber:rn
+    }).then(function() {
+      var i = _allBk.findIndex(function(b) { return b.id === id; });
+      if (i > -1) Object.assign(_allBk[i], {status:"Approved", roomNumber:rn});
+      updateStats(); renderAdmin(_allBk);
+      T("Approved!", bk.name + " booking approved. Super admin will generate the access code.");
+    }).catch(function(e) { T("Error", "Could not approve."); console.error(e); });
+  }
 }
 function rejectBk(id) {
   var bk = _allBk.find(function(b) { return b.id === id; });
@@ -1216,25 +1276,23 @@ function deleteReview(id) {
 }
 function loadImageManager() {
   var rooms = ["Single","Double","VIP","Deluxe","Executive","Family","Honeymoon"];
-  var emojis = {Single:"&#x1F6CF;",Double:"&#x1F6CF;&#x1F6CF;",VIP:"&#x1F451;",Deluxe:"&#x2B50;",Executive:"&#x1F4BC;",Family:"&#x1F46A;",Honeymoon:"&#x1F491;"};
+  var emojis = {Single:"[Bed]",Double:"[2 Beds]",VIP:"[VIP]",Deluxe:"[Deluxe]",Executive:"[Exec]",Family:"[Family]",Honeymoon:"[Honey]"};
   var html = "";
   rooms.forEach(function(r) {
     var url = ROOM_IMGS[r] || "";
-    html += '<div class="img-row"><div class="img-inner">';
-    html += '<div class="img-thumb">' + (url ? '<img id="prev-' + r + '" src="' + url + '" style="width:100%;height:100%;object-fit:cover;display:block"/>' : '<span>' + emojis[r] + '</span>') + '</div>';
-    html += '<div class="img-field"><span class="img-label">' + r + ' Suite Image URL</span>';
-    html += '<input class="img-input" id="img-' + r + '" type="text" value="' + url + '" placeholder="Paste direct image URL..." oninput="previewImg(this,\'' + r + '\')" /></div>';
-    html += '</div></div>';
+    var thumbHtml = url ? "<img src='" + url + "' style='width:100%;height:100%;object-fit:cover;display:block'/>" : "<span>" + emojis[r] + "</span>";
+    html += "<div class='img-row'><div class='img-inner'>";
+    html += "<div class='img-thumb' id='prev-" + r + "'>" + thumbHtml + "</div>";
+    html += "<div class='img-field'><span class='img-label'>" + r + " Suite Image URL</span>";
+    html += "<input class='img-input' id='img-" + r + "' type='text' value='" + url + "' placeholder='Paste direct image URL...' oninput='previewImg(this,"" + r + "")' /></div>";
+    html += "</div></div>";
   });
   document.getElementById("img-manager-list").innerHTML = html;
 }
 function previewImg(input, room) {
-  var prev = document.getElementById("prev-" + room);
-  if (!prev) {
-    var thumb = input.closest(".img-row").querySelector(".img-thumb");
-    thumb.innerHTML = '<img id="prev-' + room + '" src="' + input.value + '" style="width:100%;height:100%;object-fit:cover;display:block"/>';
-  } else {
-    prev.src = input.value;
+  var thumb = document.getElementById("prev-" + room);
+  if (thumb) {
+    thumb.innerHTML = "<img src='" + input.value + "' style='width:100%;height:100%;object-fit:cover;display:block'/>";
   }
   updateRoomCard(room, input.value);
 }
@@ -1276,6 +1334,45 @@ function loadSavedImages() {
       applyRoomImages();
     }
   }).catch(function() {});
+}
+function addSubAdmin() {
+  var u = document.getElementById("sa-user").value.trim();
+  var p = document.getElementById("sa-pass").value.trim();
+  if (!u || !p) { T("Warning", "Please enter both username and password."); return; }
+  if (u === "OCROWN") { T("Warning", "That username is reserved."); return; }
+  db.collection("subadmins").where("username","==",u).get().then(function(snap) {
+    if (!snap.empty) { T("Warning", "Username already exists."); return; }
+    db.collection("subadmins").add({username:u, password:p, createdAt:firebase.firestore.FieldValue.serverTimestamp()
+    }).then(function() {
+      T("Added!", "Sub-admin " + u + " created successfully.");
+      document.getElementById("sa-user").value = "";
+      document.getElementById("sa-pass").value = "";
+      loadSubAdmins();
+    }).catch(function() { T("Error", "Could not add sub-admin."); });
+  });
+}
+function loadSubAdmins() {
+  var el = document.getElementById("subadmin-list");
+  el.innerHTML = '<div class="emst"><span class="ei">&#128100;</span>Loading...</div>';
+  db.collection("subadmins").orderBy("createdAt","desc").get().then(function(snap) {
+    if (snap.empty) { el.innerHTML = '<div class="emst"><span class="ei">&#128100;</span>No sub-admins yet. Add one above.</div>'; return; }
+    var html = "";
+    snap.docs.forEach(function(d) {
+      var r = d.data();
+      html += '<div class="adc" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem">';
+      html += '<div><div style="font-weight:600;font-size:.9rem">&#128100; ' + r.username + '</div>';
+      html += '<div style="font-size:.75rem;color:var(--muted)">Password: ' + r.password + '</div></div>';
+      html += '<button class="ab abno" onclick="deleteSubAdmin('' + d.id + '','' + r.username + '')">&#128465; Delete</button>';
+      html += '</div>';
+    });
+    el.innerHTML = html;
+  }).catch(function() { el.innerHTML = '<div class="emst"><span class="ei">!</span>Error loading.</div>'; });
+}
+function deleteSubAdmin(id, name) {
+  db.collection("subadmins").doc(id).delete().then(function() {
+    T("Deleted", "Sub-admin " + name + " removed.");
+    loadSubAdmins();
+  }).catch(function() { T("Error", "Could not delete."); });
 }
 function sendEmail(d) {
   emailjs.send(EJS_SVC, EJS_TPL, {
