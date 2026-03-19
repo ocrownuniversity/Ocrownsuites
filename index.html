@@ -965,7 +965,7 @@ function renderBkCard(b, id) {
   var cd = (b.status === "Approved" && b.accessCode) ?
     '<div class="bkcode"><div><div class="bkcl">One-Time Access Code</div><div class="bkcv">' + b.accessCode + '</div></div><div class="bkcs">Status: ' + (b.codeStatus || "active") + '<br/>Valid: ' + b.checkIn + ' to ' + b.checkOut + '</div></div>' : "";
   var rb = (b.status === "Approved" || b.status === "CheckedOut") ?
-    '<button class="ab absv" style="margin-top:.6rem;width:100%" onclick="showReceipt(\'' + id + '\')">&#129531; View Receipt</button>' : "";
+    '<button class="ab absv" style="margin-top:.6rem;width:100%" data-id="' + id + '" onclick="showReceipt(this.dataset.id)">&#129531; View Receipt</button>' : "";
   return '<div class="bkc"><div class="bkh"><div class="bkn">' + b.name + '</div><div class="badge ' + bc + '">' + sl + '</div></div>' +
     '<div class="bkm"><div><div class="bml">Room</div><div class="bmv">' + b.roomType + '</div></div>' +
     '<div><div class="bml">Room No.</div><div class="bmv">' + (b.roomNumber || "-") + '</div></div>' +
@@ -1143,16 +1143,16 @@ function renderAdminCard(b) {
   var sl = b.status === "CheckedOut" ? "Checked Out" : b.status;
   var cp = b.accessCode ? '<span class="cpill">' + b.accessCode + '</span>' : "";
   var rnval = b.roomNumber || "";
-  var ab = (b.status !== "Approved" && b.status !== "CheckedOut") ? '<button class="ab abok" onclick="approveBk(\'' + b.id + '\')">Approve</button>' : "";
-  var rb = (b.status !== "Rejected" && b.status !== "CheckedOut") ? '<button class="ab abno" onclick="rejectBk(\'' + b.id + '\')">Reject</button>' : "";
-  var cb = (b.status === "Approved") ? '<button class="ab abco" onclick="checkoutBk(\'' + b.id + '\')">Check Out</button>' : "";
+  var ab = (b.status !== "Approved" && b.status !== "CheckedOut") ? '<button class="ab abok" data-id="' + b.id + '" onclick="approveBk(this.dataset.id)">Approve</button>' : "";
+  var rb = (b.status !== "Rejected" && b.status !== "CheckedOut") ? '<button class="ab abno" data-id="' + b.id + '" onclick="rejectBk(this.dataset.id)">Reject</button>' : "";
+  var cb = (b.status === "Approved") ? '<button class="ab abco" data-id="' + b.id + '" onclick="checkoutBk(this.dataset.id)">Check Out</button>' : "";
   return '<div class="adc" id="adc-' + b.id + '">' +
     '<div class="adct"><div class="adcg"><h4>' + b.name + '</h4><p>' + b.email + ' - ' + b.phone + '</p></div>' +
     '<div class="adcb"><div class="badge ' + bc + '">' + sl + '</div>' + cp + '</div></div>' +
     '<div class="adcm"><div class="adcmi">' + b.roomType + '</div><div class="adcmi">' + b.checkIn + ' to ' + b.checkOut + '</div><div class="adcmi">' + (b.roomNumber || "Unassigned") + '</div></div>' +
     '<div class="adca">' + ab + rb + cb +
     '<input class="rni" id="rn-' + b.id + '" type="text" placeholder="Room No." value="' + rnval + '"/>' +
-    '<button class="ab absv" onclick="saveRoom(\'' + b.id + '\')">Save</button></div></div>';
+    '<button class="ab absv" data-id="' + b.id + '" onclick="saveRoom(this.dataset.id)">Save</button></div></div>';
 }
 function saveRoom(id) {
   var rn = document.getElementById("rn-" + id).value.trim();
@@ -1266,7 +1266,7 @@ function loadAdminReviews() {
     snap.docs.forEach(function(d) {
       var r = d.data(); var st = "";
       for (var i = 0; i < 5; i++) st += (i < r.rating ? "&#9733;" : "&#9734;");
-      html += '<div class="adc"><div class="adct"><div class="adcg"><h4>' + r.name + '</h4><p>' + r.room + ' Suite</p></div><div style="color:var(--gold);font-size:1.1rem">' + st + '</div></div><p style="font-size:.8rem;color:var(--muted);margin-top:.6rem;font-style:italic">"' + r.text + '"</p><div style="margin-top:.6rem"><button class="ab abno" style="font-size:.68rem" onclick="deleteReview(\'' + d.id + '\')">Delete</button></div></div>';
+      html += '<div class="adc"><div class="adct"><div class="adcg"><h4>' + r.name + '</h4><p>' + r.room + ' Suite</p></div><div style="color:var(--gold);font-size:1.1rem">' + st + '</div></div><p style="font-size:.8rem;color:var(--muted);margin-top:.6rem;font-style:italic">"' + r.text + '"</p><div style="margin-top:.6rem"><button class="ab abno" style="font-size:.68rem" data-id="' + d.id + '" onclick="deleteReview(this.dataset.id)">Delete</button></div></div>';
     });
     el.innerHTML = html;
   });
@@ -1362,7 +1362,7 @@ function loadSubAdmins() {
       html += '<div class="adc" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem">';
       html += '<div><div style="font-weight:600;font-size:.9rem">&#128100; ' + r.username + '</div>';
       html += '<div style="font-size:.75rem;color:var(--muted)">Password: ' + r.password + '</div></div>';
-      html += '<button class="ab abno" onclick="deleteSubAdmin('' + d.id + '','' + r.username + '')">&#128465; Delete</button>';
+      html += '<button class="ab abno" data-id="' + d.id + '" data-name="' + r.username + '" onclick="deleteSubAdmin(this.dataset.id,this.dataset.name)">&#128465; Delete</button>';
       html += '</div>';
     });
     el.innerHTML = html;
