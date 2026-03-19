@@ -1141,16 +1141,18 @@ function renderAdmin(list) {
 function renderAdminCard(b) {
   var bc = b.status === "Approved" ? "bA" : b.status === "Rejected" ? "bR" : b.status === "CheckedOut" ? "bCO" : "bP";
   var sl = b.status === "CheckedOut" ? "Checked Out" : b.status;
-  var cp = b.accessCode ? '<span class="cpill">' + b.accessCode + '</span>' : "";
+  var cp = codeInfo;
   var rnval = b.roomNumber || "";
   var ab = (b.status !== "Approved" && b.status !== "CheckedOut") ? '<button class="ab abok" data-id="' + b.id + '" onclick="approveBk(this.dataset.id)">Approve</button>' : "";
   var rb = (b.status !== "Rejected" && b.status !== "CheckedOut") ? '<button class="ab abno" data-id="' + b.id + '" onclick="rejectBk(this.dataset.id)">Reject</button>' : "";
   var cb = (b.status === "Approved") ? '<button class="ab abco" data-id="' + b.id + '" onclick="checkoutBk(this.dataset.id)">Check Out</button>' : "";
+  var genBtn = (_isSuperAdmin && b.status === "Approved" && !b.accessCode) ? '<button class="ab" style="border-color:#9a6fa8;color:#9a6fa8;background:rgba(154,111,168,.08)" data-id="' + b.id + '" onclick="generateCode(this.dataset.id)">&#128273; Generate Code</button>' : "";
+  var codeInfo = (b.accessCode) ? '<span class="cpill">Code: ' + b.accessCode + '</span>' : (_isSuperAdmin && b.status === "Approved" ? '<span style="font-size:.7rem;color:var(--red)">No code yet</span>' : "");
   return '<div class="adc" id="adc-' + b.id + '">' +
     '<div class="adct"><div class="adcg"><h4>' + b.name + '</h4><p>' + b.email + ' - ' + b.phone + '</p></div>' +
     '<div class="adcb"><div class="badge ' + bc + '">' + sl + '</div>' + cp + '</div></div>' +
     '<div class="adcm"><div class="adcmi">' + b.roomType + '</div><div class="adcmi">' + b.checkIn + ' to ' + b.checkOut + '</div><div class="adcmi">' + (b.roomNumber || "Unassigned") + '</div></div>' +
-    '<div class="adca">' + ab + rb + cb +
+    '<div class="adca">' + ab + rb + cb + genBtn +
     '<input class="rni" id="rn-' + b.id + '" type="text" placeholder="Room No." value="' + rnval + '"/>' +
     '<button class="ab absv" data-id="' + b.id + '" onclick="saveRoom(this.dataset.id)">Save</button></div></div>';
 }
@@ -1192,6 +1194,23 @@ function approveBk(id) {
       T("Approved!", bk.name + " booking approved. Super admin will generate the access code.");
     }).catch(function(e) { T("Error", "Could not approve."); console.error(e); });
   }
+}
+function generateCode(id) {
+  var bk = _allBk.find(function(b) { return b.id === id; });
+  if (!bk) return;
+  var code = String(Math.floor(100000 + Math.random() * 900000));
+  var exp = new Date(bk.checkOut + "T23:59:59");
+  db.collection("bookings").doc(id).update({
+    accessCode: code,
+    codeStatus: "active",
+    codeExpiry: firebase.firestore.Timestamp.fromDate(exp)
+  }).then(function() {
+    var i = _allBk.findIndex(function(b) { return b.id === id; });
+    if (i > -1) Object.assign(_allBk[i], {accessCode: code, codeStatus: "active"});
+    updateStats(); renderAdmin(_allBk);
+    T("Code Generated!", "Code " + code + " sent to " + bk.name);
+    sendEmail({name:bk.name, email:bk.email, roomType:bk.roomType, roomNumber:bk.roomNumber || "See Reception", checkIn:bk.checkIn, checkOut:bk.checkOut, code:code});
+  }).catch(function(e) { T("Error", "Could not generate code."); console.error(e); });
 }
 function rejectBk(id) {
   var bk = _allBk.find(function(b) { return b.id === id; });
