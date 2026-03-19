@@ -7,15 +7,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
 :root{
   --ink:#0a0705;--cream:#faf7f2;
   --gold:#b8952a;--gold2:#d4af5a;--gold3:#e8cc7e;
   --gold-dim:rgba(184,149,42,.15);--gold-border:rgba(184,149,42,.3);
-  --surface:#ffffff;--surface2:#f8f4ed;--border:#e8e0d0;
+  --surface:#fff;--surface2:#f8f4ed;--border:#e8e0d0;
   --text:#1a1410;--muted:#8a7d6a;--muted2:#b5a990;
   --green:#2e7d5a;--green-bg:rgba(46,125,90,.08);--green-bd:rgba(46,125,90,.25);
   --red:#a33a2a;--red-bg:rgba(163,58,42,.08);--red-bd:rgba(163,58,42,.25);
+  --blue:#1a5fa8;--blue-bg:rgba(26,95,168,.08);--blue-bd:rgba(26,95,168,.25);
   --shadow:0 4px 32px rgba(10,7,5,.08);--shadow-lg:0 16px 64px rgba(10,7,5,.14);
 }
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
@@ -29,6 +31,7 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);min
 @keyframes re{0%{transform:scale(.8);opacity:0}50%{opacity:1}100%{transform:scale(1.2);opacity:0}}
 .ln{font-family:'Playfair Display',serif;color:var(--gold2);font-size:1.35rem;letter-spacing:.4em;text-transform:uppercase}
 .ls{font-size:.68rem;color:rgba(184,149,42,.5);letter-spacing:.25em;margin-top:.35rem;text-transform:uppercase}
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(250,247,242,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem;height:62px}
 .nbrand{display:flex;align-items:center;gap:.75rem;cursor:pointer;border:none;background:none;padding:0}
 .nlm{width:38px;height:38px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -45,8 +48,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(250,247,242,
 .mnav{display:none;position:fixed;top:62px;left:0;right:0;background:var(--cream);border-bottom:1px solid var(--border);padding:.7rem 1rem;z-index:499;flex-direction:column;gap:.2rem;box-shadow:var(--shadow)}
 .mnav.open{display:flex}
 .mnav .ni{width:100%;text-align:left;padding:.6rem 1rem}
+/* WHATSAPP FLOAT */
+.wa-float{position:fixed;bottom:1.5rem;left:1.5rem;z-index:800;width:54px;height:54px;border-radius:50%;background:#25d366;box-shadow:0 4px 20px rgba(37,211,102,.4);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s;text-decoration:none;border:none}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 8px 30px rgba(37,211,102,.5)}
+.wa-float svg{width:28px;height:28px}
+.wa-tooltip{position:absolute;left:65px;background:var(--ink);color:#fff;padding:.4rem .85rem;border-radius:8px;font-size:.75rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;font-family:'Jost',sans-serif}
+.wa-float:hover .wa-tooltip{opacity:1}
+/* PAGES */
 .page{display:none;min-height:100vh;padding-top:62px}
 .page.active{display:block}
+/* HERO */
 .hero{min-height:calc(100vh - 62px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3.5rem 1.5rem;position:relative;overflow:hidden;background:var(--ink)}
 .hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(184,149,42,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(184,149,42,.06) 1px,transparent 1px);background-size:60px 60px}
 .hglow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(184,149,42,.09) 0%,transparent 65%);left:50%;top:50%;transform:translate(-50%,-50%);animation:gp 6s ease-in-out infinite}
@@ -67,21 +78,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(250,247,242,
 .hsn{font-family:'Playfair Display',serif;font-size:2.1rem;color:var(--gold2)}
 .hsl{font-size:.66rem;color:rgba(250,247,242,.38);letter-spacing:.14em;text-transform:uppercase;margin-top:.2rem}
 @keyframes fu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+/* SECTIONS */
 .sec{padding:4.5rem 1.5rem;max-width:1200px;margin:0 auto}
 .seye{font-size:.68rem;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:.55rem;display:flex;align-items:center;gap:.5rem}
 .seye::before{content:'';width:20px;height:1px;background:var(--gold)}
 .stitle{font-family:'Playfair Display',serif;font-size:clamp(1.75rem,4vw,2.7rem);font-weight:400;line-height:1.15}
+/* ROOMS */
 .rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.2rem;margin-top:2.2rem}
 .rc{border-radius:16px;overflow:hidden;border:1px solid var(--border);background:var(--surface);cursor:pointer;transition:transform .3s,box-shadow .3s}
 .rc:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
 .rt{height:190px;display:flex;align-items:center;justify-content:center;font-size:3.8rem;position:relative}
-.rt-s{background:linear-gradient(135deg,#e8e0d4,#d4c8b8)}
-.rt-d{background:linear-gradient(135deg,#d8e8d8,#b8d4b8)}
-.rt-v{background:linear-gradient(135deg,#e8d8b0,#d4bc7c)}
-.rt-dl{background:linear-gradient(135deg,#cfd9f0,#a5bce5)}
-.rt-ex{background:linear-gradient(135deg,#dbd0f0,#b8a5e0)}
-.rt-fm{background:linear-gradient(135deg,#f5e8d0,#e8d0a5)}
-.rt-hn{background:linear-gradient(135deg,#f5d0e5,#e8a5c5)}
+.rt-s{background:linear-gradient(135deg,#e8e0d4,#d4c8b8)}.rt-d{background:linear-gradient(135deg,#d8e8d8,#b8d4b8)}.rt-v{background:linear-gradient(135deg,#e8d8b0,#d4bc7c)}
+.rt-dl{background:linear-gradient(135deg,#cfd9f0,#a5bce5)}.rt-ex{background:linear-gradient(135deg,#dbd0f0,#b8a5e0)}.rt-fm{background:linear-gradient(135deg,#f5e8d0,#e8d0a5)}.rt-hn{background:linear-gradient(135deg,#f5d0e5,#e8a5c5)}
 .rrib{position:absolute;top:.8rem;left:.8rem;background:rgba(255,255,255,.88);backdrop-filter:blur(8px);border-radius:5px;padding:.18rem .6rem;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
 .rb{padding:1.2rem}
 .rn{font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:.35rem}
@@ -91,6 +99,27 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(250,247,242,
 .rp small{font-family:'Jost',sans-serif;font-size:.7rem;color:var(--muted)}
 .rbk{font-size:.7rem;padding:.4rem .9rem;background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border);border-radius:6px;cursor:pointer;font-family:'Jost',sans-serif;font-weight:600;transition:all .2s}
 .rbk:hover{background:var(--gold);color:#fff}
+/* REVIEWS */
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.1rem;margin-top:2rem}
+.rev-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.3rem;box-shadow:var(--shadow)}
+.rev-stars{color:var(--gold);font-size:1rem;margin-bottom:.6rem}
+.rev-text{font-size:.82rem;color:var(--muted);line-height:1.65;font-style:italic;margin-bottom:.75rem}
+.rev-author{font-size:.78rem;font-weight:600;color:var(--text)}
+.rev-room{font-size:.7rem;color:var(--muted2)}
+.rev-avg{display:flex;align-items:center;gap:1.5rem;margin-top:1.5rem;padding:1.25rem;background:var(--surface2);border-radius:12px;border:1px solid var(--border)}
+.rev-big{font-family:'Playfair Display',serif;font-size:3.5rem;color:var(--gold);line-height:1}
+.rev-info{}
+.rev-info-stars{color:var(--gold);font-size:1.1rem}
+.rev-info-count{font-size:.75rem;color:var(--muted);margin-top:.2rem}
+/* MAPS */
+.map-wrap{border-radius:16px;overflow:hidden;border:1px solid var(--border);margin-top:2rem;box-shadow:var(--shadow)}
+.map-wrap iframe{width:100%;height:380px;border:none;display:block}
+.map-info{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-top:1.25rem}
+.map-info-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;display:flex;align-items:center;gap:.75rem}
+.map-info-ico{font-size:1.5rem}
+.map-info-label{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.map-info-val{font-size:.85rem;font-weight:500;margin-top:.1rem}
+/* BOOKING */
 .bpw{max-width:1060px;margin:0 auto;padding:2.2rem 1.5rem}
 .phero{margin-bottom:2.2rem}
 .ptag{font-size:.68rem;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:.35rem;display:flex;align-items:center;gap:.5rem}
@@ -105,8 +134,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(250,247,242,
 @media(max-width:500px){.frow{grid-template-columns:1fr}}
 .fg{margin-bottom:.95rem}
 .fg label{display:block;font-size:.68rem;font-weight:600;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.38rem}
-.fg input,.fg select{width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;padding:.72rem .88rem;color:var(--text);font-family:'Jost',sans-serif;font-size:.86rem;outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none}
-.fg input:focus,.fg select:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-dim)}
+.fg input,.fg select,.fg textarea{width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;padding:.72rem .88rem;color:var(--text);font-family:'Jost',sans-serif;font-size:.86rem;outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none}
+.fg textarea{resize:vertical;min-height:80px}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-dim)}
 .eferr{font-size:.72rem;color:var(--red);margin-top:.28rem;display:none}
 .eferr.show{display:block}
 .fsub{width:100%;padding:.88rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;border:none;border-radius:9px;font-family:'Jost',sans-serif;font-size:.86rem;font-weight:600;cursor:pointer;transition:all .25s;letter-spacing:.07em;text-transform:uppercase;margin-top:.4rem}
@@ -129,6 +159,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(250,247,242,
 .smsg{font-size:.86rem;color:var(--muted);line-height:1.7;max-width:340px;margin:0 auto}
 .sagain{margin-top:1.4rem;padding:.6rem 1.5rem;background:transparent;border:1.5px solid var(--gold-border);color:var(--gold);border-radius:8px;cursor:pointer;font-family:'Jost',sans-serif;font-size:.8rem;font-weight:600;transition:all .2s}
 .sagain:hover{background:var(--gold-dim)}
+/* ACCESS */
 .axout{max-width:460px;margin:0 auto;padding:2.2rem 1.25rem;display:flex;flex-direction:column;align-items:center}
 .axcard{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2.2rem 1.75rem;width:100%;box-shadow:var(--shadow-lg);text-align:center}
 .axic{width:72px;height:72px;border-radius:50%;background:var(--gold-dim);border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;font-size:1.9rem;margin:0 auto 1.1rem}
@@ -144,6 +175,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(250,247,242,
 .arttl{font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:.3rem}
 .arttl.ok{color:var(--green)}.arttl.no{color:var(--red)}
 .arbody{font-size:.78rem;color:var(--muted);line-height:1.7;white-space:pre-line}
+/* HISTORY */
 .hxout{max-width:660px;margin:0 auto;padding:2.2rem 1.25rem}
 .lcard{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.6rem;margin-bottom:1.6rem;box-shadow:var(--shadow)}
 .bkc{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:1.1rem;margin-bottom:.75rem;box-shadow:var(--shadow);animation:fu .4s ease}
@@ -153,6 +185,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(250,247,242,
 .bP{background:rgba(184,149,42,.1);color:var(--gold);border:1px solid var(--gold-border)}
 .bA{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
 .bR{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd)}
+.bCO{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-bd)}
 .bkm{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.6rem;margin-top:.8rem}
 .bml{font-size:.64rem;font-weight:600;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.12rem}
 .bmv{font-size:.8rem;font-weight:500}
@@ -160,6 +193,25 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(250,247,242,
 .bkcl{font-size:.64rem;font-weight:600;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.12rem}
 .bkcv{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold);letter-spacing:.2em}
 .bkcs{font-size:.68rem;color:var(--muted)}
+/* REVIEW FORM */
+.star-row{display:flex;gap:.3rem;margin-bottom:.6rem}
+.star-btn{font-size:1.6rem;background:none;border:none;cursor:pointer;color:#ddd;transition:color .15s;line-height:1}
+.star-btn.lit{color:var(--gold)}
+/* RECEIPT */
+.receipt-wrap{background:var(--surface);border:2px solid var(--gold-border);border-radius:16px;padding:2rem;margin-top:1.25rem;display:none}
+.receipt-header{text-align:center;border-bottom:1px dashed var(--border);padding-bottom:1.25rem;margin-bottom:1.25rem}
+.receipt-logo{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold)}
+.receipt-id{font-size:.72rem;color:var(--muted);margin-top:.3rem}
+.receipt-rows{display:flex;flex-direction:column;gap:.55rem}
+.receipt-row{display:flex;justify-content:space-between;font-size:.82rem;padding:.35rem 0;border-bottom:1px solid var(--surface2)}
+.receipt-row:last-child{border-bottom:none}
+.receipt-label{color:var(--muted)}
+.receipt-value{font-weight:600;text-align:right}
+.receipt-code{background:var(--ink);border-radius:10px;padding:1rem;text-align:center;margin-top:1rem}
+.receipt-code-label{font-size:.65rem;color:rgba(212,175,90,.6);letter-spacing:.15em;text-transform:uppercase}
+.receipt-code-val{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--gold2);letter-spacing:.3em}
+.receipt-footer{text-align:center;margin-top:1.25rem;font-size:.75rem;color:var(--muted);border-top:1px dashed var(--border);padding-top:1rem}
+/* ADMIN */
 .alout{max-width:390px;margin:2rem auto;padding:1rem 1.25rem}
 .alcard{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2.2rem 1.75rem;text-align:center;box-shadow:var(--shadow-lg)}
 .alcrown{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;margin:0 auto 1.1rem;box-shadow:0 5px 24px rgba(184,149,42,.35)}
@@ -170,10 +222,21 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(250,247,242,
 .dh{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem;margin-bottom:1.5rem;padding-bottom:1.1rem;border-bottom:1px solid var(--border)}
 .dbn{font-family:'Playfair Display',serif;font-size:1.35rem}
 .dbs{font-size:.7rem;color:var(--muted);margin-top:.1rem}
-.dsts{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.8rem;margin-bottom:1.5rem}
+.dsts{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.8rem;margin-bottom:1.5rem}
 .dsc{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:1rem 1.15rem;box-shadow:var(--shadow)}
 .dsn{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:400}
-.dsl{font-size:.68rem;font-weight:600;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:.28rem}
+.dsl{font-size:.65rem;font-weight:600;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:.28rem}
+/* ANALYTICS */
+.analytics-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+@media(max-width:600px){.analytics-grid{grid-template-columns:1fr}}
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.25rem;box-shadow:var(--shadow)}
+.chart-title{font-family:'Playfair Display',serif;font-size:1.05rem;margin-bottom:1rem;color:var(--text)}
+.top-rooms{display:flex;flex-direction:column;gap:.55rem;margin-top:.5rem}
+.top-room-item{display:flex;align-items:center;justify-content:space-between;font-size:.8rem}
+.top-room-bar-wrap{flex:1;margin:0 .75rem;height:6px;background:var(--surface2);border-radius:3px;overflow:hidden}
+.top-room-bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:3px;transition:width .8s ease}
+.rev-stat{font-size:.75rem;font-weight:600;color:var(--gold)}
+/* ADMIN TABLE */
 .dtw{background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
 .dth{padding:1rem 1.2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.55rem}
 .dtt{font-family:'Playfair Display',serif;font-size:1.1rem}
@@ -197,11 +260,22 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(250,247,242,
 .abno:hover{background:var(--red);color:#fff;border-color:var(--red)}
 .absv{border-color:var(--border);color:var(--muted);background:transparent}
 .absv:hover{border-color:var(--gold-border);color:var(--gold);background:var(--gold-dim)}
+.abco{border-color:var(--blue-bd);color:var(--blue);background:var(--blue-bg)}
+.abco:hover{background:var(--blue);color:#fff}
 .rni{width:82px;padding:.32rem .58rem;border-radius:6px;border:1.5px solid var(--border);background:var(--surface);font-family:'Jost',sans-serif;font-size:.75rem;color:var(--text);outline:none}
 .rni:focus{border-color:var(--gold)}
 .cpill{padding:.25rem .75rem;background:var(--gold-dim);border:1px solid var(--gold-border);border-radius:5px;font-family:'Playfair Display',serif;font-size:.82rem;color:var(--gold);letter-spacing:.14em}
 .ldot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);animation:lp 2s infinite;margin-right:.3rem}
 @keyframes lp{0%{box-shadow:0 0 0 0 rgba(46,125,90,.4)}70%{box-shadow:0 0 0 6px rgba(46,125,90,0)}100%{box-shadow:0 0 0 0 rgba(46,125,90,0)}}
+/* ADMIN TABS */
+.admin-tabs{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.4rem;border-bottom:1px solid var(--border);padding-bottom:.8rem}
+.atab{padding:.42rem 1rem;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Jost',sans-serif;font-size:.78rem;font-weight:500;cursor:pointer;transition:all .2s}
+.atab.on{background:var(--gold-dim);color:var(--gold);border-color:var(--gold-border)}
+.atab-panel{display:none}
+.atab-panel.on{display:block}
+/* CHANGE PASSWORD */
+.cpw-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.5rem;max-width:420px;box-shadow:var(--shadow)}
+/* FOOTER */
 footer{background:var(--ink);color:rgba(250,247,242,.5);padding:2.8rem 1.5rem;text-align:center}
 .fcrown{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold2);margin-bottom:.38rem}
 .ftag{font-size:.72rem;color:rgba(184,149,42,.42);letter-spacing:.14em;text-transform:uppercase;margin-bottom:1.4rem;font-style:italic}
@@ -209,15 +283,20 @@ footer{background:var(--ink);color:rgba(250,247,242,.5);padding:2.8rem 1.5rem;te
 .fcts a{color:rgba(250,247,242,.42);text-decoration:none;font-size:.78rem;transition:color .2s}.fcts a:hover{color:var(--gold2)}.fcts span{font-size:.78rem}
 .fhr{border:none;border-top:1px solid rgba(184,149,42,.11);margin-bottom:1.1rem}
 .fcp{font-size:.7rem;color:rgba(250,247,242,.18)}
+/* TOAST */
 .toast{position:fixed;bottom:1.1rem;right:1.1rem;z-index:9000;background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:.9rem 1.25rem;max-width:300px;box-shadow:var(--shadow-lg);transform:translateX(120%);opacity:0;transition:all .4s cubic-bezier(.34,1.56,.64,1)}
 .toast.show{transform:translateX(0);opacity:1}
 .tttl{font-family:'Playfair Display',serif;font-size:.9rem;color:var(--gold);margin-bottom:.18rem}
 .tmsg{font-size:.76rem;color:var(--muted);line-height:1.5}
+/* UTILS */
 .spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:.3rem}
 @keyframes spin{to{transform:rotate(360deg)}}
 .emst{text-align:center;padding:2.2rem;color:var(--muted)}
 .emst .ei{font-size:1.9rem;margin-bottom:.55rem;display:block;opacity:.4}
 .dacth{display:flex;gap:.45rem;flex-wrap:wrap}
+.divider{height:1px;background:var(--border);margin:1.5rem 0}
+.revenue-total{font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);margin:.5rem 0}
+.revenue-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
 @media(max-width:600px){
   nav{padding:0 1rem}.nmenu{display:none}.ham{display:flex}
   .hstats{gap:1.8rem}
@@ -226,6 +305,7 @@ footer{background:var(--ink);color:rgba(250,247,242,.5);padding:2.8rem 1.5rem;te
   .adash{padding:.85rem}
   .cbox{width:40px;height:52px;font-size:1.45rem}
   .rgrid{grid-template-columns:1fr}
+  .map-wrap iframe{height:260px}
 }
 </style>
 </head>
@@ -237,9 +317,7 @@ footer{background:var(--ink);color:rgba(250,247,242,.5);padding:2.8rem 1.5rem;te
     <div class="lr"></div>
     <svg viewBox="0 0 40 30" fill="none" width="38">
       <path d="M4 26L8 10L16 18L20 6L24 18L32 10L36 26H4Z" stroke="#d4af5a" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
-      <circle cx="4" cy="10" r="2.5" fill="#d4af5a"/>
-      <circle cx="20" cy="4" r="2.5" fill="#d4af5a"/>
-      <circle cx="36" cy="10" r="2.5" fill="#d4af5a"/>
+      <circle cx="4" cy="10" r="2.5" fill="#d4af5a"/><circle cx="20" cy="4" r="2.5" fill="#d4af5a"/><circle cx="36" cy="10" r="2.5" fill="#d4af5a"/>
       <line x1="4" y1="28" x2="36" y2="28" stroke="#d4af5a" stroke-width="1.5" stroke-linecap="round"/>
     </svg>
   </div>
@@ -249,6 +327,12 @@ footer{background:var(--ink);color:rgba(250,247,242,.5);padding:2.8rem 1.5rem;te
 
 <!-- TOAST -->
 <div class="toast" id="toast"><div class="tttl" id="tttl"></div><div class="tmsg" id="tmsg"></div></div>
+
+<!-- WHATSAPP FLOAT -->
+<a class="wa-float" href="https://wa.me/2347080951392?text=Hello%20OCROWN%20Suites%2C%20I%20would%20like%20to%20make%20an%20enquiry." target="_blank" title="Chat on WhatsApp">
+  <div class="wa-tooltip">Chat with us on WhatsApp</div>
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
 <!-- NAV -->
 <nav>
@@ -280,7 +364,7 @@ footer{background:var(--ink);color:rgba(250,247,242,.5);padding:2.8rem 1.5rem;te
   <button class="ni" onclick="SP('admin');toggleNav()">Admin</button>
 </div>
 
-<!-- HOME -->
+<!-- ═══ HOME ═══ -->
 <div class="page active" id="page-home">
   <div class="hero">
     <div class="hgrid"></div><div class="hglow"></div>
@@ -296,57 +380,58 @@ footer{background:var(--ink);color:rgba(250,247,242,.5);padding:2.8rem 1.5rem;te
         <div><div class="hsn">7</div><div class="hsl">Room Types</div></div>
         <div><div class="hsn">24/7</div><div class="hsl">Concierge</div></div>
         <div><div class="hsn">100%</div><div class="hsl">Secure Access</div></div>
+        <div><div class="hsn" id="home-rev-count">0</div><div class="hsl">Guest Reviews</div></div>
       </div>
     </div>
   </div>
+
+  <!-- ROOMS -->
   <div id="rsec"></div>
   <div class="sec">
     <div class="seye">Our Accommodations</div>
     <h2 class="stitle">Choose Your Perfect Suite</h2>
     <div class="rgrid">
-      <div class="rc" onclick="SP('booking')">
-        <div class="rt rt-s">🛏<div class="rrib">Single</div></div>
-        <div class="rb"><div class="rn">Classic Single</div><div class="rd">Perfect for solo travellers. Queen bed, en-suite bathroom, work desk and complimentary WiFi.</div>
-        <div class="rft"><div class="rp">₦18,000<small>/night</small></div><button class="rbk">Book Now</button></div></div>
-      </div>
-      <div class="rc" onclick="SP('booking')">
-        <div class="rt rt-d">🛏🛏<div class="rrib">Double</div></div>
-        <div class="rb"><div class="rn">Comfort Double</div><div class="rd">Ideal for couples or co-travellers. Twin beds, lounge area, mini-fridge and premium linen.</div>
-        <div class="rft"><div class="rp">₦28,000<small>/night</small></div><button class="rbk">Book Now</button></div></div>
-      </div>
-      <div class="rc" onclick="SP('booking')">
-        <div class="rt rt-v">👑<div class="rrib">VIP</div></div>
-        <div class="rb"><div class="rn">VIP Prestige Suite</div><div class="rd">The pinnacle of luxury. King bed, private lounge, jacuzzi and complimentary breakfast.</div>
-        <div class="rft"><div class="rp">₦55,000<small>/night</small></div><button class="rbk">Book Now</button></div></div>
-      </div>
-      <div class="rc" onclick="SP('booking')">
-        <div class="rt rt-dl">🌟<div class="rrib">Deluxe</div></div>
-        <div class="rb"><div class="rn">Deluxe Suite</div><div class="rd">Elevated comfort with premium furnishings, city view, king bed, flat-screen TV and rain shower.</div>
-        <div class="rft"><div class="rp">₦38,000<small>/night</small></div><button class="rbk">Book Now</button></div></div>
-      </div>
-      <div class="rc" onclick="SP('booking')">
-        <div class="rt rt-ex">💼<div class="rrib">Executive</div></div>
-        <div class="rb"><div class="rn">Executive Room</div><div class="rd">Designed for business travellers. Ergonomic workstation, high-speed WiFi, ironing board and safe.</div>
-        <div class="rft"><div class="rp">₦32,000<small>/night</small></div><button class="rbk">Book Now</button></div></div>
-      </div>
-      <div class="rc" onclick="SP('booking')">
-        <div class="rt rt-fm">👨‍👩‍👧‍👦<div class="rrib">Family</div></div>
-        <div class="rb"><div class="rn">Family Suite</div><div class="rd">Spacious suite for families. Two bedrooms, kitchenette, living area and kids-friendly amenities.</div>
-        <div class="rft"><div class="rp">₦48,000<small>/night</small></div><button class="rbk">Book Now</button></div></div>
-      </div>
-      <div class="rc" onclick="SP('booking')">
-        <div class="rt rt-hn">💑<div class="rrib">Honeymoon</div></div>
-        <div class="rb"><div class="rn">Honeymoon Suite</div><div class="rd">Romantic luxury. Rose decor, champagne on arrival, jacuzzi and private balcony.</div>
-        <div class="rft"><div class="rp">₦65,000<small>/night</small></div><button class="rbk">Book Now</button></div></div>
-      </div>
+      <div class="rc" onclick="SP('booking')"><div class="rt rt-s">🛏<div class="rrib">Single</div></div><div class="rb"><div class="rn">Classic Single</div><div class="rd">Perfect for solo travellers. Queen bed, en-suite bathroom, work desk and complimentary WiFi.</div><div class="rft"><div class="rp">₦18,000<small>/night</small></div><button class="rbk">Book Now</button></div></div></div>
+      <div class="rc" onclick="SP('booking')"><div class="rt rt-d">🛏🛏<div class="rrib">Double</div></div><div class="rb"><div class="rn">Comfort Double</div><div class="rd">Ideal for couples or co-travellers. Twin beds, lounge area, mini-fridge and premium linen.</div><div class="rft"><div class="rp">₦28,000<small>/night</small></div><button class="rbk">Book Now</button></div></div></div>
+      <div class="rc" onclick="SP('booking')"><div class="rt rt-v">👑<div class="rrib">VIP</div></div><div class="rb"><div class="rn">VIP Prestige Suite</div><div class="rd">The pinnacle of luxury. King bed, private lounge, jacuzzi and complimentary breakfast.</div><div class="rft"><div class="rp">₦55,000<small>/night</small></div><button class="rbk">Book Now</button></div></div></div>
+      <div class="rc" onclick="SP('booking')"><div class="rt rt-dl">🌟<div class="rrib">Deluxe</div></div><div class="rb"><div class="rn">Deluxe Suite</div><div class="rd">Elevated comfort with premium furnishings, city view, king bed, flat-screen TV and rain shower.</div><div class="rft"><div class="rp">₦38,000<small>/night</small></div><button class="rbk">Book Now</button></div></div></div>
+      <div class="rc" onclick="SP('booking')"><div class="rt rt-ex">💼<div class="rrib">Executive</div></div><div class="rb"><div class="rn">Executive Room</div><div class="rd">Designed for business travellers. Ergonomic workstation, high-speed WiFi, ironing board and safe.</div><div class="rft"><div class="rp">₦32,000<small>/night</small></div><button class="rbk">Book Now</button></div></div></div>
+      <div class="rc" onclick="SP('booking')"><div class="rt rt-fm">👨‍👩‍👧‍👦<div class="rrib">Family</div></div><div class="rb"><div class="rn">Family Suite</div><div class="rd">Spacious suite for families. Two bedrooms, kitchenette, living area and kids-friendly amenities.</div><div class="rft"><div class="rp">₦48,000<small>/night</small></div><button class="rbk">Book Now</button></div></div></div>
+      <div class="rc" onclick="SP('booking')"><div class="rt rt-hn">💑<div class="rrib">Honeymoon</div></div><div class="rb"><div class="rn">Honeymoon Suite</div><div class="rd">Romantic luxury. Rose decor, champagne on arrival, jacuzzi and private balcony.</div><div class="rft"><div class="rp">₦65,000<small>/night</small></div><button class="rbk">Book Now</button></div></div></div>
     </div>
   </div>
+
+  <!-- REVIEWS -->
+  <div style="background:var(--surface2);padding:1px 0">
+    <div class="sec">
+      <div class="seye">Guest Experiences</div>
+      <h2 class="stitle">What Our Guests Say</h2>
+      <div id="rev-avg-wrap"></div>
+      <div class="rev-grid" id="home-reviews"><div class="emst"><span class="ei">⭐</span>Loading reviews…</div></div>
+    </div>
+  </div>
+
+  <!-- LOCATION -->
+  <div class="sec">
+    <div class="seye">Find Us</div>
+    <h2 class="stitle">Our Location</h2>
+    <div class="map-wrap">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.0!2d3.8900!3d7.3700!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103835d0abcdef00%3A0x123456789abcdef!2sAlakia%2C%20Ibadan%2C%20Oyo%20State%2C%20Nigeria!5e0!3m2!1sen!2sng!4v1700000000000!5m2!1sen!2sng" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="map-info">
+      <div class="map-info-item"><div class="map-info-ico">📍</div><div><div class="map-info-label">Address</div><div class="map-info-val">Alakia, Ibadan, Oyo State</div></div></div>
+      <div class="map-info-item"><div class="map-info-ico">📞</div><div><div class="map-info-label">Phone / WhatsApp</div><div class="map-info-val"><a href="tel:07080951392" style="color:var(--gold);text-decoration:none">07080951392</a></div></div></div>
+      <div class="map-info-item"><div class="map-info-ico">✉️</div><div><div class="map-info-label">Email</div><div class="map-info-val"><a href="mailto:ocrownsuites@gmail.com" style="color:var(--gold);text-decoration:none">ocrownsuites@gmail.com</a></div></div></div>
+      <div class="map-info-item"><div class="map-info-ico">🕐</div><div><div class="map-info-label">Reception Hours</div><div class="map-info-val">24 Hours · 7 Days a Week</div></div></div>
+    </div>
+  </div>
+
   <footer>
     <div class="fcrown">♛ OCROWN Suites</div>
     <div class="ftag">Luxury Redefined in the Heart of Ibadan</div>
     <div class="fcts">
       <a href="tel:07080951392">📞 07080951392</a>
-      <a href="https://wa.me/2347080951392" target="_blank">💬 WhatsApp: 07080951392</a>
+      <a href="https://wa.me/2347080951392" target="_blank">💬 WhatsApp</a>
       <a href="mailto:ocrownsuites@gmail.com">✉️ ocrownsuites@gmail.com</a>
       <span>📍 Alakia, Ibadan, Oyo State, Nigeria</span>
     </div>
@@ -354,7 +439,7 @@ footer{background:var(--ink);color:rgba(250,247,242,.5);padding:2.8rem 1.5rem;te
   </footer>
 </div>
 
-<!-- BOOKING -->
+<!-- ═══ BOOKING ═══ -->
 <div class="page" id="page-booking">
   <div class="bpw">
     <div class="phero">
@@ -429,7 +514,7 @@ footer{background:var(--ink);color:rgba(250,247,242,.5);padding:2.8rem 1.5rem;te
   <footer><div class="fcrown">♛ OCROWN Suites</div><div class="fcts"><a href="tel:07080951392">📞 07080951392</a><a href="mailto:ocrownsuites@gmail.com">✉️ ocrownsuites@gmail.com</a><span>📍 Alakia, Ibadan, Oyo State</span></div><hr class="fhr"/><div class="fcp">© 2025 OCROWN Suites. All rights reserved.</div></footer>
 </div>
 
-<!-- ACCESS -->
+<!-- ═══ ACCESS ═══ -->
 <div class="page" id="page-access">
   <div class="axout">
     <div class="axcard">
@@ -456,34 +541,59 @@ footer{background:var(--ink);color:rgba(250,247,242,.5);padding:2.8rem 1.5rem;te
   <footer><div class="fcrown">♛ OCROWN Suites</div><div class="fcts"><a href="tel:07080951392">📞 07080951392</a><a href="mailto:ocrownsuites@gmail.com">✉️ ocrownsuites@gmail.com</a></div><hr class="fhr"/><div class="fcp">© 2025 OCROWN Suites. All rights reserved.</div></footer>
 </div>
 
-<!-- HISTORY -->
+<!-- ═══ HISTORY ═══ -->
 <div class="page" id="page-history">
   <div class="hxout">
     <div class="phero">
       <div class="ptag">Booking Lookup</div>
       <h1 class="ptitle">My Booking</h1>
-      <p class="psub">Enter your email to retrieve your booking status, room details and access code.</p>
+      <p class="psub">Enter your email to retrieve your booking status, room details, access code and receipt.</p>
     </div>
     <div class="lcard">
       <div class="fg"><label>Email Address Used at Booking</label><input type="email" id="h-email" placeholder="e.g. guest@email.com" onkeypress="if(event.key==='Enter')findBookings()"/></div>
       <button class="fsub" id="fbtn" onclick="findBookings()">Find My Bookings</button>
     </div>
     <div id="hresults"></div>
+
+    <!-- REVIEW FORM -->
+    <div id="rev-form-wrap" style="display:none">
+      <div class="divider"></div>
+      <div class="lcard">
+        <div class="fst">⭐ Leave a Review</div>
+        <p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem">Share your experience to help future guests</p>
+        <div class="fg"><label>Your Name</label><input type="text" id="rv-name" placeholder="e.g. Adewale Okonkwo"/></div>
+        <div class="fg"><label>Room Type Stayed In</label>
+          <select id="rv-room">
+            <option value="">— Select Room —</option>
+            <option>Single</option><option>Double</option><option>VIP</option>
+            <option>Deluxe</option><option>Executive</option><option>Family</option><option>Honeymoon</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Rating</label>
+          <div class="star-row" id="star-row">
+            <button class="star-btn" onclick="setRating(1)">★</button>
+            <button class="star-btn" onclick="setRating(2)">★</button>
+            <button class="star-btn" onclick="setRating(3)">★</button>
+            <button class="star-btn" onclick="setRating(4)">★</button>
+            <button class="star-btn" onclick="setRating(5)">★</button>
+          </div>
+        </div>
+        <div class="fg"><label>Your Review</label><textarea id="rv-text" placeholder="Tell us about your stay…"></textarea></div>
+        <button class="fsub" onclick="submitReview()">Submit Review</button>
+      </div>
+    </div>
   </div>
   <footer><div class="fcrown">♛ OCROWN Suites</div><div class="fcts"><a href="tel:07080951392">📞 07080951392</a><a href="mailto:ocrownsuites@gmail.com">✉️ ocrownsuites@gmail.com</a></div><hr class="fhr"/><div class="fcp">© 2025 OCROWN Suites. All rights reserved.</div></footer>
 </div>
 
-<!-- ADMIN -->
+<!-- ═══ ADMIN ═══ -->
 <div class="page" id="page-admin">
   <div id="alpanel">
     <div class="alout">
       <div class="alcard">
         <div class="alcrown">
-          <svg viewBox="0 0 40 30" fill="none" width="30">
-            <path d="M4 26L8 10L16 18L20 6L24 18L32 10L36 26H4Z" stroke="white" stroke-width="2" stroke-linejoin="round" fill="none"/>
-            <circle cx="4" cy="10" r="2.5" fill="white"/><circle cx="20" cy="4" r="2.5" fill="white"/><circle cx="36" cy="10" r="2.5" fill="white"/>
-            <line x1="4" y1="28" x2="36" y2="28" stroke="white" stroke-width="2" stroke-linecap="round"/>
-          </svg>
+          <svg viewBox="0 0 40 30" fill="none" width="30"><path d="M4 26L8 10L16 18L20 6L24 18L32 10L36 26H4Z" stroke="white" stroke-width="2" stroke-linejoin="round" fill="none"/><circle cx="4" cy="10" r="2.5" fill="white"/><circle cx="20" cy="4" r="2.5" fill="white"/><circle cx="36" cy="10" r="2.5" fill="white"/><line x1="4" y1="28" x2="36" y2="28" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
         </div>
         <div class="altitle">Admin Portal</div>
         <p class="alsub">OCROWN Suites Management Dashboard</p>
@@ -494,6 +604,7 @@ footer{background:var(--ink);color:rgba(250,247,242,.5);padding:2.8rem 1.5rem;te
       </div>
     </div>
   </div>
+
   <div class="adash" id="adash">
     <div class="dh">
       <div><div class="dbn">♛ OCROWN Suites Dashboard</div><div class="dbs"><span class="ldot"></span>Admin · Alakia, Ibadan, Oyo State</div></div>
@@ -502,24 +613,80 @@ footer{background:var(--ink);color:rgba(250,247,242,.5);padding:2.8rem 1.5rem;te
         <button class="ab abno" onclick="adminLogout()">Sign Out</button>
       </div>
     </div>
-    <div class="dsts">
-      <div class="dsc"><div class="dsn" id="st0" style="color:var(--gold)">0</div><div class="dsl">Total</div></div>
-      <div class="dsc"><div class="dsn" id="st1" style="color:#b8952a">0</div><div class="dsl">Pending</div></div>
-      <div class="dsc"><div class="dsn" id="st2" style="color:var(--green)">0</div><div class="dsl">Approved</div></div>
-      <div class="dsc"><div class="dsn" id="st3" style="color:var(--red)">0</div><div class="dsl">Rejected</div></div>
+
+    <!-- ADMIN TABS -->
+    <div class="admin-tabs">
+      <button class="atab on" onclick="switchTab('bookings',this)">📋 Bookings</button>
+      <button class="atab" onclick="switchTab('analytics',this)">📊 Analytics</button>
+      <button class="atab" onclick="switchTab('reviews',this)">⭐ Reviews</button>
+      <button class="atab" onclick="switchTab('settings',this)">⚙️ Settings</button>
     </div>
-    <div class="dtw">
-      <div class="dth">
-        <div class="dtt">All Bookings</div>
-        <div class="fpills">
-          <button class="fp on" onclick="filterBk('all',this)">All</button>
-          <button class="fp" onclick="filterBk('Pending',this)">Pending</button>
-          <button class="fp" onclick="filterBk('Approved',this)">Approved</button>
-          <button class="fp" onclick="filterBk('Rejected',this)">Rejected</button>
+
+    <!-- BOOKINGS TAB -->
+    <div class="atab-panel on" id="tab-bookings">
+      <div class="dsts">
+        <div class="dsc"><div class="dsn" id="st0" style="color:var(--gold)">0</div><div class="dsl">Total</div></div>
+        <div class="dsc"><div class="dsn" id="st1" style="color:#b8952a">0</div><div class="dsl">Pending</div></div>
+        <div class="dsc"><div class="dsn" id="st2" style="color:var(--green)">0</div><div class="dsl">Approved</div></div>
+        <div class="dsc"><div class="dsn" id="st3" style="color:var(--red)">0</div><div class="dsl">Rejected</div></div>
+        <div class="dsc"><div class="dsn" id="st4" style="color:var(--blue)">0</div><div class="dsl">Checked Out</div></div>
+      </div>
+      <div class="dtw">
+        <div class="dth">
+          <div class="dtt">All Bookings</div>
+          <div class="fpills">
+            <button class="fp on" onclick="filterBk('all',this)">All</button>
+            <button class="fp" onclick="filterBk('Pending',this)">Pending</button>
+            <button class="fp" onclick="filterBk('Approved',this)">Approved</button>
+            <button class="fp" onclick="filterBk('Rejected',this)">Rejected</button>
+            <button class="fp" onclick="filterBk('CheckedOut',this)">Checked Out</button>
+          </div>
+        </div>
+        <div class="dtb" id="alist"><div class="emst"><span class="ei">📋</span>Loading…</div></div>
+      </div>
+    </div>
+
+    <!-- ANALYTICS TAB -->
+    <div class="atab-panel" id="tab-analytics">
+      <div class="dsts">
+        <div class="dsc"><div class="dsn" id="an-total" style="color:var(--gold)">0</div><div class="dsl">Total Bookings</div></div>
+        <div class="dsc"><div class="revenue-label">Est. Revenue</div><div class="revenue-total" id="an-rev">₦0</div></div>
+        <div class="dsc"><div class="dsn" id="an-rate" style="color:var(--green)">0%</div><div class="dsl">Approval Rate</div></div>
+        <div class="dsc"><div class="dsn" id="an-avg" style="color:var(--gold)">0</div><div class="dsl">Avg Rating</div></div>
+      </div>
+      <div class="analytics-grid">
+        <div class="chart-card">
+          <div class="chart-title">📊 Bookings by Status</div>
+          <canvas id="statusChart" height="200"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">🏆 Most Booked Rooms</div>
+          <div class="top-rooms" id="top-rooms-list"></div>
         </div>
       </div>
-      <div class="dtb" id="alist"><div class="emst"><span class="ei">📋</span>Loading…</div></div>
+      <div class="chart-card">
+        <div class="chart-title">📅 Booking Trend (Last 7 Days)</div>
+        <canvas id="trendChart" height="120"></canvas>
+      </div>
     </div>
+
+    <!-- REVIEWS TAB -->
+    <div class="atab-panel" id="tab-reviews">
+      <div id="admin-reviews-list"><div class="emst"><span class="ei">⭐</span>Loading reviews…</div></div>
+    </div>
+
+    <!-- SETTINGS TAB -->
+    <div class="atab-panel" id="tab-settings">
+      <div class="cpw-card">
+        <div class="fst">🔒 Change Admin Password</div>
+        <div class="fg"><label>Current Password</label><input type="password" id="cp-cur" placeholder="Enter current password"/></div>
+        <div class="fg"><label>New Password</label><input type="password" id="cp-new" placeholder="Enter new password"/></div>
+        <div class="fg"><label>Confirm New Password</label><input type="password" id="cp-con" placeholder="Confirm new password"/></div>
+        <div class="eferr" id="cp-err" style="margin-bottom:.5rem"></div>
+        <button class="fsub" onclick="changePassword()">Update Password</button>
+      </div>
+    </div>
+
     <footer style="margin-top:1.75rem;border-radius:13px">
       <div class="fcrown">♛ OCROWN Suites — Admin</div>
       <div class="fcts"><a href="tel:07080951392">📞 07080951392</a><a href="mailto:ocrownsuites@gmail.com">✉️ ocrownsuites@gmail.com</a><span>📍 Alakia, Ibadan, Oyo State</span></div>
@@ -528,13 +695,12 @@ footer{background:var(--ink);color:rgba(250,247,242,.5);padding:2.8rem 1.5rem;te
   </div>
 </div>
 
-<!-- FIREBASE COMPAT SDK (works with onclick handlers on mobile) -->
+<!-- FIREBASE + SCRIPTS -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
 <script>
-// ═══ FIREBASE INIT ═══
 firebase.initializeApp({
   apiKey:"AIzaSyDKgYbhZUcbsT76FTOe-Y9NtWMzSQ3sA7I",
   authDomain:"ocrownsuites.firebaseapp.com",
@@ -544,40 +710,30 @@ firebase.initializeApp({
   appId:"1:527772098102:web:aff5f0e675067ebd4cc297"
 });
 var db = firebase.firestore();
-
-// ═══ EMAILJS INIT ═══
 emailjs.init("r7qlEfPQs7hyHnOHR");
-var EJS_SVC = "service_munqxoi";
-var EJS_TPL = "template_nm4cjm9";
+var EJS_SVC="service_munqxoi", EJS_TPL="template_nm4cjm9";
 
-// ═══ STATE ═══
-var _adminIn = false;
-var _allBk = [];
+var _adminIn=false, _allBk=[], _adminPwd="1234", _rating=0;
+var PRICES={Single:18000,Double:28000,VIP:55000,Deluxe:38000,Executive:32000,Family:48000,Honeymoon:65000};
 
-// ═══ HIDE LOADER ═══
-function hideLoader(){
-  var l = document.getElementById('loader');
-  if(!l) return;
-  l.style.opacity = '0';
-  setTimeout(function(){ l.style.display='none'; }, 650);
-}
-window.onload = function(){ setTimeout(hideLoader, 800); };
-setTimeout(hideLoader, 2000);
+// LOADER
+function hideLoader(){var l=document.getElementById('loader');if(!l)return;l.style.opacity='0';setTimeout(function(){l.style.display='none';},650);}
+window.onload=function(){setTimeout(hideLoader,800);};
+setTimeout(hideLoader,2000);
 
-// ═══ NAV ═══
+// NAV
 function SP(p){
-  document.querySelectorAll('.page').forEach(function(e){ e.classList.remove('active'); });
-  document.querySelectorAll('.ni').forEach(function(e){ e.classList.remove('on'); });
-  var pg = document.getElementById('page-'+p);
-  if(pg) pg.classList.add('active');
-  var ni = document.getElementById('ni-'+p);
-  if(ni) ni.classList.add('on');
+  document.querySelectorAll('.page').forEach(function(e){e.classList.remove('active');});
+  document.querySelectorAll('.ni').forEach(function(e){e.classList.remove('on');});
+  var pg=document.getElementById('page-'+p);if(pg)pg.classList.add('active');
+  var ni=document.getElementById('ni-'+p);if(ni)ni.classList.add('on');
   window.scrollTo(0,0);
-  if(p==='admin' && _adminIn) loadBookings();
+  if(p==='admin'&&_adminIn)loadBookings();
+  if(p==='home')loadHomeReviews();
 }
-function toggleNav(){ document.getElementById('mnav').classList.toggle('open'); }
+function toggleNav(){document.getElementById('mnav').classList.toggle('open');}
 
-// ═══ TOAST ═══
+// TOAST
 function T(t,m,d){
   d=d||3800;
   document.getElementById('tttl').textContent=t;
@@ -585,22 +741,18 @@ function T(t,m,d){
   var el=document.getElementById('toast');
   el.classList.add('show');
   clearTimeout(window._tt);
-  window._tt=setTimeout(function(){ el.classList.remove('show'); },d);
+  window._tt=setTimeout(function(){el.classList.remove('show');},d);
 }
 
-// ═══ DATE SETUP ═══
+// DATES
 (function(){
   var td=new Date().toISOString().split('T')[0];
-  var ci=document.getElementById('b-cin');
-  var co=document.getElementById('b-cout');
-  if(ci) ci.min=td;
-  if(co) co.min=td;
-  if(ci) ci.addEventListener('change',function(){
-    if(co){ co.min=this.value; if(co.value&&co.value<=this.value) co.value=''; }
-  });
+  var ci=document.getElementById('b-cin'),co=document.getElementById('b-cout');
+  if(ci)ci.min=td;if(co)co.min=td;
+  if(ci)ci.addEventListener('change',function(){if(co){co.min=this.value;if(co.value&&co.value<=this.value)co.value='';}});
 })();
 
-// ═══ SUBMIT BOOKING ═══
+// SUBMIT BOOKING
 function submitBooking(){
   var name=document.getElementById('b-name').value.trim();
   var phone=document.getElementById('b-phone').value.trim();
@@ -610,16 +762,12 @@ function submitBooking(){
   var cout=document.getElementById('b-cout').value;
   var td=new Date().toISOString().split('T')[0];
   var ok=true;
-  function ve(id,pass){ var e=document.getElementById(id); if(pass){ e.classList.remove('show'); }else{ e.classList.add('show'); ok=false; } }
-  ve('en', name.length>=2);
-  ve('ep', /^[0-9]{10,15}$/.test(phone));
-  ve('ee', /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
-  ve('er', !!room);
-  ve('eci', !!cin&&cin>=td);
-  ve('eco', !!cout&&cout>cin);
-  if(!ok) return;
+  function ve(id,pass){var e=document.getElementById(id);if(pass){e.classList.remove('show');}else{e.classList.add('show');ok=false;}}
+  ve('en',name.length>=2);ve('ep',/^[0-9]{10,15}$/.test(phone));ve('ee',/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
+  ve('er',!!room);ve('eci',!!cin&&cin>=td);ve('eco',!!cout&&cout>cin);
+  if(!ok)return;
   var btn=document.getElementById('bsub');
-  btn.disabled=true; btn.innerHTML='<span class="spinner"></span>Submitting…';
+  btn.disabled=true;btn.innerHTML='<span class="spinner"></span>Submitting…';
   db.collection('bookings').add({
     name:name,phone:phone,email:email,roomType:room,
     checkIn:cin,checkOut:cout,
@@ -630,111 +778,168 @@ function submitBooking(){
     document.getElementById('bsuccess').style.display='block';
     T('✅ Submitted!','Booking submitted. Awaiting approval.');
   }).catch(function(e){
-    btn.disabled=false; btn.innerHTML='Submit Booking Request';
-    T('❌ Error','Could not submit. Check Firebase.',6000);
-    console.error(e);
+    btn.disabled=false;btn.innerHTML='Submit Booking Request';
+    T('❌ Error','Could not submit. Check Firebase.',6000);console.error(e);
   });
 }
-
 function resetBooking(){
-  ['b-name','b-phone','b-email','b-cin','b-cout'].forEach(function(id){ document.getElementById(id).value=''; });
+  ['b-name','b-phone','b-email','b-cin','b-cout'].forEach(function(id){document.getElementById(id).value='';});
   document.getElementById('b-room').value='';
   document.getElementById('bform').style.display='block';
   document.getElementById('bsuccess').style.display='none';
-  var btn=document.getElementById('bsub');
-  btn.disabled=false; btn.innerHTML='Submit Booking Request';
+  var btn=document.getElementById('bsub');btn.disabled=false;btn.innerHTML='Submit Booking Request';
 }
 
-// ═══ CODE BOX ═══
-function ci(i){
-  var b=document.getElementById('c'+i);
-  b.value=b.value.replace(/[^0-9]/g,'');
-  if(b.value&&i<5) document.getElementById('c'+(i+1)).focus();
-}
-function ck(e,i){
-  if(e.key==='Backspace'&&!document.getElementById('c'+i).value&&i>0)
-    document.getElementById('c'+(i-1)).focus();
-}
+// CODE BOX
+function ci(i){var b=document.getElementById('c'+i);b.value=b.value.replace(/[^0-9]/g,'');if(b.value&&i<5)document.getElementById('c'+(i+1)).focus();}
+function ck(e,i){if(e.key==='Backspace'&&!document.getElementById('c'+i).value&&i>0)document.getElementById('c'+(i-1)).focus();}
 
-// ═══ VERIFY CODE ═══
+// VERIFY CODE
 function verifyCode(){
-  var code='';
-  for(var i=0;i<6;i++) code+=document.getElementById('c'+i).value;
-  if(code.length!==6){ T('⚠️','Please enter all 6 digits.'); return; }
+  var code='';for(var i=0;i<6;i++)code+=document.getElementById('c'+i).value;
+  if(code.length!==6){T('⚠️','Please enter all 6 digits.');return;}
   var btn=document.getElementById('vbtn');
-  btn.disabled=true; btn.innerHTML='<span class="spinner"></span>Verifying…';
+  btn.disabled=true;btn.innerHTML='<span class="spinner"></span>Verifying…';
   document.getElementById('arbox').style.display='none';
   db.collection('bookings').where('accessCode','==',code).get().then(function(snap){
-    btn.disabled=false; btn.innerHTML='Verify Access Code';
-    if(snap.empty){ showAR('denied','❌','Access Denied','This code is not recognised.\nPlease check your code and try again.'); return; }
-    var d=snap.docs[0]; var b=d.data();
-    if(b.codeStatus==='used'){ showAR('denied','🚫','Code Already Used','This code has already been used.\nContact reception: 07080951392'); return; }
-    if(b.status!=='Approved'){ showAR('denied','⏳','Not Approved','Booking not approved yet.\nContact: 07080951392'); return; }
-    if(b.codeExpiry){
-      var exp=b.codeExpiry.toDate?b.codeExpiry.toDate():new Date(b.codeExpiry);
-      if(new Date()>exp){ showAR('denied','⌛','Code Expired','Your code has expired.\nCall reception: 07080951392'); return; }
-    }
+    btn.disabled=false;btn.innerHTML='Verify Access Code';
+    if(snap.empty){showAR('denied','❌','Access Denied','This code is not recognised.\nPlease check your code and try again.');return;}
+    var d=snap.docs[0];var b=d.data();
+    if(b.codeStatus==='used'){showAR('denied','🚫','Code Already Used','This code has already been used.\nContact reception: 07080951392');return;}
+    if(b.status!=='Approved'){showAR('denied','⏳','Not Approved','Booking not approved yet.\nContact: 07080951392');return;}
+    if(b.codeExpiry){var exp=b.codeExpiry.toDate?b.codeExpiry.toDate():new Date(b.codeExpiry);if(new Date()>exp){showAR('denied','⌛','Code Expired','Your code has expired.\nCall reception: 07080951392');return;}}
     d.ref.update({codeStatus:'used'});
     showAR('granted','✅','Access Granted','Welcome, '+b.name+'!\n\nRoom: '+(b.roomNumber||'See reception')+' ('+b.roomType+')\nCheck-in: '+b.checkIn+'\nCheck-out: '+b.checkOut+'\n\nEnjoy your stay at OCROWN Suites! 🏨');
     T('🔓 Welcome!','Access granted for '+b.name);
-  }).catch(function(e){
-    btn.disabled=false; btn.innerHTML='Verify Access Code';
-    T('❌ Error','Verification failed. Try again.',5000); console.error(e);
-  });
+  }).catch(function(e){btn.disabled=false;btn.innerHTML='Verify Access Code';T('❌ Error','Verification failed.',5000);console.error(e);});
 }
-
 function showAR(type,icon,title,body){
   var el=document.getElementById('arbox');
-  el.className='arbox '+type; el.style.display='block';
+  el.className='arbox '+type;el.style.display='block';
   document.getElementById('arico').textContent=icon;
-  var ttl=document.getElementById('arttl');
-  ttl.className='arttl '+(type==='granted'?'ok':'no');
-  ttl.textContent=title;
+  var ttl=document.getElementById('arttl');ttl.className='arttl '+(type==='granted'?'ok':'no');ttl.textContent=title;
   document.getElementById('arbody').textContent=body;
 }
 
-// ═══ BOOKING HISTORY ═══
+// BOOKING HISTORY
 function findBookings(){
   var email=document.getElementById('h-email').value.trim();
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ T('⚠️','Please enter a valid email.'); return; }
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){T('⚠️','Please enter a valid email.');return;}
   var btn=document.getElementById('fbtn');
-  btn.disabled=true; btn.innerHTML='<span class="spinner"></span>Searching…';
-  var res=document.getElementById('hresults'); res.innerHTML='';
+  btn.disabled=true;btn.innerHTML='<span class="spinner"></span>Searching…';
+  var res=document.getElementById('hresults');res.innerHTML='';
   db.collection('bookings').where('email','==',email).get().then(function(snap){
-    btn.disabled=false; btn.innerHTML='Find My Bookings';
-    if(snap.empty){ res.innerHTML='<div class="emst"><span class="ei">🔍</span>No bookings found for this email.</div>'; return; }
+    btn.disabled=false;btn.innerHTML='Find My Bookings';
+    if(snap.empty){res.innerHTML='<div class="emst"><span class="ei">🔍</span>No bookings found for this email.</div>';return;}
     var html='';
-    snap.docs.forEach(function(d){ html+=renderBkCard(d.data()); });
+    snap.docs.forEach(function(d){html+=renderBkCard(d.data(),d.id);});
     res.innerHTML=html;
-  }).catch(function(e){
-    btn.disabled=false; btn.innerHTML='Find My Bookings';
-    T('❌ Error','Could not fetch bookings.',5000);
-  });
+    document.getElementById('rev-form-wrap').style.display='block';
+    var firstDoc=snap.docs[0].data();
+    document.getElementById('rv-name').value=firstDoc.name||'';
+  }).catch(function(e){btn.disabled=false;btn.innerHTML='Find My Bookings';T('❌ Error','Could not fetch bookings.',5000);});
 }
 
-function renderBkCard(b){
-  var bc=b.status==='Approved'?'bA':b.status==='Rejected'?'bR':'bP';
+function renderBkCard(b,id){
+  var bc=b.status==='Approved'?'bA':b.status==='Rejected'?'bR':b.status==='CheckedOut'?'bCO':'bP';
+  var statusLabel=b.status==='CheckedOut'?'Checked Out':b.status;
   var cd=(b.status==='Approved'&&b.accessCode)?'<div class="bkcode"><div><div class="bkcl">One-Time Access Code</div><div class="bkcv">'+b.accessCode+'</div></div><div class="bkcs">Status: '+(b.codeStatus||'active')+'<br/>Valid: '+b.checkIn+' → '+b.checkOut+'</div></div>':'';
-  return '<div class="bkc"><div class="bkh"><div class="bkn">'+b.name+'</div><div class="badge '+bc+'">'+b.status+'</div></div>'
+  var receiptBtn=(b.status==='Approved'||b.status==='CheckedOut')?'<button class="ab absv" style="margin-top:.6rem;width:100%" onclick="showReceipt(\''+id+'\')">🧾 View Receipt</button>':'';
+  var receiptDiv='<div class="receipt-wrap" id="receipt-'+id+'"></div>';
+  return '<div class="bkc"><div class="bkh"><div class="bkn">'+b.name+'</div><div class="badge '+bc+'">'+statusLabel+'</div></div>'
     +'<div class="bkm"><div><div class="bml">Room Type</div><div class="bmv">'+b.roomType+'</div></div>'
     +'<div><div class="bml">Room No.</div><div class="bmv">'+(b.roomNumber||'—')+'</div></div>'
     +'<div><div class="bml">Check-in</div><div class="bmv">'+b.checkIn+'</div></div>'
     +'<div><div class="bml">Check-out</div><div class="bmv">'+b.checkOut+'</div></div>'
-    +'<div><div class="bml">Phone</div><div class="bmv">'+b.phone+'</div></div></div>'+cd+'</div>';
+    +'<div><div class="bml">Phone</div><div class="bmv">'+b.phone+'</div></div></div>'
+    +cd+receiptBtn+receiptDiv+'</div>';
 }
 
-// ═══ ADMIN LOGIN ═══
+// RECEIPT
+function showReceipt(id){
+  db.collection('bookings').doc(id).get().then(function(d){
+    if(!d.exists)return;
+    var b=d.data();
+    var nights=Math.max(1,Math.round((new Date(b.checkOut)-new Date(b.checkIn))/(1000*60*60*24)));
+    var pricePerNight=PRICES[b.roomType]||0;
+    var total=pricePerNight*nights;
+    var rw=document.getElementById('receipt-'+id);
+    rw.style.display='block';
+    rw.innerHTML='<div class="receipt-header">'
+      +'<div class="receipt-logo">♛ OCROWN Suites</div>'
+      +'<div style="font-size:.78rem;color:var(--muted);margin-top:.3rem">Alakia, Ibadan, Oyo State, Nigeria</div>'
+      +'<div class="receipt-id">Booking Receipt · 07080951392</div></div>'
+      +'<div class="receipt-rows">'
+      +'<div class="receipt-row"><span class="receipt-label">Guest Name</span><span class="receipt-value">'+b.name+'</span></div>'
+      +'<div class="receipt-row"><span class="receipt-label">Phone</span><span class="receipt-value">'+b.phone+'</span></div>'
+      +'<div class="receipt-row"><span class="receipt-label">Email</span><span class="receipt-value">'+b.email+'</span></div>'
+      +'<div class="receipt-row"><span class="receipt-label">Room Type</span><span class="receipt-value">'+b.roomType+'</span></div>'
+      +'<div class="receipt-row"><span class="receipt-label">Room Number</span><span class="receipt-value">'+(b.roomNumber||'—')+'</span></div>'
+      +'<div class="receipt-row"><span class="receipt-label">Check-in</span><span class="receipt-value">'+b.checkIn+'</span></div>'
+      +'<div class="receipt-row"><span class="receipt-label">Check-out</span><span class="receipt-value">'+b.checkOut+'</span></div>'
+      +'<div class="receipt-row"><span class="receipt-label">Duration</span><span class="receipt-value">'+nights+' night'+(nights>1?'s':'')+'</span></div>'
+      +'<div class="receipt-row"><span class="receipt-label">Rate per Night</span><span class="receipt-value">₦'+pricePerNight.toLocaleString()+'</span></div>'
+      +'<div class="receipt-row" style="font-weight:700;font-size:.9rem"><span class="receipt-label" style="color:var(--text)">Total Amount</span><span class="receipt-value" style="color:var(--gold)">₦'+total.toLocaleString()+'</span></div>'
+      +'</div>'
+      +(b.accessCode?'<div class="receipt-code"><div class="receipt-code-label">Access Code</div><div class="receipt-code-val">'+b.accessCode+'</div></div>':'')
+      +'<div class="receipt-footer">Thank you for choosing OCROWN Suites!<br/>We hope to see you again soon. 🏨</div>';
+  });
+}
+
+// REVIEWS
+function setRating(r){
+  _rating=r;
+  document.querySelectorAll('.star-btn').forEach(function(b,i){b.classList[i<r?'add':'remove']('lit');});
+}
+function submitReview(){
+  var name=document.getElementById('rv-name').value.trim();
+  var room=document.getElementById('rv-room').value;
+  var text=document.getElementById('rv-text').value.trim();
+  if(!name||!room||!text||_rating===0){T('⚠️','Please fill in all review fields and select a rating.');return;}
+  db.collection('reviews').add({
+    name:name,room:room,text:text,rating:_rating,
+    createdAt:firebase.firestore.FieldValue.serverTimestamp()
+  }).then(function(){
+    T('⭐ Thank you!','Your review has been submitted.');
+    document.getElementById('rv-name').value='';
+    document.getElementById('rv-room').value='';
+    document.getElementById('rv-text').value='';
+    setRating(0);
+    loadHomeReviews();
+  }).catch(function(e){T('❌ Error','Could not submit review.',5000);console.error(e);});
+}
+
+function loadHomeReviews(){
+  db.collection('reviews').orderBy('createdAt','desc').limit(6).get().then(function(snap){
+    var el=document.getElementById('home-reviews');
+    var countEl=document.getElementById('home-rev-count');
+    if(snap.empty){el.innerHTML='<div class="emst"><span class="ei">⭐</span>Be the first to leave a review!</div>';return;}
+    var total=0;var html='';
+    snap.docs.forEach(function(d){
+      var r=d.data();total+=r.rating;
+      var stars='';for(var i=0;i<5;i++)stars+=(i<r.rating?'★':'☆');
+      html+='<div class="rev-card"><div class="rev-stars">'+stars+'</div><div class="rev-text">"'+r.text+'"</div><div class="rev-author">'+r.name+'</div><div class="rev-room">'+r.room+' Suite</div></div>';
+    });
+    el.innerHTML=html;
+    var avg=(total/snap.docs.length).toFixed(1);
+    if(countEl)countEl.textContent=snap.docs.length+'+';
+    var avgEl=document.getElementById('rev-avg-wrap');
+    if(avgEl)avgEl.innerHTML='<div class="rev-avg"><div class="rev-big">'+avg+'</div><div class="rev-info"><div class="rev-info-stars">'+('★'.repeat(Math.round(avg)))+'</div><div class="rev-info-count">Based on '+snap.docs.length+' reviews</div></div></div>';
+  }).catch(function(e){console.error(e);});
+}
+
+// ADMIN
 function adminLogin(){
   var u=document.getElementById('au').value.trim();
   var p=document.getElementById('ap').value;
-  var err=document.getElementById('aerr'); err.classList.remove('show');
-  if(u==='OCROWN'&&p==='1234'){
+  document.getElementById('aerr').classList.remove('show');
+  if(u==='OCROWN'&&p===_adminPwd){
     _adminIn=true;
     document.getElementById('alpanel').style.display='none';
     document.getElementById('adash').style.display='block';
     loadBookings();
   } else {
-    err.classList.add('show');
+    document.getElementById('aerr').classList.add('show');
     document.getElementById('ap').value='';
   }
 }
@@ -742,106 +947,197 @@ function adminLogout(){
   _adminIn=false;
   document.getElementById('alpanel').style.display='block';
   document.getElementById('adash').style.display='none';
-  document.getElementById('au').value=''; document.getElementById('ap').value='';
+  document.getElementById('au').value='';document.getElementById('ap').value='';
+}
+function switchTab(name,btn){
+  document.querySelectorAll('.atab').forEach(function(b){b.classList.remove('on');});
+  document.querySelectorAll('.atab-panel').forEach(function(p){p.classList.remove('on');});
+  btn.classList.add('on');
+  document.getElementById('tab-'+name).classList.add('on');
+  if(name==='analytics')buildAnalytics();
+  if(name==='reviews')loadAdminReviews();
+}
+function changePassword(){
+  var cur=document.getElementById('cp-cur').value;
+  var nw=document.getElementById('cp-new').value;
+  var con=document.getElementById('cp-con').value;
+  var err=document.getElementById('cp-err');
+  err.classList.remove('show');
+  if(cur!==_adminPwd){err.textContent='Current password is incorrect.';err.classList.add('show');return;}
+  if(nw.length<4){err.textContent='New password must be at least 4 characters.';err.classList.add('show');return;}
+  if(nw!==con){err.textContent='Passwords do not match.';err.classList.add('show');return;}
+  _adminPwd=nw;
+  ['cp-cur','cp-new','cp-con'].forEach(function(id){document.getElementById(id).value='';});
+  T('✅ Password Changed','Your admin password has been updated.');
 }
 
-// ═══ LOAD BOOKINGS ═══
+// LOAD BOOKINGS
 function loadBookings(){
   var el=document.getElementById('alist');
   el.innerHTML='<div class="emst"><span class="ei">⏳</span>Loading bookings…</div>';
   db.collection('bookings').orderBy('createdAt','desc').get().then(function(snap){
-    _allBk=snap.docs.map(function(d){ return Object.assign({id:d.id},d.data()); });
-    updateStats(); renderAdmin(_allBk);
-  }).catch(function(e){
-    el.innerHTML='<div class="emst"><span class="ei">❌</span>Error loading. Check Firebase.</div>'; console.error(e);
-  });
+    _allBk=snap.docs.map(function(d){return Object.assign({id:d.id},d.data());});
+    updateStats();renderAdmin(_allBk);
+  }).catch(function(e){el.innerHTML='<div class="emst"><span class="ei">❌</span>Error loading. Check Firebase.</div>';console.error(e);});
 }
-
 function updateStats(){
   document.getElementById('st0').textContent=_allBk.length;
-  document.getElementById('st1').textContent=_allBk.filter(function(b){ return b.status==='Pending'; }).length;
-  document.getElementById('st2').textContent=_allBk.filter(function(b){ return b.status==='Approved'; }).length;
-  document.getElementById('st3').textContent=_allBk.filter(function(b){ return b.status==='Rejected'; }).length;
+  document.getElementById('st1').textContent=_allBk.filter(function(b){return b.status==='Pending';}).length;
+  document.getElementById('st2').textContent=_allBk.filter(function(b){return b.status==='Approved';}).length;
+  document.getElementById('st3').textContent=_allBk.filter(function(b){return b.status==='Rejected';}).length;
+  document.getElementById('st4').textContent=_allBk.filter(function(b){return b.status==='CheckedOut';}).length;
 }
-
 function renderAdmin(list){
   var el=document.getElementById('alist');
-  if(!list.length){ el.innerHTML='<div class="emst"><span class="ei">📭</span>No bookings found.</div>'; return; }
-  el.innerHTML=list.map(function(b){ return renderAdminCard(b); }).join('');
+  if(!list.length){el.innerHTML='<div class="emst"><span class="ei">📭</span>No bookings found.</div>';return;}
+  el.innerHTML=list.map(function(b){return renderAdminCard(b);}).join('');
 }
-
 function renderAdminCard(b){
-  var bc=b.status==='Approved'?'bA':b.status==='Rejected'?'bR':'bP';
+  var bc=b.status==='Approved'?'bA':b.status==='Rejected'?'bR':b.status==='CheckedOut'?'bCO':'bP';
+  var statusLabel=b.status==='CheckedOut'?'Checked Out':b.status;
   var cp=b.accessCode?'<span class="cpill">'+b.accessCode+'</span>':'';
-  var ab=b.status!=='Approved'?'<button class="ab abok" onclick="approveBk(\''+b.id+'\')">✅ Approve</button>':'';
-  var rb=b.status!=='Rejected'?'<button class="ab abno" onclick="rejectBk(\''+b.id+'\')">❌ Reject</button>':'';
+  var ab=b.status!=='Approved'&&b.status!=='CheckedOut'?'<button class="ab abok" onclick="approveBk(\''+b.id+'\')">✅ Approve</button>':'';
+  var rb=b.status!=='Rejected'&&b.status!=='CheckedOut'?'<button class="ab abno" onclick="rejectBk(\''+b.id+'\')">❌ Reject</button>':'';
+  var cb=b.status==='Approved'?'<button class="ab abco" onclick="checkoutBk(\''+b.id+'\')">🚪 Check Out</button>':'';
   return '<div class="adc" id="adc-'+b.id+'">'
     +'<div class="adct"><div class="adcg"><h4>'+b.name+'</h4><p>'+b.email+' · '+b.phone+'</p></div>'
-    +'<div class="adcb"><div class="badge '+bc+'">'+b.status+'</div>'+cp+'</div></div>'
+    +'<div class="adcb"><div class="badge '+bc+'">'+statusLabel+'</div>'+cp+'</div></div>'
     +'<div class="adcm"><div class="adcmi">🛏 '+b.roomType+'</div><div class="adcmi">📅 '+b.checkIn+' → '+b.checkOut+'</div><div class="adcmi">🚪 '+(b.roomNumber||'Unassigned')+'</div></div>'
-    +'<div class="adca">'+ab+rb
+    +'<div class="adca">'+ab+rb+cb
     +'<input class="rni" id="rn-'+b.id+'" type="text" placeholder="Room No." value="'+(b.roomNumber||'')+'"/>'
     +'<button class="ab absv" onclick="saveRoom(\''+b.id+'\')">💾 Save</button>'
     +'</div></div>';
 }
-
 function saveRoom(id){
   var rn=document.getElementById('rn-'+id).value.trim();
-  if(!rn){ T('⚠️','Enter a room number first.'); return; }
+  if(!rn){T('⚠️','Enter a room number first.');return;}
   db.collection('bookings').doc(id).update({roomNumber:rn}).then(function(){
-    var i=_allBk.findIndex(function(b){ return b.id===id; });
-    if(i>-1) _allBk[i].roomNumber=rn;
+    var i=_allBk.findIndex(function(b){return b.id===id;});if(i>-1)_allBk[i].roomNumber=rn;
     T('✅ Saved','Room number updated.');
-  }).catch(function(){ T('❌ Error','Could not save room number.'); });
+  }).catch(function(){T('❌ Error','Could not save.');});
 }
-
 function approveBk(id){
   var code=String(Math.floor(100000+Math.random()*900000));
-  var bk=_allBk.find(function(b){ return b.id===id; });
-  if(!bk) return;
+  var bk=_allBk.find(function(b){return b.id===id;});if(!bk)return;
   var rn=document.getElementById('rn-'+id).value.trim()||bk.roomNumber||'See Reception';
   var exp=new Date(bk.checkOut+'T23:59:59');
   db.collection('bookings').doc(id).update({
     status:'Approved',accessCode:code,codeStatus:'active',
-    codeExpiry:firebase.firestore.Timestamp.fromDate(exp),
-    roomNumber:rn
+    codeExpiry:firebase.firestore.Timestamp.fromDate(exp),roomNumber:rn
   }).then(function(){
-    var i=_allBk.findIndex(function(b){ return b.id===id; });
-    if(i>-1) Object.assign(_allBk[i],{status:'Approved',accessCode:code,codeStatus:'active',roomNumber:rn});
-    updateStats(); renderAdmin(_allBk);
+    var i=_allBk.findIndex(function(b){return b.id===id;});
+    if(i>-1)Object.assign(_allBk[i],{status:'Approved',accessCode:code,codeStatus:'active',roomNumber:rn});
+    updateStats();renderAdmin(_allBk);
     T('✅ Approved!','Code '+code+' generated for '+bk.name);
     sendEmail({name:bk.name,email:bk.email,roomType:bk.roomType,roomNumber:rn,checkIn:bk.checkIn,checkOut:bk.checkOut,code:code});
-  }).catch(function(e){ T('❌ Error','Could not approve.'); console.error(e); });
+  }).catch(function(e){T('❌ Error','Could not approve.');console.error(e);});
 }
-
 function rejectBk(id){
-  var bk=_allBk.find(function(b){ return b.id===id; });
-  if(!bk) return;
+  var bk=_allBk.find(function(b){return b.id===id;});if(!bk)return;
   db.collection('bookings').doc(id).update({status:'Rejected'}).then(function(){
-    var i=_allBk.findIndex(function(b){ return b.id===id; });
-    if(i>-1) _allBk[i].status='Rejected';
-    updateStats(); renderAdmin(_allBk);
-    T('⚠️ Rejected','Booking for '+bk.name+' rejected.');
-  }).catch(function(){ T('❌ Error','Could not reject.'); });
+    var i=_allBk.findIndex(function(b){return b.id===id;});if(i>-1)_allBk[i].status='Rejected';
+    updateStats();renderAdmin(_allBk);T('⚠️ Rejected','Booking for '+bk.name+' rejected.');
+  }).catch(function(){T('❌ Error','Could not reject.');});
 }
-
+function checkoutBk(id){
+  var bk=_allBk.find(function(b){return b.id===id;});if(!bk)return;
+  db.collection('bookings').doc(id).update({status:'CheckedOut',codeStatus:'used'}).then(function(){
+    var i=_allBk.findIndex(function(b){return b.id===id;});if(i>-1)Object.assign(_allBk[i],{status:'CheckedOut',codeStatus:'used'});
+    updateStats();renderAdmin(_allBk);T('🚪 Checked Out',bk.name+' has been checked out successfully.');
+  }).catch(function(){T('❌ Error','Could not check out.');});
+}
 function filterBk(status,btn){
-  document.querySelectorAll('.fp').forEach(function(b){ b.classList.remove('on'); });
-  btn.classList.add('on');
-  var list=status==='all'?_allBk:_allBk.filter(function(b){ return b.status===status; });
+  document.querySelectorAll('.fp').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');
+  var list=status==='all'?_allBk:_allBk.filter(function(b){return b.status===status;});
   renderAdmin(list);
 }
 
+// ANALYTICS
+var _chartStatus=null,_chartTrend=null;
+function buildAnalytics(){
+  var total=_allBk.length;
+  var approved=_allBk.filter(function(b){return b.status==='Approved'||b.status==='CheckedOut';}).length;
+  var rev=_allBk.filter(function(b){return b.status==='Approved'||b.status==='CheckedOut';}).reduce(function(s,b){
+    var nights=Math.max(1,Math.round((new Date(b.checkOut)-new Date(b.checkIn))/(1000*60*60*24)));
+    return s+(PRICES[b.roomType]||0)*nights;
+  },0);
+  document.getElementById('an-total').textContent=total;
+  document.getElementById('an-rev').textContent='₦'+rev.toLocaleString();
+  document.getElementById('an-rate').textContent=total?Math.round(approved/total*100)+'%':'0%';
+
+  // Avg rating
+  db.collection('reviews').get().then(function(snap){
+    if(snap.empty){document.getElementById('an-avg').textContent='—';return;}
+    var sum=0;snap.docs.forEach(function(d){sum+=d.data().rating||0;});
+    document.getElementById('an-avg').textContent=(sum/snap.docs.length).toFixed(1)+'★';
+  });
+
+  // Status chart
+  var pend=_allBk.filter(function(b){return b.status==='Pending';}).length;
+  var rej=_allBk.filter(function(b){return b.status==='Rejected';}).length;
+  var co=_allBk.filter(function(b){return b.status==='CheckedOut';}).length;
+  var ctx=document.getElementById('statusChart');
+  if(_chartStatus)_chartStatus.destroy();
+  _chartStatus=new Chart(ctx,{type:'doughnut',data:{labels:['Pending','Approved','Rejected','Checked Out'],datasets:[{data:[pend,approved-co,rej,co],backgroundColor:['#b8952a','#2e7d5a','#a33a2a','#1a5fa8'],borderWidth:0}]},options:{plugins:{legend:{position:'bottom',labels:{font:{family:'Jost'},boxWidth:12}}},cutout:'60%'}});
+
+  // Top rooms
+  var roomCount={};
+  _allBk.forEach(function(b){roomCount[b.roomType]=(roomCount[b.roomType]||0)+1;});
+  var sorted=Object.entries(roomCount).sort(function(a,b){return b[1]-a[1];});
+  var max=sorted.length?sorted[0][1]:1;
+  var html='';
+  sorted.slice(0,5).forEach(function(entry){
+    html+='<div class="top-room-item"><span style="min-width:70px;font-size:.78rem">'+entry[0]+'</span><div class="top-room-bar-wrap"><div class="top-room-bar" style="width:'+Math.round(entry[1]/max*100)+'%"></div></div><span class="rev-stat">'+entry[1]+'</span></div>';
+  });
+  document.getElementById('top-rooms-list').innerHTML=html||'<div style="font-size:.8rem;color:var(--muted)">No data yet</div>';
+
+  // Trend chart
+  var days=[],counts=[];
+  for(var i=6;i>=0;i--){
+    var d=new Date();d.setDate(d.getDate()-i);
+    var ds=d.toISOString().split('T')[0];
+    days.push(ds.slice(5));
+    counts.push(_allBk.filter(function(b){return b.createdAt&&b.createdAt.toDate&&b.createdAt.toDate().toISOString().split('T')[0]===ds;}).length);
+  }
+  var ctx2=document.getElementById('trendChart');
+  if(_chartTrend)_chartTrend.destroy();
+  _chartTrend=new Chart(ctx2,{type:'line',data:{labels:days,datasets:[{label:'Bookings',data:counts,borderColor:'#d4af5a',backgroundColor:'rgba(212,175,90,.1)',tension:.4,fill:true,pointBackgroundColor:'#d4af5a'}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1,font:{family:'Jost'}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{family:'Jost'}},grid:{display:false}}}}});
+}
+
+// ADMIN REVIEWS
+function loadAdminReviews(){
+  var el=document.getElementById('admin-reviews-list');
+  el.innerHTML='<div class="emst"><span class="ei">⭐</span>Loading…</div>';
+  db.collection('reviews').orderBy('createdAt','desc').get().then(function(snap){
+    if(snap.empty){el.innerHTML='<div class="emst"><span class="ei">⭐</span>No reviews yet.</div>';return;}
+    var html='';
+    snap.docs.forEach(function(d){
+      var r=d.data();var stars='';
+      for(var i=0;i<5;i++)stars+=(i<r.rating?'★':'☆');
+      html+='<div class="adc"><div class="adct"><div class="adcg"><h4>'+r.name+'</h4><p>'+r.room+' Suite</p></div><div style="color:var(--gold);font-size:1.1rem">'+stars+'</div></div>'
+        +'<p style="font-size:.8rem;color:var(--muted);margin-top:.6rem;font-style:italic">"'+r.text+'"</p>'
+        +'<div style="margin-top:.6rem"><button class="ab abno" style="font-size:.68rem" onclick="deleteReview(\''+d.id+'\')">🗑 Delete</button></div></div>';
+    });
+    el.innerHTML=html;
+  });
+}
+function deleteReview(id){
+  db.collection('reviews').doc(id).delete().then(function(){T('🗑 Deleted','Review removed.');loadAdminReviews();loadHomeReviews();}).catch(function(){T('❌ Error','Could not delete.');});
+}
+
+// EMAIL
 function sendEmail(d){
   emailjs.send(EJS_SVC,EJS_TPL,{
     to_name:d.name,to_email:d.email,room_type:d.roomType,room_number:d.roomNumber,
     check_in:d.checkIn,check_out:d.checkOut,access_code:d.code,
     hotel_name:'OCROWN Suites',hotel_phone:'07080951392',
-    hotel_email:'ocrownsuites@gmail.com',
-    hotel_address:'Alakia, Ibadan, Oyo State, Nigeria'
-  }).then(function(){ T('📧 Email Sent','Approval email sent to '+d.email); })
-    .catch(function(e){ console.warn('EmailJS:',e); });
+    hotel_email:'ocrownsuites@gmail.com',hotel_address:'Alakia, Ibadan, Oyo State, Nigeria'
+  }).then(function(){T('📧 Email Sent','Approval email sent to '+d.email);})
+    .catch(function(e){console.warn('EmailJS:',e);});
 }
+
+// Load reviews on home page init
+loadHomeReviews();
 </script>
 </body>
 </html>
