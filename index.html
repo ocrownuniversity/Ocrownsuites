@@ -3,28 +3,14 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>OCROWN Suites — Luxury Hotel, Alakia Ibadan</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<title>OCROWN Suites - Luxury Hotel Alakia Ibadan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
-:root{
-  --ink:#0a0705;--cream:#faf7f2;
-  --gold:#b8952a;--gold2:#d4af5a;--gold3:#e8cc7e;
-  --gold-dim:rgba(184,149,42,.15);--gold-border:rgba(184,149,42,.3);
-  --surface:#fff;--surface2:#f8f4ed;--border:#e8e0d0;
-  --text:#1a1410;--muted:#8a7d6a;--muted2:#b5a990;
-  --green:#2e7d5a;--green-bg:rgba(46,125,90,.08);--green-bd:rgba(46,125,90,.25);
-  --red:#a33a2a;--red-bg:rgba(163,58,42,.08);--red-bd:rgba(163,58,42,.25);
-  --blue:#1a5fa8;--blue-bg:rgba(26,95,168,.08);--blue-bd:rgba(26,95,168,.25);
-  --shadow:0 4px 32px rgba(10,7,5,.08);--shadow-lg:0 16px 64px rgba(10,7,5,.14);
-}
+:root{--ink:#0a0705;--cream:#faf7f2;--gold:#b8952a;--gold2:#d4af5a;--gold-dim:rgba(184,149,42,.15);--gold-border:rgba(184,149,42,.3);--surface:#fff;--surface2:#f8f4ed;--border:#e8e0d0;--text:#1a1410;--muted:#8a7d6a;--muted2:#b5a990;--green:#2e7d5a;--green-bg:rgba(46,125,90,.08);--green-bd:rgba(46,125,90,.25);--red:#a33a2a;--red-bg:rgba(163,58,42,.08);--red-bd:rgba(163,58,42,.25);--blue:#1a5fa8;--blue-bg:rgba(26,95,168,.08);--blue-bd:rgba(26,95,168,.25);--shadow:0 4px 32px rgba(10,7,5,.08);--shadow-lg:0 16px 64px rgba(10,7,5,.14)}
 *{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
 body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;overflow-x:hidden}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--cream)}::-webkit-scrollbar-thumb{background:var(--gold-border);border-radius:3px}
-
-/* LOADER */
 #loader{position:fixed;inset:0;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity .6s ease}
 .lc{width:68px;height:68px;position:relative;display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem}
 .lc svg{animation:cp 1.4s ease-in-out infinite}
@@ -33,8 +19,6 @@ body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);min
 @keyframes re{0%{transform:scale(.8);opacity:0}50%{opacity:1}100%{transform:scale(1.2);opacity:0}}
 .ln{font-family:'Playfair Display',serif;color:var(--gold2);font-size:1.35rem;letter-spacing:.4em;text-transform:uppercase}
 .ls{font-size:.68rem;color:rgba(184,149,42,.5);letter-spacing:.25em;margin-top:.35rem;text-transform:uppercase}
-
-/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(250,247,242,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 1.75rem;height:62px}
 .nbrand{display:flex;align-items:center;gap:.75rem;cursor:pointer;border:none;background:none;padding:0}
 .nlm{width:38px;height:38px;background:linear-gradient(135deg,var(--gold),var(--gold2));border-radius:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
@@ -42,31 +26,18 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(250,247,242,
 .nbn{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--ink);line-height:1.1}
 .nbl{font-size:.6rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
 .nmenu{display:flex;align-items:center;gap:.2rem}
-.ni{padding:.4rem .85rem;border-radius:7px;border:none;background:transparent;color:var(--muted);font-family:'Jost',sans-serif;font-size:.78rem;font-weight:500;cursor:pointer;transition:all .18s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;position:relative;overflow:hidden}
-.ni:hover,.ni.on{background:var(--gold-dim);color:var(--gold)}
-.ni:active{transform:scale(.92)!important;background:var(--gold-dim)!important}
-.ni.cta{background:var(--gold);color:#fff;font-weight:600;margin-left:.2rem}
-.ni.cta:hover{background:var(--gold2)}
-.ni.cta:active{transform:scale(.94)!important;background:var(--gold2)!important}
+.ni{padding:.4rem .85rem;border-radius:7px;border:none;background:transparent;color:var(--muted);font-family:'Jost',sans-serif;font-size:.78rem;font-weight:500;cursor:pointer;transition:all .18s;white-space:nowrap;position:relative;overflow:hidden}
+.ni:hover,.ni.on{background:var(--gold-dim);color:var(--gold)}.ni:active{transform:scale(.92)}
+.ni.cta{background:var(--gold);color:#fff;font-weight:600;margin-left:.2rem}.ni.cta:hover{background:var(--gold2)}
 .ham{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.4rem}
 .ham span{width:21px;height:2px;background:var(--ink);border-radius:2px;display:block}
 .mnav{display:none;position:fixed;top:62px;left:0;right:0;background:var(--cream);border-bottom:1px solid var(--border);padding:.7rem 1rem;z-index:499;flex-direction:column;gap:.2rem;box-shadow:var(--shadow)}
-.mnav.open{display:flex}
-.mnav .ni{width:100%;text-align:left;padding:.6rem 1rem}
-
-/* WHATSAPP */
-.wa-float{position:fixed;bottom:1.5rem;left:1.5rem;z-index:800;width:54px;height:54px;border-radius:50%;background:#25d366;box-shadow:0 4px 20px rgba(37,211,102,.4);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s cubic-bezier(.34,1.56,.64,1);text-decoration:none}
-.wa-float:hover{transform:scale(1.12);box-shadow:0 8px 30px rgba(37,211,102,.5)}
-.wa-float:active{transform:scale(.94)!important}
-.wa-float svg{width:28px;height:28px}
+.mnav.open{display:flex}.mnav .ni{width:100%;text-align:left;padding:.6rem 1rem}
+.wa-float{position:fixed;bottom:1.5rem;left:1.5rem;z-index:800;width:54px;height:54px;border-radius:50%;background:#25d366;box-shadow:0 4px 20px rgba(37,211,102,.4);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;text-decoration:none}
+.wa-float:hover{transform:scale(1.12)}.wa-float:active{transform:scale(.94)}
 .wa-tip{position:absolute;left:65px;background:var(--ink);color:#fff;padding:.4rem .85rem;border-radius:8px;font-size:.72rem;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;font-family:'Jost',sans-serif}
 .wa-float:hover .wa-tip{opacity:1}
-
-/* PAGES */
-.page{display:none;min-height:100vh;padding-top:62px}
-.page.active{display:block}
-
-/* HERO */
+.page{display:none;min-height:100vh;padding-top:62px}.page.active{display:block}
 .hero{min-height:calc(100vh - 62px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:3.5rem 1.5rem;position:relative;overflow:hidden;background:var(--ink)}
 .hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(184,149,42,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(184,149,42,.06) 1px,transparent 1px);background-size:60px 60px}
 .hglow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(184,149,42,.09) 0%,transparent 65%);left:50%;top:50%;transform:translate(-50%,-50%);animation:gp 6s ease-in-out infinite}
@@ -79,82 +50,49 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(250,247,242,
 .hsub{font-size:.92rem;color:rgba(250,247,242,.42);margin-top:1.2rem;letter-spacing:.05em;font-weight:300;animation:fu 1s .2s ease both}
 .hbtns{display:flex;gap:.85rem;justify-content:center;flex-wrap:wrap;margin-top:2.2rem;animation:fu 1s .3s ease both}
 .hstats{display:flex;gap:3rem;justify-content:center;flex-wrap:wrap;margin-top:3rem;padding-top:2.2rem;border-top:1px solid rgba(184,149,42,.15);animation:fu 1s .4s ease both}
-.hsn{font-family:'Playfair Display',serif;font-size:2.1rem;color:var(--gold2)}
-.hsl{font-size:.66rem;color:rgba(250,247,242,.38);letter-spacing:.14em;text-transform:uppercase;margin-top:.2rem}
+.hsn{font-family:'Playfair Display',serif;font-size:2.1rem;color:var(--gold2)}.hsl{font-size:.66rem;color:rgba(250,247,242,.38);letter-spacing:.14em;text-transform:uppercase;margin-top:.2rem}
 @keyframes fu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-
-/* BUTTONS — with ripple + press effect */
-.btn,.fsub,.rbk,.ab,.sagain,.fp,.rbook-btn{position:relative;overflow:hidden}
-.btn{padding:.75rem 1.8rem;border-radius:9px;font-family:'Jost',sans-serif;font-size:.83rem;font-weight:600;cursor:pointer;border:none;letter-spacing:.06em;text-transform:uppercase;transition:all .18s cubic-bezier(.34,1.56,.64,1)}
+.btn,.fsub,.rbk,.ab,.sagain{position:relative;overflow:hidden}
+.btn{padding:.75rem 1.8rem;border-radius:9px;font-family:'Jost',sans-serif;font-size:.83rem;font-weight:600;cursor:pointer;border:none;letter-spacing:.06em;text-transform:uppercase;transition:all .18s}
 .bg{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;box-shadow:0 5px 24px rgba(184,149,42,.35)}
-.bg:hover{transform:translateY(-2px);box-shadow:0 9px 36px rgba(184,149,42,.45)}
-.bg:active{transform:scale(.95)!important;box-shadow:0 2px 8px rgba(184,149,42,.3)!important}
-.bo{background:transparent;color:var(--gold2);border:1px solid var(--gold-border)}
-.bo:hover{background:var(--gold-dim)}
-.bo:active{transform:scale(.95)!important;background:rgba(184,149,42,.2)!important}
-.fsub{width:100%;padding:.88rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;border:none;border-radius:9px;font-family:'Jost',sans-serif;font-size:.86rem;font-weight:600;cursor:pointer;letter-spacing:.07em;text-transform:uppercase;margin-top:.4rem;transition:all .18s cubic-bezier(.34,1.56,.64,1)}
-.fsub:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(184,149,42,.4)}
-.fsub:active{transform:scale(.97)!important;box-shadow:0 2px 8px rgba(184,149,42,.25)!important}
-.fsub:disabled{opacity:.55;cursor:not-allowed;transform:none!important;box-shadow:none!important}
-
-/* RIPPLE EFFECT */
+.bg:hover{transform:translateY(-2px);box-shadow:0 9px 36px rgba(184,149,42,.45)}.bg:active{transform:scale(.95)}
+.bo{background:transparent;color:var(--gold2);border:1px solid var(--gold-border)}.bo:hover{background:var(--gold-dim)}.bo:active{transform:scale(.95)}
+.fsub{width:100%;padding:.88rem;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#fff;border:none;border-radius:9px;font-family:'Jost',sans-serif;font-size:.86rem;font-weight:600;cursor:pointer;letter-spacing:.07em;text-transform:uppercase;margin-top:.4rem;transition:all .18s}
+.fsub:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(184,149,42,.4)}.fsub:active{transform:scale(.97)}.fsub:disabled{opacity:.55;cursor:not-allowed;transform:none;box-shadow:none}
 .ripple-el{position:absolute;border-radius:50%;transform:scale(0);animation:rippleAnim .55s linear;background:rgba(255,255,255,.3);pointer-events:none;z-index:10}
 @keyframes rippleAnim{to{transform:scale(4);opacity:0}}
-
-/* BOOK NOW BUTTON ON CARDS */
-.rbk{font-size:.7rem;padding:.45rem 1rem;background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border);border-radius:6px;cursor:pointer;font-family:'Jost',sans-serif;font-weight:600;transition:all .18s cubic-bezier(.34,1.56,.64,1)}
-.rbk:hover{background:var(--gold);color:#fff;transform:translateY(-1px);box-shadow:0 4px 14px rgba(184,149,42,.35)}
-.rbk:active{transform:scale(.9)!important;box-shadow:0 0 0 3px rgba(184,149,42,.3)!important;background:var(--gold)!important;color:#fff!important}
-
-/* ROOM CARDS */
+.rbk{font-size:.7rem;padding:.45rem 1rem;background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border);border-radius:6px;cursor:pointer;font-family:'Jost',sans-serif;font-weight:600;transition:all .18s}
+.rbk:hover{background:var(--gold);color:#fff;transform:translateY(-1px)}.rbk:active{transform:scale(.9)}
 .sec{padding:4.5rem 1.5rem;max-width:1200px;margin:0 auto}
 .seye{font-size:.68rem;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:.55rem;display:flex;align-items:center;gap:.5rem}
 .seye::before{content:'';width:20px;height:1px;background:var(--gold)}
 .stitle{font-family:'Playfair Display',serif;font-size:clamp(1.75rem,4vw,2.7rem);font-weight:400;line-height:1.15}
 .rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.2rem;margin-top:2.2rem}
-.rc{border-radius:16px;overflow:hidden;border:1px solid var(--border);background:var(--surface);cursor:pointer;transition:transform .3s cubic-bezier(.34,1.56,.64,1),box-shadow .3s}
-.rc:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
-.rc:active{transform:scale(.97)!important}
+.rc{border-radius:16px;overflow:hidden;border:1px solid var(--border);background:var(--surface);cursor:pointer;transition:transform .3s,box-shadow .3s}
+.rc:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}.rc:active{transform:scale(.97)}
 .rt{height:210px;position:relative;overflow:hidden;background:#1a1410}
 .rt img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
 .rc:hover .rt img{transform:scale(1.07)}
 .rt-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(10,7,5,.45) 100%)}
 .rrib{position:absolute;top:.8rem;left:.8rem;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-radius:5px;padding:.2rem .65rem;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
-.rb{padding:1.2rem}
-.rn{font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:.35rem}
-.rd{font-size:.78rem;color:var(--muted);line-height:1.6}
+.rb{padding:1.2rem}.rn{font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:.35rem}.rd{font-size:.78rem;color:var(--muted);line-height:1.6}
 .rft{display:flex;align-items:center;justify-content:space-between;margin-top:.9rem;padding-top:.9rem;border-top:1px solid var(--border)}
-.rp{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--gold)}
-.rp small{font-family:'Jost',sans-serif;font-size:.7rem;color:var(--muted)}
-
-/* REVIEWS */
+.rp{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--gold)}.rp small{font-family:'Jost',sans-serif;font-size:.7rem;color:var(--muted)}
 .rev-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.1rem;margin-top:2rem}
 .rev-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.3rem;box-shadow:var(--shadow)}
-.rev-stars{color:var(--gold);font-size:1rem;margin-bottom:.6rem}
-.rev-text{font-size:.82rem;color:var(--muted);line-height:1.65;font-style:italic;margin-bottom:.75rem}
-.rev-author{font-size:.78rem;font-weight:600;color:var(--text)}
-.rev-room{font-size:.7rem;color:var(--muted2)}
+.rev-stars{color:var(--gold);font-size:1rem;margin-bottom:.6rem}.rev-text{font-size:.82rem;color:var(--muted);line-height:1.65;font-style:italic;margin-bottom:.75rem}
+.rev-author{font-size:.78rem;font-weight:600}.rev-room{font-size:.7rem;color:var(--muted2)}
 .rev-avg{display:flex;align-items:center;gap:1.5rem;margin-top:1.5rem;padding:1.25rem;background:var(--surface2);border-radius:12px;border:1px solid var(--border)}
 .rev-big{font-family:'Playfair Display',serif;font-size:3.5rem;color:var(--gold);line-height:1}
-.rev-info-stars{color:var(--gold);font-size:1.1rem}
-.rev-info-count{font-size:.75rem;color:var(--muted);margin-top:.2rem}
-
-/* MAP */
-.map-wrap{border-radius:16px;overflow:hidden;border:1px solid var(--border);margin-top:2rem;box-shadow:var(--shadow)}
+.map-wrap{border-radius:16px;overflow:hidden;border:1px solid var(--border);margin-top:2rem}
 .map-wrap iframe{width:100%;height:380px;border:none;display:block}
 .map-info{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;margin-top:1.25rem}
 .map-info-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem;display:flex;align-items:center;gap:.75rem}
-.map-info-ico{font-size:1.5rem}
-.map-info-label{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
-.map-info-val{font-size:.85rem;font-weight:500;margin-top:.1rem}
-
-/* BOOKING */
-.bpw{max-width:1060px;margin:0 auto;padding:2.2rem 1.5rem}
-.phero{margin-bottom:2.2rem}
+.map-info-ico{font-size:1.5rem}.map-info-label{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.map-info-val{font-size:.85rem;font-weight:500;margin-top:.1rem}
+.bpw{max-width:1060px;margin:0 auto;padding:2.2rem 1.5rem}.phero{margin-bottom:2.2rem}
 .ptag{font-size:.68rem;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;margin-bottom:.35rem;display:flex;align-items:center;gap:.5rem}
 .ptag::before{content:'';width:18px;height:1px;background:var(--gold)}
-.ptitle{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:400}
-.psub{font-size:.83rem;color:var(--muted);margin-top:.4rem;line-height:1.6}
+.ptitle{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:400}.psub{font-size:.83rem;color:var(--muted);margin-top:.4rem;line-height:1.6}
 .bgrid2{display:grid;grid-template-columns:1fr 330px;gap:1.5rem}
 @media(max-width:800px){.bgrid2{grid-template-columns:1fr}}
 .fc{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.85rem;box-shadow:var(--shadow)}
@@ -166,104 +104,68 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(250,247,242,
 .fg input,.fg select,.fg textarea{width:100%;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;padding:.72rem .88rem;color:var(--text);font-family:'Jost',sans-serif;font-size:.86rem;outline:none;transition:border-color .2s;-webkit-appearance:none;appearance:none}
 .fg textarea{resize:vertical;min-height:80px}
 .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-dim)}
-.eferr{font-size:.72rem;color:var(--red);margin-top:.28rem;display:none}
-.eferr.show{display:block}
+.eferr{font-size:.72rem;color:var(--red);margin-top:.28rem;display:none}.eferr.show{display:block}
 .aside{display:flex;flex-direction:column;gap:1rem}
 .acard{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:1.2rem;box-shadow:var(--shadow)}
 .atitle{font-family:'Playfair Display',serif;font-size:1rem;color:var(--gold);margin-bottom:.8rem}
 .flist{list-style:none;display:flex;flex-direction:column;gap:.45rem}
 .flist li{font-size:.78rem;color:var(--muted);display:flex;align-items:flex-start;gap:.5rem;line-height:1.5}
 .flist li::before{content:'◆';color:var(--gold);font-size:.4rem;margin-top:.35rem;flex-shrink:0}
-.cl{display:flex;flex-direction:column;gap:.5rem}
-.cline{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--muted)}
-.cline a{color:var(--gold);text-decoration:none}
+.cl{display:flex;flex-direction:column;gap:.5rem}.cline{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--muted)}.cline a{color:var(--gold);text-decoration:none}
 .cico{width:24px;height:24px;background:var(--gold-dim);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:.68rem;flex-shrink:0}
 .sstate{text-align:center;padding:2.2rem 1rem;display:none}
 .sring{width:70px;height:70px;border-radius:50%;background:var(--green-bg);border:2px solid var(--green-bd);display:flex;align-items:center;justify-content:center;font-size:1.7rem;margin:0 auto 1.1rem;animation:pi .5s cubic-bezier(.34,1.56,.64,1) both}
 @keyframes pi{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
-.sttl{font-family:'Playfair Display',serif;font-size:1.6rem;margin-bottom:.4rem}
-.smsg{font-size:.86rem;color:var(--muted);line-height:1.7;max-width:340px;margin:0 auto}
-.sagain{margin-top:1.4rem;padding:.6rem 1.5rem;background:transparent;border:1.5px solid var(--gold-border);color:var(--gold);border-radius:8px;cursor:pointer;font-family:'Jost',sans-serif;font-size:.8rem;font-weight:600;transition:all .18s cubic-bezier(.34,1.56,.64,1)}
-.sagain:hover{background:var(--gold-dim)}
-.sagain:active{transform:scale(.94)!important;background:rgba(184,149,42,.2)!important}
-
-/* ACCESS */
+.sttl{font-family:'Playfair Display',serif;font-size:1.6rem;margin-bottom:.4rem}.smsg{font-size:.86rem;color:var(--muted);line-height:1.7;max-width:340px;margin:0 auto}
+.sagain{margin-top:1.4rem;padding:.6rem 1.5rem;background:transparent;border:1.5px solid var(--gold-border);color:var(--gold);border-radius:8px;cursor:pointer;font-family:'Jost',sans-serif;font-size:.8rem;font-weight:600;transition:all .18s}
+.sagain:hover{background:var(--gold-dim)}.sagain:active{transform:scale(.94)}
 .axout{max-width:460px;margin:0 auto;padding:2.2rem 1.25rem;display:flex;flex-direction:column;align-items:center}
 .axcard{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2.2rem 1.75rem;width:100%;box-shadow:var(--shadow-lg);text-align:center}
 .axic{width:72px;height:72px;border-radius:50%;background:var(--gold-dim);border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;font-size:1.9rem;margin:0 auto 1.1rem}
-.axtitle{font-family:'Playfair Display',serif;font-size:1.7rem;margin-bottom:.4rem}
-.axdesc{font-size:.8rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem}
+.axtitle{font-family:'Playfair Display',serif;font-size:1.7rem;margin-bottom:.4rem}.axdesc{font-size:.8rem;color:var(--muted);line-height:1.7;margin-bottom:1.5rem}
 .cboxes{display:flex;gap:.4rem;justify-content:center;margin-bottom:1.1rem}
-.cbox{width:44px;height:56px;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;text-align:center;font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold);outline:none;transition:border-color .2s;caret-color:var(--gold)}
+.cbox{width:44px;height:56px;background:var(--surface2);border:1.5px solid var(--border);border-radius:8px;text-align:center;font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold);outline:none;transition:border-color .2s}
 .cbox:focus{border-color:var(--gold);box-shadow:0 0 0 3px var(--gold-dim)}
 .arbox{border-radius:11px;padding:1.1rem;margin-top:1.1rem;text-align:left;display:none;animation:fu .4s ease}
-.arbox.granted{background:var(--green-bg);border:1px solid var(--green-bd)}
-.arbox.denied{background:var(--red-bg);border:1px solid var(--red-bd)}
-.arico{font-size:1.7rem;margin-bottom:.45rem}
-.arttl{font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:.3rem}
-.arttl.ok{color:var(--green)}.arttl.no{color:var(--red)}
-.arbody{font-size:.78rem;color:var(--muted);line-height:1.7;white-space:pre-line}
-
-/* HISTORY */
+.arbox.granted{background:var(--green-bg);border:1px solid var(--green-bd)}.arbox.denied{background:var(--red-bg);border:1px solid var(--red-bd)}
+.arico{font-size:1.7rem;margin-bottom:.45rem}.arttl{font-family:'Playfair Display',serif;font-size:1.25rem;margin-bottom:.3rem}
+.arttl.ok{color:var(--green)}.arttl.no{color:var(--red)}.arbody{font-size:.78rem;color:var(--muted);line-height:1.7;white-space:pre-line}
 .hxout{max-width:660px;margin:0 auto;padding:2.2rem 1.25rem}
 .lcard{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.6rem;margin-bottom:1.6rem;box-shadow:var(--shadow)}
 .bkc{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:1.1rem;margin-bottom:.75rem;box-shadow:var(--shadow);animation:fu .4s ease}
-.bkh{display:flex;align-items:flex-start;justify-content:space-between;gap:.55rem;flex-wrap:wrap}
-.bkn{font-family:'Playfair Display',serif;font-size:1.15rem}
+.bkh{display:flex;align-items:flex-start;justify-content:space-between;gap:.55rem;flex-wrap:wrap}.bkn{font-family:'Playfair Display',serif;font-size:1.15rem}
 .badge{padding:.25rem .75rem;border-radius:100px;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
-.bP{background:rgba(184,149,42,.1);color:var(--gold);border:1px solid var(--gold-border)}
-.bA{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}
-.bR{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd)}
-.bCO{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-bd)}
+.bP{background:rgba(184,149,42,.1);color:var(--gold);border:1px solid var(--gold-border)}.bA{background:var(--green-bg);color:var(--green);border:1px solid var(--green-bd)}.bR{background:var(--red-bg);color:var(--red);border:1px solid var(--red-bd)}.bCO{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-bd)}
 .bkm{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.6rem;margin-top:.8rem}
-.bml{font-size:.64rem;font-weight:600;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.12rem}
-.bmv{font-size:.8rem;font-weight:500}
+.bml{font-size:.64rem;font-weight:600;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.12rem}.bmv{font-size:.8rem;font-weight:500}
 .bkcode{margin-top:.9rem;background:var(--surface2);border:1px solid var(--gold-border);border-radius:9px;padding:.8rem 1rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.55rem}
-.bkcl{font-size:.64rem;font-weight:600;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.12rem}
-.bkcv{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold);letter-spacing:.2em}
-.bkcs{font-size:.68rem;color:var(--muted)}
-
-/* RECEIPT */
+.bkcl{font-size:.64rem;font-weight:600;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.12rem}.bkcv{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold);letter-spacing:.2em}.bkcs{font-size:.68rem;color:var(--muted)}
 .receipt-wrap{background:var(--surface);border:2px solid var(--gold-border);border-radius:16px;padding:2rem;margin-top:1.25rem;display:none}
 .receipt-header{text-align:center;border-bottom:1px dashed var(--border);padding-bottom:1.25rem;margin-bottom:1.25rem}
 .receipt-logo{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold)}
 .receipt-rows{display:flex;flex-direction:column;gap:.55rem}
-.receipt-row{display:flex;justify-content:space-between;font-size:.82rem;padding:.35rem 0;border-bottom:1px solid var(--surface2)}
-.receipt-row:last-child{border-bottom:none}
-.receipt-label{color:var(--muted)}
-.receipt-value{font-weight:600;text-align:right}
+.receipt-row{display:flex;justify-content:space-between;font-size:.82rem;padding:.35rem 0;border-bottom:1px solid var(--surface2)}.receipt-row:last-child{border-bottom:none}
+.receipt-label{color:var(--muted)}.receipt-value{font-weight:600;text-align:right}
 .receipt-code{background:var(--ink);border-radius:10px;padding:1rem;text-align:center;margin-top:1rem}
 .receipt-code-label{font-size:.65rem;color:rgba(212,175,90,.6);letter-spacing:.15em;text-transform:uppercase}
 .receipt-code-val{font-family:'Playfair Display',serif;font-size:2.2rem;color:var(--gold2);letter-spacing:.3em}
 .receipt-footer{text-align:center;margin-top:1.25rem;font-size:.75rem;color:var(--muted);border-top:1px dashed var(--border);padding-top:1rem}
-
-/* REVIEW FORM */
 .star-row{display:flex;gap:.3rem;margin-bottom:.6rem}
-.star-btn{font-size:1.6rem;background:none;border:none;cursor:pointer;color:#ddd;transition:all .15s cubic-bezier(.34,1.56,.64,1);line-height:1}
-.star-btn.lit{color:var(--gold)}
-.star-btn:active{transform:scale(.8)!important}
-
-/* ADMIN */
+.star-btn{font-size:1.6rem;background:none;border:none;cursor:pointer;color:#ddd;transition:all .15s;line-height:1}.star-btn.lit{color:var(--gold)}.star-btn:active{transform:scale(.8)}
 .alout{max-width:390px;margin:2rem auto;padding:1rem 1.25rem}
 .alcard{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:2.2rem 1.75rem;text-align:center;box-shadow:var(--shadow-lg)}
 .alcrown{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));display:flex;align-items:center;justify-content:center;margin:0 auto 1.1rem;box-shadow:0 5px 24px rgba(184,149,42,.35)}
-.alcrown svg{width:30px;height:30px}
-.altitle{font-family:'Playfair Display',serif;font-size:1.6rem;margin-bottom:.22rem}
-.alsub{font-size:.78rem;color:var(--muted);margin-bottom:1.6rem}
+.alcrown svg{width:30px;height:30px}.altitle{font-family:'Playfair Display',serif;font-size:1.6rem;margin-bottom:.22rem}.alsub{font-size:.78rem;color:var(--muted);margin-bottom:1.6rem}
 .adash{max-width:1200px;margin:0 auto;padding:1.5rem 1.25rem;display:none}
 .dh{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem;margin-bottom:1.5rem;padding-bottom:1.1rem;border-bottom:1px solid var(--border)}
-.dbn{font-family:'Playfair Display',serif;font-size:1.35rem}
-.dbs{font-size:.7rem;color:var(--muted);margin-top:.1rem}
+.dbn{font-family:'Playfair Display',serif;font-size:1.35rem}.dbs{font-size:.7rem;color:var(--muted);margin-top:.1rem}
 .dsts{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.8rem;margin-bottom:1.5rem}
 .dsc{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:1rem 1.15rem;box-shadow:var(--shadow)}
-.dsn{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:400}
-.dsl{font-size:.65rem;font-weight:600;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:.28rem}
+.dsn{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:400}.dsl{font-size:.65rem;font-weight:600;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:.28rem}
 .admin-tabs{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.4rem;border-bottom:1px solid var(--border);padding-bottom:.8rem}
-.atab{padding:.42rem 1rem;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Jost',sans-serif;font-size:.78rem;font-weight:500;cursor:pointer;transition:all .18s cubic-bezier(.34,1.56,.64,1)}
-.atab:active{transform:scale(.94)!important}
-.atab.on{background:var(--gold-dim);color:var(--gold);border-color:var(--gold-border)}
-.atab-panel{display:none}
-.atab-panel.on{display:block}
+.atab{padding:.42rem 1rem;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Jost',sans-serif;font-size:.78rem;font-weight:500;cursor:pointer;transition:all .18s}
+.atab:active{transform:scale(.94)}.atab.on{background:var(--gold-dim);color:var(--gold);border-color:var(--gold-border)}
+.atab-panel{display:none}.atab-panel.on{display:block}
 .analytics-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
 @media(max-width:600px){.analytics-grid{grid-template-columns:1fr}}
 .chart-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.25rem;box-shadow:var(--shadow)}
@@ -276,410 +178,306 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;background:rgba(250,247,242,
 .dth{padding:1rem 1.2rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.55rem}
 .dtt{font-family:'Playfair Display',serif;font-size:1.1rem}
 .fpills{display:flex;gap:.3rem;flex-wrap:wrap}
-.fp{padding:.25rem .75rem;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:.7rem;font-family:'Jost',sans-serif;cursor:pointer;transition:all .18s cubic-bezier(.34,1.56,.64,1);font-weight:500}
-.fp.on,.fp:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}
-.fp:active{transform:scale(.9)!important}
+.fp{padding:.25rem .75rem;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--muted);font-size:.7rem;font-family:'Jost',sans-serif;cursor:pointer;transition:all .18s;font-weight:500}
+.fp.on,.fp:hover{border-color:var(--gold);color:var(--gold);background:var(--gold-dim)}.fp:active{transform:scale(.9)}
 .dtb{padding:.8rem}
-.adc{background:var(--surface2);border:1px solid var(--border);border-radius:11px;padding:1rem;margin-bottom:.55rem;transition:border-color .2s}
-.adc:hover{border-color:var(--gold-border)}
+.adc{background:var(--surface2);border:1px solid var(--border);border-radius:11px;padding:1rem;margin-bottom:.55rem;transition:border-color .2s}.adc:hover{border-color:var(--gold-border)}
 .adct{display:flex;align-items:flex-start;justify-content:space-between;gap:.55rem;flex-wrap:wrap}
-.adcg h4{font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:.12rem}
-.adcg p{font-size:.72rem;color:var(--muted)}
+.adcg h4{font-family:'Playfair Display',serif;font-size:1rem;margin-bottom:.12rem}.adcg p{font-size:.72rem;color:var(--muted)}
 .adcb{display:flex;gap:.35rem;align-items:center;flex-wrap:wrap}
-.adcm{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:.65rem}
-.adcmi{font-size:.73rem;color:var(--muted)}
+.adcm{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:.65rem}.adcmi{font-size:.73rem;color:var(--muted)}
 .adca{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap;margin-top:.65rem;padding-top:.65rem;border-top:1px solid var(--border)}
-.ab{padding:.35rem .95rem;border-radius:7px;border:1.5px solid;font-size:.7rem;font-family:'Jost',sans-serif;font-weight:600;cursor:pointer;transition:all .18s cubic-bezier(.34,1.56,.64,1)}
-.ab:active{transform:scale(.9)!important}
-.abok{border-color:var(--green-bd);color:var(--green);background:var(--green-bg)}
-.abok:hover{background:var(--green);color:#fff;border-color:var(--green)}
-.abno{border-color:var(--red-bd);color:var(--red);background:var(--red-bg)}
-.abno:hover{background:var(--red);color:#fff;border-color:var(--red)}
-.absv{border-color:var(--border);color:var(--muted);background:transparent}
-.absv:hover{border-color:var(--gold-border);color:var(--gold);background:var(--gold-dim)}
-.abco{border-color:var(--blue-bd);color:var(--blue);background:var(--blue-bg)}
-.abco:hover{background:var(--blue);color:#fff}
-.rni{width:82px;padding:.32rem .58rem;border-radius:6px;border:1.5px solid var(--border);background:var(--surface);font-family:'Jost',sans-serif;font-size:.75rem;color:var(--text);outline:none}
-.rni:focus{border-color:var(--gold)}
+.ab{padding:.35rem .95rem;border-radius:7px;border:1.5px solid;font-size:.7rem;font-family:'Jost',sans-serif;font-weight:600;cursor:pointer;transition:all .18s}.ab:active{transform:scale(.9)}
+.abok{border-color:var(--green-bd);color:var(--green);background:var(--green-bg)}.abok:hover{background:var(--green);color:#fff;border-color:var(--green)}
+.abno{border-color:var(--red-bd);color:var(--red);background:var(--red-bg)}.abno:hover{background:var(--red);color:#fff;border-color:var(--red)}
+.absv{border-color:var(--border);color:var(--muted);background:transparent}.absv:hover{border-color:var(--gold-border);color:var(--gold);background:var(--gold-dim)}
+.abco{border-color:var(--blue-bd);color:var(--blue);background:var(--blue-bg)}.abco:hover{background:var(--blue);color:#fff}
+.rni{width:82px;padding:.32rem .58rem;border-radius:6px;border:1.5px solid var(--border);background:var(--surface);font-family:'Jost',sans-serif;font-size:.75rem;color:var(--text);outline:none}.rni:focus{border-color:var(--gold)}
 .cpill{padding:.25rem .75rem;background:var(--gold-dim);border:1px solid var(--gold-border);border-radius:5px;font-family:'Playfair Display',serif;font-size:.82rem;color:var(--gold);letter-spacing:.14em}
 .ldot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);animation:lp 2s infinite;margin-right:.3rem}
 @keyframes lp{0%{box-shadow:0 0 0 0 rgba(46,125,90,.4)}70%{box-shadow:0 0 0 6px rgba(46,125,90,0)}100%{box-shadow:0 0 0 0 rgba(46,125,90,0)}}
 .cpw-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:1.5rem;max-width:420px;box-shadow:var(--shadow)}
-.revenue-total{font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);margin:.5rem 0}
-.revenue-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
-.divider{height:1px;background:var(--border);margin:1.5rem 0}
-.dacth{display:flex;gap:.45rem;flex-wrap:wrap}
-
-/* FOOTER */
+.revenue-total{font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);margin:.5rem 0}.revenue-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+.divider{height:1px;background:var(--border);margin:1.5rem 0}.dacth{display:flex;gap:.45rem;flex-wrap:wrap}
 footer{background:var(--ink);color:rgba(250,247,242,.5);padding:2.8rem 1.5rem;text-align:center}
 .fcrown{font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--gold2);margin-bottom:.38rem}
 .ftag{font-size:.72rem;color:rgba(184,149,42,.42);letter-spacing:.14em;text-transform:uppercase;margin-bottom:1.4rem;font-style:italic}
 .fcts{display:flex;flex-wrap:wrap;gap:1.1rem;justify-content:center;margin-bottom:1.4rem}
 .fcts a{color:rgba(250,247,242,.42);text-decoration:none;font-size:.78rem;transition:color .2s}.fcts a:hover{color:var(--gold2)}.fcts span{font-size:.78rem}
-.fhr{border:none;border-top:1px solid rgba(184,149,42,.11);margin-bottom:1.1rem}
-.fcp{font-size:.7rem;color:rgba(250,247,242,.18)}
-
-/* TOAST */
+.fhr{border:none;border-top:1px solid rgba(184,149,42,.11);margin-bottom:1.1rem}.fcp{font-size:.7rem;color:rgba(250,247,242,.18)}
 .toast{position:fixed;bottom:1.1rem;right:1.1rem;z-index:9000;background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:.9rem 1.25rem;max-width:300px;box-shadow:var(--shadow-lg);transform:translateX(120%);opacity:0;transition:all .4s cubic-bezier(.34,1.56,.64,1)}
 .toast.show{transform:translateX(0);opacity:1}
-.tttl{font-family:'Playfair Display',serif;font-size:.9rem;color:var(--gold);margin-bottom:.18rem}
-.tmsg{font-size:.76rem;color:var(--muted);line-height:1.5}
-
-/* SPINNER */
+.tttl{font-family:'Playfair Display',serif;font-size:.9rem;color:var(--gold);margin-bottom:.18rem}.tmsg{font-size:.76rem;color:var(--muted);line-height:1.5}
 .spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:.3rem}
 @keyframes spin{to{transform:rotate(360deg)}}
-.emst{text-align:center;padding:2.2rem;color:var(--muted)}
-.emst .ei{font-size:1.9rem;margin-bottom:.55rem;display:block;opacity:.4}
-
-@media(max-width:600px){
-  nav{padding:0 1rem}.nmenu{display:none}.ham{display:flex}
-  .hstats{gap:1.8rem}
-  .axout,.hxout,.bpw,.alout,.adash{padding-left:.85rem;padding-right:.85rem}
-  .fc,.axcard,.bkc,.adc,.acard,.lcard,.alcard{padding:1rem}
-  .adash{padding:.85rem}
-  .cbox{width:40px;height:52px;font-size:1.45rem}
-  .rgrid{grid-template-columns:1fr}
-  .map-wrap iframe{height:260px}
-}
+.emst{text-align:center;padding:2.2rem;color:var(--muted)}.emst .ei{font-size:1.9rem;margin-bottom:.55rem;display:block;opacity:.4}
+.img-mgr-row{margin-bottom:1.1rem;padding:1rem;background:var(--surface2);border-radius:10px;border:1px solid var(--border)}
+.img-mgr-inner{display:flex;align-items:center;gap:.85rem;flex-wrap:wrap}
+.img-mgr-thumb{width:80px;height:60px;border-radius:8px;overflow:hidden;background:#eee;flex-shrink:0}
+.img-mgr-thumb img{width:100%;height:100%;object-fit:cover}
+.img-mgr-field{flex:1;min-width:200px}
+.img-mgr-label{font-size:.68rem;font-weight:600;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:.35rem}
+.img-mgr-input{width:100%;background:var(--surface);border:1.5px solid var(--border);border-radius:8px;padding:.62rem .85rem;font-family:'Jost',sans-serif;font-size:.78rem;color:var(--text);outline:none;transition:border-color .2s}
+.img-mgr-input:focus{border-color:var(--gold)}
+@media(max-width:600px){nav{padding:0 1rem}.nmenu{display:none}.ham{display:flex}.hstats{gap:1.8rem}.axout,.hxout,.bpw,.alout,.adash{padding-left:.85rem;padding-right:.85rem}.fc,.axcard,.bkc,.adc,.acard,.lcard,.alcard{padding:1rem}.adash{padding:.85rem}.cbox{width:40px;height:52px;font-size:1.45rem}.rgrid{grid-template-columns:1fr}.map-wrap iframe{height:260px}}
 </style>
 </head>
 <body>
-
-<div id="loader">
-  <div class="lc"><div class="lr"></div>
-    <svg viewBox="0 0 40 30" fill="none" width="38">
-      <path d="M4 26L8 10L16 18L20 6L24 18L32 10L36 26H4Z" stroke="#d4af5a" stroke-width="1.5" stroke-linejoin="round" fill="none"/>
-      <circle cx="4" cy="10" r="2.5" fill="#d4af5a"/><circle cx="20" cy="4" r="2.5" fill="#d4af5a"/><circle cx="36" cy="10" r="2.5" fill="#d4af5a"/>
-      <line x1="4" y1="28" x2="36" y2="28" stroke="#d4af5a" stroke-width="1.5" stroke-linecap="round"/>
-    </svg>
-  </div>
-  <div class="ln">OCROWN Suites</div>
-  <div class="ls">Alakia · Ibadan · Nigeria</div>
-</div>
-
+<div id="loader"><div class="lc"><div class="lr"></div><svg viewBox="0 0 40 30" fill="none" width="38"><path d="M4 26L8 10L16 18L20 6L24 18L32 10L36 26H4Z" stroke="#d4af5a" stroke-width="1.5" stroke-linejoin="round" fill="none"/><circle cx="4" cy="10" r="2.5" fill="#d4af5a"/><circle cx="20" cy="4" r="2.5" fill="#d4af5a"/><circle cx="36" cy="10" r="2.5" fill="#d4af5a"/><line x1="4" y1="28" x2="36" y2="28" stroke="#d4af5a" stroke-width="1.5" stroke-linecap="round"/></svg></div><div class="ln">OCROWN Suites</div><div class="ls">Alakia · Ibadan · Nigeria</div></div>
 <div class="toast" id="toast"><div class="tttl" id="tttl"></div><div class="tmsg" id="tmsg"></div></div>
+<a class="wa-float" href="https://wa.me/2347080951392?text=Hello%20OCROWN%20Suites" target="_blank"><div class="wa-tip">Chat on WhatsApp</div><svg viewBox="0 0 24 24" fill="white" width="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+<nav><button class="nbrand" onclick="SP('home')"><div class="nlm"><svg viewBox="0 0 28 22" fill="none" width="18"><path d="M2 19L5.5 7L11.5 13.5L14 3L16.5 13.5L22.5 7L26 19H2Z" stroke="white" stroke-width="1.5" stroke-linejoin="round" fill="none"/><circle cx="2" cy="7" r="2" fill="white"/><circle cx="14" cy="2" r="2" fill="white"/><circle cx="26" cy="7" r="2" fill="white"/><line x1="2" y1="21" x2="26" y2="21" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><div class="nbn">OCROWN Suites</div><div class="nbl">Alakia, Ibadan</div></div></button><div class="nmenu"><button class="ni on" id="ni-home" onclick="SP('home')">Home</button><button class="ni" id="ni-booking" onclick="SP('booking')">Book Now</button><button class="ni" id="ni-access" onclick="SP('access')">Room Access</button><button class="ni" id="ni-history" onclick="SP('history')">My Booking</button><button class="ni" id="ni-admin" onclick="SP('admin')">Admin</button><button class="ni cta" onclick="SP('booking')">Reserve</button></div><button class="ham" onclick="toggleNav()"><span></span><span></span><span></span></button></nav>
+<div class="mnav" id="mnav"><button class="ni" onclick="SP('home');toggleNav()">Home</button><button class="ni" onclick="SP('booking');toggleNav()">Book Now</button><button class="ni" onclick="SP('access');toggleNav()">Room Access</button><button class="ni" onclick="SP('history');toggleNav()">My Booking</button><button class="ni" onclick="SP('admin');toggleNav()">Admin</button></div>
 
-<a class="wa-float" href="https://wa.me/2347080951392?text=Hello%20OCROWN%20Suites%2C%20I%20would%20like%20to%20make%20an%20enquiry." target="_blank">
-  <div class="wa-tip">Chat with us on WhatsApp</div>
-  <svg viewBox="0 0 24 24" fill="white" width="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</a>
-
-<nav>
-  <button class="nbrand" onclick="SP('home')">
-    <div class="nlm"><svg viewBox="0 0 28 22" fill="none" width="18"><path d="M2 19L5.5 7L11.5 13.5L14 3L16.5 13.5L22.5 7L26 19H2Z" stroke="white" stroke-width="1.5" stroke-linejoin="round" fill="none"/><circle cx="2" cy="7" r="2" fill="white"/><circle cx="14" cy="2" r="2" fill="white"/><circle cx="26" cy="7" r="2" fill="white"/><line x1="2" y1="21" x2="26" y2="21" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-    <div><div class="nbn">OCROWN Suites</div><div class="nbl">Alakia, Ibadan</div></div>
-  </button>
-  <div class="nmenu">
-    <button class="ni on" id="ni-home" onclick="SP('home')">Home</button>
-    <button class="ni" id="ni-booking" onclick="SP('booking')">Book Now</button>
-    <button class="ni" id="ni-access" onclick="SP('access')">Room Access</button>
-    <button class="ni" id="ni-history" onclick="SP('history')">My Booking</button>
-    <button class="ni" id="ni-admin" onclick="SP('admin')">Admin</button>
-    <button class="ni cta" onclick="SP('booking')">Reserve</button>
-  </div>
-  <button class="ham" onclick="toggleNav()"><span></span><span></span><span></span></button>
-</nav>
-<div class="mnav" id="mnav">
-  <button class="ni" onclick="SP('home');toggleNav()">Home</button>
-  <button class="ni" onclick="SP('booking');toggleNav()">Book Now</button>
-  <button class="ni" onclick="SP('access');toggleNav()">Room Access</button>
-  <button class="ni" onclick="SP('history');toggleNav()">My Booking</button>
-  <button class="ni" onclick="SP('admin');toggleNav()">Admin</button>
-</div>
-
-<!-- HOME -->
 <div class="page active" id="page-home">
-  <div class="hero">
-    <div class="hgrid"></div><div class="hglow"></div>
-    <div class="hcon">
-      <div class="heye">Alakia, Ibadan, Oyo State, Nigeria</div>
-      <h1 class="htitle">OCROWN<em>Suites</em></h1>
-      <p class="hsub">Where Ibadan's finest hospitality meets modern comfort</p>
-      <div class="hbtns">
-        <button class="btn bg" onclick="SP('booking')">Reserve Your Suite</button>
-        <button class="btn bo" onclick="document.getElementById('rsec').scrollIntoView({behavior:'smooth'})">Explore Rooms</button>
-      </div>
-      <div class="hstats">
-        <div><div class="hsn">7</div><div class="hsl">Room Types</div></div>
-        <div><div class="hsn">24/7</div><div class="hsl">Concierge</div></div>
-        <div><div class="hsn">100%</div><div class="hsl">Secure Access</div></div>
-        <div><div class="hsn" id="home-rev-count">0</div><div class="hsl">Guest Reviews</div></div>
-      </div>
-    </div>
-  </div>
-
-  <div id="rsec"></div>
-  <div class="sec">
-    <div class="seye">Our Accommodations</div>
-    <h2 class="stitle">Choose Your Perfect Suite</h2>
-    <div class="rgrid">
-      <div class="rc" onclick="SP('booking')">
-        <div class="rt"><img src="https://i.postimg.cc/gXBfj3pM/image.jpg" alt="Single" style="width:100%;height:100%;object-fit:cover;display:block"/><div class="rt-overlay"></div><div class="rrib">Single</div></div>
-        <div class="rb"><div class="rn">Classic Single</div><div class="rd">Perfect for solo travellers. Queen bed, en-suite bathroom, work desk and complimentary WiFi.</div><div class="rft"><div class="rp">₦18,000<small>/night</small></div><button class="rbk" onclick="event.stopPropagation();SP('booking')">Book Now</button></div></div>
-      </div>
-      <div class="rc" onclick="SP('booking')">
-        <div class="rt"><img src="https://i.postimg.cc/mzrvT8v7/image.jpg" alt="Double" style="width:100%;height:100%;object-fit:cover;display:block"/><div class="rt-overlay"></div><div class="rrib">Double</div></div>
-        <div class="rb"><div class="rn">Comfort Double</div><div class="rd">Ideal for couples or co-travellers. Twin beds, lounge area, mini-fridge and premium linen.</div><div class="rft"><div class="rp">₦28,000<small>/night</small></div><button class="rbk" onclick="event.stopPropagation();SP('booking')">Book Now</button></div></div>
-      </div>
-      <div class="rc" onclick="SP('booking')">
-        <div class="rt"><img src="https://i.postimg.cc/YGS5tb53/image.jpg" alt="VIP" style="width:100%;height:100%;object-fit:cover;display:block"/><div class="rt-overlay"></div><div class="rrib">VIP</div></div>
-        <div class="rb"><div class="rn">VIP Prestige Suite</div><div class="rd">The pinnacle of luxury. King bed, private lounge, jacuzzi and complimentary breakfast.</div><div class="rft"><div class="rp">₦55,000<small>/night</small></div><button class="rbk" onclick="event.stopPropagation();SP('booking')">Book Now</button></div></div>
-      </div>
-      <div class="rc" onclick="SP('booking')">
-        <div class="rt"><img src="https://i.postimg.cc/HcLqTBq6/image.jpg" alt="Deluxe" style="width:100%;height:100%;object-fit:cover;display:block"/><div class="rt-overlay"></div><div class="rrib">Deluxe</div></div>
-        <div class="rb"><div class="rn">Deluxe Suite</div><div class="rd">Elevated comfort with premium furnishings, city view, king bed, flat-screen TV and rain shower.</div><div class="rft"><div class="rp">₦38,000<small>/night</small></div><button class="rbk" onclick="event.stopPropagation();SP('booking')">Book Now</button></div></div>
-      </div>
-      <div class="rc" onclick="SP('booking')">
-        <div class="rt"><img src="https://i.postimg.cc/zbfsq0s2/image.jpg" alt="Executive" style="width:100%;height:100%;object-fit:cover;display:block"/><div class="rt-overlay"></div><div class="rrib">Executive</div></div>
-        <div class="rb"><div class="rn">Executive Room</div><div class="rd">Designed for business travellers. Ergonomic workstation, high-speed WiFi, ironing board and safe.</div><div class="rft"><div class="rp">₦32,000<small>/night</small></div><button class="rbk" onclick="event.stopPropagation();SP('booking')">Book Now</button></div></div>
-      </div>
-      <div class="rc" onclick="SP('booking')">
-        <div class="rt"><img src="https://i.postimg.cc/DJz97B9t/image.jpg" alt="Family" style="width:100%;height:100%;object-fit:cover;display:block"/><div class="rt-overlay"></div><div class="rrib">Family</div></div>
-        <div class="rb"><div class="rn">Family Suite</div><div class="rd">Spacious suite for families. Two bedrooms, kitchenette, living area and kids-friendly amenities.</div><div class="rft"><div class="rp">₦48,000<small>/night</small></div><button class="rbk" onclick="event.stopPropagation();SP('booking')">Book Now</button></div></div>
-      </div>
-      <div class="rc" onclick="SP('booking')">
-        <div class="rt"><img src="https://i.postimg.cc/gX0CGg99/image.jpg" alt="Honeymoon" style="width:100%;height:100%;object-fit:cover;display:block"/><div class="rt-overlay"></div><div class="rrib">Honeymoon</div></div>
-        <div class="rb"><div class="rn">Honeymoon Suite</div><div class="rd">Romantic luxury. Rose decor, champagne on arrival, jacuzzi and private balcony.</div><div class="rft"><div class="rp">₦65,000<small>/night</small></div><button class="rbk" onclick="event.stopPropagation();SP('booking')">Book Now</button></div></div>
-      </div>
-    </div>
-  </div>
-
-  <div style="background:var(--surface2);padding:1px 0">
-    <div class="sec">
-      <div class="seye">Guest Experiences</div>
-      <h2 class="stitle">What Our Guests Say</h2>
-      <div id="rev-avg-wrap"></div>
-      <div class="rev-grid" id="home-reviews"><div class="emst"><span class="ei">⭐</span>Loading reviews…</div></div>
-    </div>
-  </div>
-
-  <div class="sec">
-    <div class="seye">Find Us</div>
-    <h2 class="stitle">Our Location</h2>
-    <div class="map-wrap">
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.0!2d3.8900!3d7.3700!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103835d0abcdef00%3A0x123456789abcdef!2sAlakia%2C%20Ibadan%2C%20Oyo%20State%2C%20Nigeria!5e0!3m2!1sen!2sng!4v1700000000000!5m2!1sen!2sng" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-    <div class="map-info">
-      <div class="map-info-item"><div class="map-info-ico">📍</div><div><div class="map-info-label">Address</div><div class="map-info-val">Alakia, Ibadan, Oyo State</div></div></div>
-      <div class="map-info-item"><div class="map-info-ico">📞</div><div><div class="map-info-label">Phone / WhatsApp</div><div class="map-info-val"><a href="tel:07080951392" style="color:var(--gold);text-decoration:none">07080951392</a></div></div></div>
-      <div class="map-info-item"><div class="map-info-ico">✉️</div><div><div class="map-info-label">Email</div><div class="map-info-val"><a href="/cdn-cgi/l/email-protection#a0cfc3d2cfd7ced3d5c9d4c5d3e0c7cdc1c9cc8ec3cfcd" style="color:var(--gold);text-decoration:none"><span class="__cf_email__" data-cfemail="18777b6a776f766b6d716c7d6b587f75797174367b7775">[email&#160;protected]</span></a></div></div></div>
-      <div class="map-info-item"><div class="map-info-ico">🕐</div><div><div class="map-info-label">Reception Hours</div><div class="map-info-val">24 Hours · 7 Days a Week</div></div></div>
-    </div>
-  </div>
-
-  <footer>
-    <div class="fcrown">♛ OCROWN Suites</div>
-    <div class="ftag">Luxury Redefined in the Heart of Ibadan</div>
-    <div class="fcts"><a href="tel:07080951392">📞 07080951392</a><a href="https://wa.me/2347080951392" target="_blank">💬 WhatsApp</a><a href="/cdn-cgi/l/email-protection#86e9e5f4e9f1e8f5f3eff2e3f5c6e1ebe7efeaa8e5e9eb">✉️ <span class="__cf_email__" data-cfemail="bcd3dfced3cbd2cfc9d5c8d9cffcdbd1ddd5d092dfd3d1">[email&#160;protected]</span></a><span>📍 Alakia, Ibadan, Oyo State, Nigeria</span></div>
-    <hr class="fhr"/><div class="fcp">© 2025 OCROWN Suites. All rights reserved.</div>
-  </footer>
+<div class="hero"><div class="hgrid"></div><div class="hglow"></div>
+<div class="hcon">
+<div class="heye">Alakia, Ibadan, Oyo State, Nigeria</div>
+<h1 class="htitle">OCROWN<em>Suites</em></h1>
+<p class="hsub">Where Ibadan finest hospitality meets modern comfort</p>
+<div class="hbtns"><button class="btn bg" onclick="SP('booking')">Reserve Your Suite</button><button class="btn bo" onclick="document.getElementById('rsec').scrollIntoView({behavior:'smooth'})">Explore Rooms</button></div>
+<div class="hstats"><div><div class="hsn">7</div><div class="hsl">Room Types</div></div><div><div class="hsn">24/7</div><div class="hsl">Concierge</div></div><div><div class="hsn">100%</div><div class="hsl">Secure Access</div></div><div><div class="hsn" id="home-rev-count">0</div><div class="hsl">Guest Reviews</div></div></div>
+</div></div>
+<div id="rsec"></div>
+<div class="sec">
+<div class="seye">Our Accommodations</div>
+<h2 class="stitle">Choose Your Perfect Suite</h2>
+<div class="rgrid">
+<div class="rc" onclick="SP('booking')">
+<div class="rt"><img src="https://i.postimg.cc/gXBfj3pM/image.jpg" alt="Single" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.display='none'"/><div class="rt-overlay"></div><div class="rrib">Single</div></div>
+<div class="rb"><div class="rn">Classic Single</div><div class="rd">Perfect for solo travellers. Queen bed, en-suite bathroom, work desk and complimentary WiFi.</div>
+<div class="rft"><div class="rp">&#x20A6;18,000<small>/night</small></div><button class="rbk" onclick="event.stopPropagation();SP('booking')">Book Now</button></div>
+</div></div>
+<div class="rc" onclick="SP('booking')">
+<div class="rt"><img src="https://i.postimg.cc/mzrvT8v7/image.jpg" alt="Double" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.display='none'"/><div class="rt-overlay"></div><div class="rrib">Double</div></div>
+<div class="rb"><div class="rn">Comfort Double</div><div class="rd">Ideal for couples or co-travellers. Twin beds, lounge area, mini-fridge and premium linen.</div>
+<div class="rft"><div class="rp">&#x20A6;28,000<small>/night</small></div><button class="rbk" onclick="event.stopPropagation();SP('booking')">Book Now</button></div>
+</div></div>
+<div class="rc" onclick="SP('booking')">
+<div class="rt"><img src="https://i.postimg.cc/YGS5tb53/image.jpg" alt="VIP" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.display='none'"/><div class="rt-overlay"></div><div class="rrib">VIP</div></div>
+<div class="rb"><div class="rn">VIP Prestige Suite</div><div class="rd">The pinnacle of luxury. King bed, private lounge, jacuzzi and complimentary breakfast.</div>
+<div class="rft"><div class="rp">&#x20A6;55,000<small>/night</small></div><button class="rbk" onclick="event.stopPropagation();SP('booking')">Book Now</button></div>
+</div></div>
+<div class="rc" onclick="SP('booking')">
+<div class="rt"><img src="https://i.postimg.cc/HcLqTBq6/image.jpg" alt="Deluxe" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.display='none'"/><div class="rt-overlay"></div><div class="rrib">Deluxe</div></div>
+<div class="rb"><div class="rn">Deluxe Suite</div><div class="rd">Elevated comfort with premium furnishings, city view, king bed, flat-screen TV and rain shower.</div>
+<div class="rft"><div class="rp">&#x20A6;38,000<small>/night</small></div><button class="rbk" onclick="event.stopPropagation();SP('booking')">Book Now</button></div>
+</div></div>
+<div class="rc" onclick="SP('booking')">
+<div class="rt"><img src="https://i.postimg.cc/zbfsq0s2/image.jpg" alt="Executive" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.display='none'"/><div class="rt-overlay"></div><div class="rrib">Executive</div></div>
+<div class="rb"><div class="rn">Executive Room</div><div class="rd">Designed for business travellers. Ergonomic workstation, high-speed WiFi, ironing board and safe.</div>
+<div class="rft"><div class="rp">&#x20A6;32,000<small>/night</small></div><button class="rbk" onclick="event.stopPropagation();SP('booking')">Book Now</button></div>
+</div></div>
+<div class="rc" onclick="SP('booking')">
+<div class="rt"><img src="https://i.postimg.cc/DJz97B9t/image.jpg" alt="Family" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.display='none'"/><div class="rt-overlay"></div><div class="rrib">Family</div></div>
+<div class="rb"><div class="rn">Family Suite</div><div class="rd">Spacious suite for families. Two bedrooms, kitchenette, living area and kids-friendly amenities.</div>
+<div class="rft"><div class="rp">&#x20A6;48,000<small>/night</small></div><button class="rbk" onclick="event.stopPropagation();SP('booking')">Book Now</button></div>
+</div></div>
+<div class="rc" onclick="SP('booking')">
+<div class="rt"><img src="https://i.postimg.cc/gX0CGg99/image.jpg" alt="Honeymoon" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.display='none'"/><div class="rt-overlay"></div><div class="rrib">Honeymoon</div></div>
+<div class="rb"><div class="rn">Honeymoon Suite</div><div class="rd">Romantic luxury. Rose decor, champagne on arrival, jacuzzi and private balcony.</div>
+<div class="rft"><div class="rp">&#x20A6;65,000<small>/night</small></div><button class="rbk" onclick="event.stopPropagation();SP('booking')">Book Now</button></div>
+</div></div>
+</div></div>
+<div style="background:var(--surface2);padding:1px 0"><div class="sec">
+<div class="seye">Guest Experiences</div><h2 class="stitle">What Our Guests Say</h2>
+<div id="rev-avg-wrap"></div>
+<div class="rev-grid" id="home-reviews"><div class="emst"><span class="ei">&#11088;</span>Loading reviews...</div></div>
+</div></div>
+<div class="sec">
+<div class="seye">Find Us</div><h2 class="stitle">Our Location</h2>
+<div class="map-wrap"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.0!2d3.8900!3d7.3700!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103835d0abcdef00%3A0x123456789abcdef!2sAlakia%2C%20Ibadan%2C%20Oyo%20State%2C%20Nigeria!5e0!3m2!1sen!2sng!4v1700000000000" allowfullscreen="" loading="lazy"></iframe></div>
+<div class="map-info">
+<div class="map-info-item"><div class="map-info-ico">&#128205;</div><div><div class="map-info-label">Address</div><div class="map-info-val">Alakia, Ibadan, Oyo State</div></div></div>
+<div class="map-info-item"><div class="map-info-ico">&#128222;</div><div><div class="map-info-label">Phone / WhatsApp</div><div class="map-info-val"><a href="tel:07080951392" style="color:var(--gold);text-decoration:none">07080951392</a></div></div></div>
+<div class="map-info-item"><div class="map-info-ico">&#9993;&#65039;</div><div><div class="map-info-label">Email</div><div class="map-info-val"><a href="mailto:ocrownsuites@gmail.com" style="color:var(--gold);text-decoration:none">ocrownsuites@gmail.com</a></div></div></div>
+<div class="map-info-item"><div class="map-info-ico">&#128336;</div><div><div class="map-info-label">Reception</div><div class="map-info-val">24 Hours, 7 Days a Week</div></div></div>
+</div></div>
+<footer><div class="fcrown">&#9819; OCROWN Suites</div><div class="ftag">Luxury Redefined in the Heart of Ibadan</div>
+<div class="fcts"><a href="tel:07080951392">&#128222; 07080951392</a><a href="https://wa.me/2347080951392" target="_blank">&#128172; WhatsApp</a><a href="mailto:ocrownsuites@gmail.com">&#9993;&#65039; ocrownsuites@gmail.com</a><span>&#128205; Alakia, Ibadan, Oyo State, Nigeria</span></div>
+<hr class="fhr"/><div class="fcp">&#169; 2025 OCROWN Suites. All rights reserved.</div></footer>
 </div>
 
-<!-- BOOKING -->
 <div class="page" id="page-booking">
-  <div class="bpw">
-    <div class="phero"><div class="ptag">Reserve Your Stay</div><h1 class="ptitle">Book a Suite</h1><p class="psub">Complete the form. Your booking will be reviewed and your access code emailed upon approval.</p></div>
-    <div class="bgrid2">
-      <div>
-        <div class="fc">
-          <div class="fst">Guest Information</div>
-          <div id="bform">
-            <div class="frow">
-              <div class="fg"><label>Full Name</label><input type="text" id="b-name" placeholder="e.g. Adewale Okonkwo"/><div class="eferr" id="en">Please enter your full name.</div></div>
-              <div class="fg"><label>Phone Number</label><input type="tel" id="b-phone" placeholder="e.g. 08012345678"/><div class="eferr" id="ep">Enter a valid phone number.</div></div>
-            </div>
-            <div class="fg"><label>Email Address</label><input type="email" id="b-email" placeholder="e.g. guest@email.com"/><div class="eferr" id="ee">Enter a valid email.</div></div>
-            <div class="fg"><label>Room Type</label>
-              <select id="b-room">
-                <option value="">— Select Room Type —</option>
-                <option value="Single">Classic Single — ₦18,000/night</option>
-                <option value="Double">Comfort Double — ₦28,000/night</option>
-                <option value="VIP">VIP Prestige Suite — ₦55,000/night</option>
-                <option value="Deluxe">Deluxe Suite — ₦38,000/night</option>
-                <option value="Executive">Executive Room — ₦32,000/night</option>
-                <option value="Family">Family Suite — ₦48,000/night</option>
-                <option value="Honeymoon">Honeymoon Suite — ₦65,000/night</option>
-              </select>
-              <div class="eferr" id="er">Please select a room type.</div>
-            </div>
-            <div class="frow">
-              <div class="fg"><label>Check-in Date</label><input type="date" id="b-cin"/><div class="eferr" id="eci">Select a valid check-in date.</div></div>
-              <div class="fg"><label>Check-out Date</label><input type="date" id="b-cout"/><div class="eferr" id="eco">Check-out must be after check-in.</div></div>
-            </div>
-            <button class="fsub" id="bsub" onclick="submitBooking()">Submit Booking Request</button>
-          </div>
-          <div class="sstate" id="bsuccess">
-            <div class="sring">✓</div>
-            <div class="sttl">Booking Submitted!</div>
-            <p class="smsg">Booking submitted. Awaiting approval.<br/><br/>We'll send your access code to your email once approved.</p>
-            <button class="sagain" onclick="resetBooking()">Submit Another Booking</button>
-          </div>
-        </div>
-      </div>
-      <div class="aside">
-        <div class="acard"><div class="atitle">♛ Why OCROWN Suites?</div>
-          <ul class="flist"><li>Smart one-time room access code</li><li>Free high-speed WiFi</li><li>24/7 security and front desk</li><li>Daily housekeeping</li><li>Constant power supply</li><li>On-site parking</li><li>Breakfast (VIP and Honeymoon)</li><li>Near Alakia business hub</li></ul>
-        </div>
-        <div class="acard"><div class="atitle">📞 Contact Us</div>
-          <div class="cl">
-            <div class="cline"><div class="cico">📞</div><a href="tel:07080951392">07080951392</a></div>
-            <div class="cline"><div class="cico">💬</div><a href="https://wa.me/2347080951392" target="_blank">WhatsApp: 07080951392</a></div>
-            <div class="cline"><div class="cico">✉️</div><a href="/cdn-cgi/l/email-protection#f39c90819c849d80869a879680b3949e929a9fdd909c9e"><span class="__cf_email__" data-cfemail="b6d9d5c4d9c1d8c5c3dfc2d3c5f6d1dbd7dfda98d5d9db">[email&#160;protected]</span></a></div>
-            <div class="cline"><div class="cico">📍</div><span>Alakia, Ibadan, Oyo State</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <footer><div class="fcrown">♛ OCROWN Suites</div><div class="fcts"><a href="tel:07080951392">📞 07080951392</a><a href="/cdn-cgi/l/email-protection#d8b7bbaab7afb6abadb1acbdab98bfb5b9b1b4f6bbb7b5">✉️ <span class="__cf_email__" data-cfemail="751a16071a021b06001c011006351218141c195b161a18">[email&#160;protected]</span></a></div><hr class="fhr"/><div class="fcp">© 2025 OCROWN Suites. All rights reserved.</div></footer>
+<div class="bpw">
+<div class="phero"><div class="ptag">Reserve Your Stay</div><h1 class="ptitle">Book a Suite</h1><p class="psub">Complete the form. Your booking will be reviewed and access code emailed upon approval.</p></div>
+<div class="bgrid2">
+<div><div class="fc"><div class="fst">Guest Information</div>
+<div id="bform">
+<div class="frow">
+<div class="fg"><label>Full Name</label><input type="text" id="b-name" placeholder="e.g. Adewale Okonkwo"/><div class="eferr" id="en">Please enter your full name.</div></div>
+<div class="fg"><label>Phone Number</label><input type="tel" id="b-phone" placeholder="e.g. 08012345678"/><div class="eferr" id="ep">Enter a valid phone number.</div></div>
+</div>
+<div class="fg"><label>Email Address</label><input type="email" id="b-email" placeholder="e.g. guest@email.com"/><div class="eferr" id="ee">Enter a valid email.</div></div>
+<div class="fg"><label>Room Type</label>
+<select id="b-room">
+<option value="">-- Select Room Type --</option>
+<option value="Single">Classic Single -- 18,000/night</option>
+<option value="Double">Comfort Double -- 28,000/night</option>
+<option value="VIP">VIP Prestige Suite -- 55,000/night</option>
+<option value="Deluxe">Deluxe Suite -- 38,000/night</option>
+<option value="Executive">Executive Room -- 32,000/night</option>
+<option value="Family">Family Suite -- 48,000/night</option>
+<option value="Honeymoon">Honeymoon Suite -- 65,000/night</option>
+</select>
+<div class="eferr" id="er">Please select a room type.</div>
+</div>
+<div class="frow">
+<div class="fg"><label>Check-in Date</label><input type="date" id="b-cin"/><div class="eferr" id="eci">Select a valid check-in date.</div></div>
+<div class="fg"><label>Check-out Date</label><input type="date" id="b-cout"/><div class="eferr" id="eco">Check-out must be after check-in.</div></div>
+</div>
+<button class="fsub" id="bsub" onclick="submitBooking()">Submit Booking Request</button>
+</div>
+<div class="sstate" id="bsuccess">
+<div class="sring">&#10003;</div>
+<div class="sttl">Booking Submitted!</div>
+<p class="smsg">Booking submitted. Awaiting approval.<br/><br/>We will send your access code once approved.</p>
+<button class="sagain" onclick="resetBooking()">Submit Another Booking</button>
+</div>
+</div></div>
+<div class="aside">
+<div class="acard"><div class="atitle">&#9819; Why OCROWN Suites?</div>
+<ul class="flist"><li>Smart one-time room access code</li><li>Free high-speed WiFi</li><li>24/7 security and front desk</li><li>Daily housekeeping</li><li>Constant power supply</li><li>On-site parking</li><li>Breakfast (VIP and Honeymoon)</li><li>Near Alakia business hub</li></ul>
+</div>
+<div class="acard"><div class="atitle">&#128222; Contact Us</div>
+<div class="cl">
+<div class="cline"><div class="cico">&#128222;</div><a href="tel:07080951392">07080951392</a></div>
+<div class="cline"><div class="cico">&#128172;</div><a href="https://wa.me/2347080951392" target="_blank">WhatsApp: 07080951392</a></div>
+<div class="cline"><div class="cico">&#9993;&#65039;</div><a href="mailto:ocrownsuites@gmail.com">ocrownsuites@gmail.com</a></div>
+<div class="cline"><div class="cico">&#128205;</div><span>Alakia, Ibadan, Oyo State</span></div>
+</div></div>
+</div>
+</div></div>
+<footer><div class="fcrown">&#9819; OCROWN Suites</div><div class="fcts"><a href="tel:07080951392">&#128222; 07080951392</a><a href="mailto:ocrownsuites@gmail.com">&#9993;&#65039; ocrownsuites@gmail.com</a></div><hr class="fhr"/><div class="fcp">&#169; 2025 OCROWN Suites.</div></footer>
 </div>
 
-<!-- ACCESS -->
 <div class="page" id="page-access">
-  <div class="axout">
-    <div class="axcard">
-      <div class="axic">🔐</div>
-      <div class="axtitle">Room Access</div>
-      <p class="axdesc">Enter your 6-digit access code. This was emailed to you when your booking was approved.</p>
-      <div class="cboxes">
-        <input class="cbox" maxlength="1" type="text" inputmode="numeric" id="c0" oninput="ci(0)" onkeydown="ck(event,0)"/>
-        <input class="cbox" maxlength="1" type="text" inputmode="numeric" id="c1" oninput="ci(1)" onkeydown="ck(event,1)"/>
-        <input class="cbox" maxlength="1" type="text" inputmode="numeric" id="c2" oninput="ci(2)" onkeydown="ck(event,2)"/>
-        <input class="cbox" maxlength="1" type="text" inputmode="numeric" id="c3" oninput="ci(3)" onkeydown="ck(event,3)"/>
-        <input class="cbox" maxlength="1" type="text" inputmode="numeric" id="c4" oninput="ci(4)" onkeydown="ck(event,4)"/>
-        <input class="cbox" maxlength="1" type="text" inputmode="numeric" id="c5" oninput="ci(5)" onkeydown="ck(event,5)"/>
-      </div>
-      <button class="fsub" id="vbtn" onclick="verifyCode()">Verify Access Code</button>
-      <div class="arbox" id="arbox"><div class="arico" id="arico"></div><div class="arttl" id="arttl"></div><div class="arbody" id="arbody"></div></div>
-    </div>
-    <p style="margin-top:.9rem;font-size:.76rem;color:var(--muted);text-align:center">No code? <a href="#" onclick="SP('booking')" style="color:var(--gold)">Book a room first</a></p>
-  </div>
-  <footer><div class="fcrown">♛ OCROWN Suites</div><div class="fcts"><a href="tel:07080951392">📞 07080951392</a><a href="/cdn-cgi/l/email-protection#d9b6baabb6aeb7aaacb0adbcaa99beb4b8b0b5f7bab6b4">✉️ <span class="__cf_email__" data-cfemail="e689859489918895938f928395a6818b878f8ac885898b">[email&#160;protected]</span></a></div><hr class="fhr"/><div class="fcp">© 2025 OCROWN Suites. All rights reserved.</div></footer>
+<div class="axout"><div class="axcard">
+<div class="axic">&#128272;</div>
+<div class="axtitle">Room Access</div>
+<p class="axdesc">Enter your 6-digit access code. This was emailed when your booking was approved.</p>
+<div class="cboxes">
+<input class="cbox" maxlength="1" type="text" inputmode="numeric" id="c0" oninput="ci(0)" onkeydown="ck(event,0)"/>
+<input class="cbox" maxlength="1" type="text" inputmode="numeric" id="c1" oninput="ci(1)" onkeydown="ck(event,1)"/>
+<input class="cbox" maxlength="1" type="text" inputmode="numeric" id="c2" oninput="ci(2)" onkeydown="ck(event,2)"/>
+<input class="cbox" maxlength="1" type="text" inputmode="numeric" id="c3" oninput="ci(3)" onkeydown="ck(event,3)"/>
+<input class="cbox" maxlength="1" type="text" inputmode="numeric" id="c4" oninput="ci(4)" onkeydown="ck(event,4)"/>
+<input class="cbox" maxlength="1" type="text" inputmode="numeric" id="c5" oninput="ci(5)" onkeydown="ck(event,5)"/>
+</div>
+<button class="fsub" id="vbtn" onclick="verifyCode()">Verify Access Code</button>
+<div class="arbox" id="arbox"><div class="arico" id="arico"></div><div class="arttl" id="arttl"></div><div class="arbody" id="arbody"></div></div>
+</div>
+<p style="margin-top:.9rem;font-size:.76rem;color:var(--muted);text-align:center">No code? <a href="#" onclick="SP('booking')" style="color:var(--gold)">Book a room first</a></p>
+</div>
+<footer><div class="fcrown">&#9819; OCROWN Suites</div><div class="fcts"><a href="tel:07080951392">&#128222; 07080951392</a><a href="mailto:ocrownsuites@gmail.com">&#9993;&#65039; ocrownsuites@gmail.com</a></div><hr class="fhr"/><div class="fcp">&#169; 2025 OCROWN Suites.</div></footer>
 </div>
 
-<!-- HISTORY -->
 <div class="page" id="page-history">
-  <div class="hxout">
-    <div class="phero"><div class="ptag">Booking Lookup</div><h1 class="ptitle">My Booking</h1><p class="psub">Enter your email to retrieve your booking status, receipt and access code.</p></div>
-    <div class="lcard">
-      <div class="fg"><label>Email Address Used at Booking</label><input type="email" id="h-email" placeholder="e.g. guest@email.com" onkeypress="if(event.key==='Enter')findBookings()"/></div>
-      <button class="fsub" id="fbtn" onclick="findBookings()">Find My Bookings</button>
-    </div>
-    <div id="hresults"></div>
-    <div id="rev-form-wrap" style="display:none">
-      <div class="divider"></div>
-      <div class="lcard">
-        <div class="fst">⭐ Leave a Review</div>
-        <p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem">Share your experience to help future guests</p>
-        <div class="fg"><label>Your Name</label><input type="text" id="rv-name" placeholder="e.g. Adewale Okonkwo"/></div>
-        <div class="fg"><label>Room Type Stayed In</label>
-          <select id="rv-room"><option value="">— Select Room —</option><option>Single</option><option>Double</option><option>VIP</option><option>Deluxe</option><option>Executive</option><option>Family</option><option>Honeymoon</option></select>
-        </div>
-        <div class="fg"><label>Rating</label>
-          <div class="star-row" id="star-row">
-            <button class="star-btn" onclick="setRating(1)">★</button>
-            <button class="star-btn" onclick="setRating(2)">★</button>
-            <button class="star-btn" onclick="setRating(3)">★</button>
-            <button class="star-btn" onclick="setRating(4)">★</button>
-            <button class="star-btn" onclick="setRating(5)">★</button>
-          </div>
-        </div>
-        <div class="fg"><label>Your Review</label><textarea id="rv-text" placeholder="Tell us about your stay…"></textarea></div>
-        <button class="fsub" onclick="submitReview()">Submit Review</button>
-      </div>
-    </div>
-  </div>
-  <footer><div class="fcrown">♛ OCROWN Suites</div><div class="fcts"><a href="tel:07080951392">📞 07080951392</a><a href="/cdn-cgi/l/email-protection#aac5c9d8c5ddc4d9dfc3decfd9eacdc7cbc3c684c9c5c7">✉️ <span class="__cf_email__" data-cfemail="94fbf7e6fbe3fae7e1fde0f1e7d4f3f9f5fdf8baf7fbf9">[email&#160;protected]</span></a></div><hr class="fhr"/><div class="fcp">© 2025 OCROWN Suites. All rights reserved.</div></footer>
+<div class="hxout">
+<div class="phero"><div class="ptag">Booking Lookup</div><h1 class="ptitle">My Booking</h1><p class="psub">Enter your email to retrieve your booking status, receipt and access code.</p></div>
+<div class="lcard">
+<div class="fg"><label>Email Address Used at Booking</label><input type="email" id="h-email" placeholder="e.g. guest@email.com" onkeypress="if(event.key==='Enter')findBookings()"/></div>
+<button class="fsub" id="fbtn" onclick="findBookings()">Find My Bookings</button>
+</div>
+<div id="hresults"></div>
+<div id="rev-form-wrap" style="display:none">
+<div class="divider"></div>
+<div class="lcard">
+<div class="fst">&#11088; Leave a Review</div>
+<p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem">Share your experience to help future guests</p>
+<div class="fg"><label>Your Name</label><input type="text" id="rv-name" placeholder="e.g. Adewale Okonkwo"/></div>
+<div class="fg"><label>Room Type Stayed In</label>
+<select id="rv-room"><option value="">-- Select Room --</option><option>Single</option><option>Double</option><option>VIP</option><option>Deluxe</option><option>Executive</option><option>Family</option><option>Honeymoon</option></select>
+</div>
+<div class="fg"><label>Rating</label>
+<div class="star-row" id="star-row">
+<button class="star-btn" onclick="setRating(1)">&#9733;</button>
+<button class="star-btn" onclick="setRating(2)">&#9733;</button>
+<button class="star-btn" onclick="setRating(3)">&#9733;</button>
+<button class="star-btn" onclick="setRating(4)">&#9733;</button>
+<button class="star-btn" onclick="setRating(5)">&#9733;</button>
+</div></div>
+<div class="fg"><label>Your Review</label><textarea id="rv-text" placeholder="Tell us about your stay..."></textarea></div>
+<button class="fsub" onclick="submitReview()">Submit Review</button>
+</div></div>
+</div>
+<footer><div class="fcrown">&#9819; OCROWN Suites</div><div class="fcts"><a href="tel:07080951392">&#128222; 07080951392</a><a href="mailto:ocrownsuites@gmail.com">&#9993;&#65039; ocrownsuites@gmail.com</a></div><hr class="fhr"/><div class="fcp">&#169; 2025 OCROWN Suites.</div></footer>
 </div>
 
-<!-- ADMIN -->
 <div class="page" id="page-admin">
-  <div id="alpanel">
-    <div class="alout">
-      <div class="alcard">
-        <div class="alcrown"><svg viewBox="0 0 40 30" fill="none" width="30"><path d="M4 26L8 10L16 18L20 6L24 18L32 10L36 26H4Z" stroke="white" stroke-width="2" stroke-linejoin="round" fill="none"/><circle cx="4" cy="10" r="2.5" fill="white"/><circle cx="20" cy="4" r="2.5" fill="white"/><circle cx="36" cy="10" r="2.5" fill="white"/><line x1="4" y1="28" x2="36" y2="28" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div>
-        <div class="altitle">Admin Portal</div>
-        <p class="alsub">OCROWN Suites Management Dashboard</p>
-        <div class="fg" style="text-align:left"><label>Username</label><input type="text" id="au" placeholder="Enter username" autocomplete="off"/></div>
-        <div class="fg" style="text-align:left"><label>Password</label><input type="password" id="ap" placeholder="Enter password" onkeypress="if(event.key==='Enter')adminLogin()"/></div>
-        <div class="eferr" id="aerr" style="text-align:left;margin-bottom:.7rem">Incorrect credentials.</div>
-        <button class="fsub" onclick="adminLogin()">Sign In</button>
-      </div>
-    </div>
-  </div>
-  <div class="adash" id="adash">
-    <div class="dh">
-      <div><div class="dbn">♛ OCROWN Suites Dashboard</div><div class="dbs"><span class="ldot"></span>Admin · Alakia, Ibadan</div></div>
-      <div class="dacth"><button class="ab absv" onclick="loadBookings()">🔄 Refresh</button><button class="ab abno" onclick="adminLogout()">Sign Out</button></div>
-    </div>
-    <div class="admin-tabs">
-      <button class="atab on" onclick="switchTab('bookings',this)">📋 Bookings</button>
-      <button class="atab" onclick="switchTab('analytics',this)">📊 Analytics</button>
-      <button class="atab" onclick="switchTab('reviews',this)">⭐ Reviews</button>
-      <button class="atab" onclick="switchTab('images',this)">🖼️ Room Images</button>
-      <button class="atab" onclick="switchTab('settings',this)">⚙️ Settings</button>
-    </div>
-    <div class="atab-panel on" id="tab-bookings">
-      <div class="dsts">
-        <div class="dsc"><div class="dsn" id="st0" style="color:var(--gold)">0</div><div class="dsl">Total</div></div>
-        <div class="dsc"><div class="dsn" id="st1" style="color:#b8952a">0</div><div class="dsl">Pending</div></div>
-        <div class="dsc"><div class="dsn" id="st2" style="color:var(--green)">0</div><div class="dsl">Approved</div></div>
-        <div class="dsc"><div class="dsn" id="st3" style="color:var(--red)">0</div><div class="dsl">Rejected</div></div>
-        <div class="dsc"><div class="dsn" id="st4" style="color:var(--blue)">0</div><div class="dsl">Checked Out</div></div>
-      </div>
-      <div class="dtw">
-        <div class="dth">
-          <div class="dtt">All Bookings</div>
-          <div class="fpills">
-            <button class="fp on" onclick="filterBk('all',this)">All</button>
-            <button class="fp" onclick="filterBk('Pending',this)">Pending</button>
-            <button class="fp" onclick="filterBk('Approved',this)">Approved</button>
-            <button class="fp" onclick="filterBk('Rejected',this)">Rejected</button>
-            <button class="fp" onclick="filterBk('CheckedOut',this)">Checked Out</button>
-          </div>
-        </div>
-        <div class="dtb" id="alist"><div class="emst"><span class="ei">📋</span>Loading…</div></div>
-      </div>
-    </div>
-    <div class="atab-panel" id="tab-analytics">
-      <div class="dsts">
-        <div class="dsc"><div class="dsn" id="an-total" style="color:var(--gold)">0</div><div class="dsl">Total Bookings</div></div>
-        <div class="dsc"><div class="revenue-label">Est. Revenue</div><div class="revenue-total" id="an-rev">₦0</div></div>
-        <div class="dsc"><div class="dsn" id="an-rate" style="color:var(--green)">0%</div><div class="dsl">Approval Rate</div></div>
-        <div class="dsc"><div class="dsn" id="an-avg" style="color:var(--gold)">—</div><div class="dsl">Avg Rating</div></div>
-      </div>
-      <div class="analytics-grid">
-        <div class="chart-card"><div class="chart-title">📊 Bookings by Status</div><canvas id="statusChart" height="200"></canvas></div>
-        <div class="chart-card"><div class="chart-title">🏆 Most Booked Rooms</div><div class="top-rooms" id="top-rooms-list"></div></div>
-      </div>
-      <div class="chart-card"><div class="chart-title">📅 Booking Trend (Last 7 Days)</div><canvas id="trendChart" height="120"></canvas></div>
-    </div>
-    <div class="atab-panel" id="tab-reviews">
-      <div id="admin-reviews-list"><div class="emst"><span class="ei">⭐</span>Loading reviews…</div></div>
-    </div>
-    <div class="atab-panel" id="tab-images">
-      <div class="cpw-card" style="max-width:100%">
-        <div class="fst">🖼️ Room Image Manager</div>
-        <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.5rem">Paste any image URL for each room. Use sites like <strong>Cloudinary</strong>, <strong>Postimages.org</strong> or any direct image link ending in .jpg or .png</p>
-        <div id="img-manager-list"></div>
-        <button class="fsub" onclick="saveRoomImages()" style="margin-top:1rem">💾 Save All Images</button>
-      </div>
-    </div>
-    <div class="atab-panel" id="tab-settings">
-      <div class="cpw-card">
-        <div class="fst">🔒 Change Admin Password</div>
-        <div class="fg"><label>Current Password</label><input type="password" id="cp-cur" placeholder="Current password"/></div>
-        <div class="fg"><label>New Password</label><input type="password" id="cp-new" placeholder="New password"/></div>
-        <div class="fg"><label>Confirm New Password</label><input type="password" id="cp-con" placeholder="Confirm new password"/></div>
-        <div class="eferr" id="cp-err" style="margin-bottom:.5rem"></div>
-        <button class="fsub" onclick="changePassword()">Update Password</button>
-      </div>
-    </div>
-    <footer style="margin-top:1.75rem;border-radius:13px"><div class="fcrown">♛ OCROWN Suites — Admin</div><div class="fcts"><a href="tel:07080951392">📞 07080951392</a><a href="/cdn-cgi/l/email-protection#dfb0bcadb0a8b1acaab6abbaac9fb8b2beb6b3f1bcb0b2">✉️ <span class="__cf_email__" data-cfemail="f39c90819c849d80869a879680b3949e929a9fdd909c9e">[email&#160;protected]</span></a></div><hr class="fhr"/><div class="fcp">© 2025 OCROWN Suites. All rights reserved.</div></footer>
-  </div>
+<div id="alpanel"><div class="alout"><div class="alcard">
+<div class="alcrown"><svg viewBox="0 0 40 30" fill="none" width="30"><path d="M4 26L8 10L16 18L20 6L24 18L32 10L36 26H4Z" stroke="white" stroke-width="2" stroke-linejoin="round" fill="none"/><circle cx="4" cy="10" r="2.5" fill="white"/><circle cx="20" cy="4" r="2.5" fill="white"/><circle cx="36" cy="10" r="2.5" fill="white"/><line x1="4" y1="28" x2="36" y2="28" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div>
+<div class="altitle">Admin Portal</div><p class="alsub">OCROWN Suites Management Dashboard</p>
+<div class="fg" style="text-align:left"><label>Username</label><input type="text" id="au" placeholder="Enter username" autocomplete="off"/></div>
+<div class="fg" style="text-align:left"><label>Password</label><input type="password" id="ap" placeholder="Enter password" onkeypress="if(event.key==='Enter')adminLogin()"/></div>
+<div class="eferr" id="aerr" style="text-align:left;margin-bottom:.7rem">Incorrect credentials.</div>
+<button class="fsub" onclick="adminLogin()">Sign In</button>
+</div></div></div>
+<div class="adash" id="adash">
+<div class="dh"><div><div class="dbn">&#9819; OCROWN Suites Dashboard</div><div class="dbs"><span class="ldot"></span>Admin - Alakia, Ibadan</div></div>
+<div class="dacth"><button class="ab absv" onclick="loadBookings()">&#128260; Refresh</button><button class="ab abno" onclick="adminLogout()">Sign Out</button></div></div>
+<div class="admin-tabs">
+<button class="atab on" onclick="switchTab('bookings',this)">&#128203; Bookings</button>
+<button class="atab" onclick="switchTab('analytics',this)">&#128202; Analytics</button>
+<button class="atab" onclick="switchTab('reviews',this)">&#11088; Reviews</button>
+<button class="atab" onclick="switchTab('images',this)">&#128247; Room Images</button>
+<button class="atab" onclick="switchTab('settings',this)">&#9881;&#65039; Settings</button>
 </div>
+<div class="atab-panel on" id="tab-bookings">
+<div class="dsts">
+<div class="dsc"><div class="dsn" id="st0" style="color:var(--gold)">0</div><div class="dsl">Total</div></div>
+<div class="dsc"><div class="dsn" id="st1" style="color:#b8952a">0</div><div class="dsl">Pending</div></div>
+<div class="dsc"><div class="dsn" id="st2" style="color:var(--green)">0</div><div class="dsl">Approved</div></div>
+<div class="dsc"><div class="dsn" id="st3" style="color:var(--red)">0</div><div class="dsl">Rejected</div></div>
+<div class="dsc"><div class="dsn" id="st4" style="color:var(--blue)">0</div><div class="dsl">Checked Out</div></div>
+</div>
+<div class="dtw">
+<div class="dth"><div class="dtt">All Bookings</div>
+<div class="fpills">
+<button class="fp on" onclick="filterBk('all',this)">All</button>
+<button class="fp" onclick="filterBk('Pending',this)">Pending</button>
+<button class="fp" onclick="filterBk('Approved',this)">Approved</button>
+<button class="fp" onclick="filterBk('Rejected',this)">Rejected</button>
+<button class="fp" onclick="filterBk('CheckedOut',this)">Checked Out</button>
+</div></div>
+<div class="dtb" id="alist"><div class="emst"><span class="ei">&#128203;</span>Loading...</div></div>
+</div></div>
+<div class="atab-panel" id="tab-analytics">
+<div class="dsts">
+<div class="dsc"><div class="dsn" id="an-total" style="color:var(--gold)">0</div><div class="dsl">Total Bookings</div></div>
+<div class="dsc"><div class="revenue-label">Est. Revenue</div><div class="revenue-total" id="an-rev">&#8358;0</div></div>
+<div class="dsc"><div class="dsn" id="an-rate" style="color:var(--green)">0%</div><div class="dsl">Approval Rate</div></div>
+<div class="dsc"><div class="dsn" id="an-avg" style="color:var(--gold)">--</div><div class="dsl">Avg Rating</div></div>
+</div>
+<div class="analytics-grid">
+<div class="chart-card"><div class="chart-title">Bookings by Status</div><canvas id="statusChart" height="200"></canvas></div>
+<div class="chart-card"><div class="chart-title">Most Booked Rooms</div><div class="top-rooms" id="top-rooms-list"></div></div>
+</div>
+<div class="chart-card"><div class="chart-title">Booking Trend (Last 7 Days)</div><canvas id="trendChart" height="120"></canvas></div>
+</div>
+<div class="atab-panel" id="tab-reviews">
+<div id="admin-reviews-list"><div class="emst"><span class="ei">&#11088;</span>Loading reviews...</div></div>
+</div>
+<div class="atab-panel" id="tab-images">
+<div class="cpw-card" style="max-width:100%">
+<div class="fst">&#128247; Room Image Manager</div>
+<p style="font-size:.82rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.6">Paste any direct image URL for each room. The image will update instantly on the website. Works with Cloudinary, Unsplash, or any direct .jpg/.png link.</p>
+<div id="img-manager-list"></div>
+<button class="fsub" onclick="saveRoomImages()" style="margin-top:1rem">&#128190; Save All Images</button>
+</div></div>
+<div class="atab-panel" id="tab-settings">
+<div class="cpw-card">
+<div class="fst">&#128274; Change Admin Password</div>
+<div class="fg"><label>Current Password</label><input type="password" id="cp-cur" placeholder="Current password"/></div>
+<div class="fg"><label>New Password</label><input type="password" id="cp-new" placeholder="New password"/></div>
+<div class="fg"><label>Confirm New Password</label><input type="password" id="cp-con" placeholder="Confirm new password"/></div>
+<div class="eferr" id="cp-err" style="margin-bottom:.5rem"></div>
+<button class="fsub" onclick="changePassword()">Update Password</button>
+</div></div>
+<footer style="margin-top:1.75rem;border-radius:13px"><div class="fcrown">&#9819; OCROWN Suites - Admin</div><div class="fcts"><a href="tel:07080951392">&#128222; 07080951392</a><a href="mailto:ocrownsuites@gmail.com">&#9993;&#65039; ocrownsuites@gmail.com</a></div><hr class="fhr"/><div class="fcp">&#169; 2025 OCROWN Suites.</div></footer>
+</div></div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
@@ -689,61 +487,16 @@ emailjs.init("r7qlEfPQs7hyHnOHR");
 var EJS_SVC="service_munqxoi",EJS_TPL="template_nm4cjm9";
 var _adminIn=false,_allBk=[],_adminPwd="1234",_rating=0;
 var PRICES={Single:18000,Double:28000,VIP:55000,Deluxe:38000,Executive:32000,Family:48000,Honeymoon:65000};
+var ROOM_IMGS={Single:'https://i.postimg.cc/gXBfj3pM/image.jpg',Double:'https://i.postimg.cc/mzrvT8v7/image.jpg',VIP:'https://i.postimg.cc/YGS5tb53/image.jpg',Deluxe:'https://i.postimg.cc/HcLqTBq6/image.jpg',Executive:'https://i.postimg.cc/zbfsq0s2/image.jpg',Family:'https://i.postimg.cc/DJz97B9t/image.jpg',Honeymoon:'https://i.postimg.cc/gX0CGg99/image.jpg'};
 
-// RIPPLE
-function addRipple(e){
-  var btn=e.currentTarget;
-  var r=document.createElement('span');
-  var rect=btn.getBoundingClientRect();
-  var size=Math.max(rect.width,rect.height);
-  r.className='ripple-el';
-  r.style.width=r.style.height=size+'px';
-  r.style.left=(e.clientX-rect.left-size/2)+'px';
-  r.style.top=(e.clientY-rect.top-size/2)+'px';
-  btn.appendChild(r);
-  setTimeout(function(){r.remove();},600);
-}
-document.addEventListener('DOMContentLoaded',function(){
-  document.querySelectorAll('.fsub,.btn,.rbk,.ab,.sagain').forEach(function(b){
-    b.addEventListener('click',addRipple);
-  });
-});
-
-// LOADER
+function addRipple(e){var btn=e.currentTarget;var r=document.createElement('span');var rect=btn.getBoundingClientRect();var size=Math.max(rect.width,rect.height);r.className='ripple-el';r.style.width=r.style.height=size+'px';r.style.left=(e.clientX-rect.left-size/2)+'px';r.style.top=(e.clientY-rect.top-size/2)+'px';btn.appendChild(r);setTimeout(function(){r.remove();},600);}
+document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.fsub,.btn,.rbk,.ab,.sagain').forEach(function(b){b.addEventListener('click',addRipple);});});
 function hideLoader(){var l=document.getElementById('loader');if(!l)return;l.style.opacity='0';setTimeout(function(){l.style.display='none';},650);}
-window.onload=function(){setTimeout(hideLoader,800);};
-setTimeout(hideLoader,2000);
-
-// NAV
-function SP(p){
-  document.querySelectorAll('.page').forEach(function(e){e.classList.remove('active');});
-  document.querySelectorAll('.ni').forEach(function(e){e.classList.remove('on');});
-  var pg=document.getElementById('page-'+p);if(pg)pg.classList.add('active');
-  var ni=document.getElementById('ni-'+p);if(ni)ni.classList.add('on');
-  window.scrollTo(0,0);
-  if(p==='admin'&&_adminIn)loadBookings();
-  if(p==='home')loadHomeReviews();
-}
+window.onload=function(){setTimeout(hideLoader,800);};setTimeout(hideLoader,2000);
+function SP(p){document.querySelectorAll('.page').forEach(function(e){e.classList.remove('active');});document.querySelectorAll('.ni').forEach(function(e){e.classList.remove('on');});var pg=document.getElementById('page-'+p);if(pg)pg.classList.add('active');var ni=document.getElementById('ni-'+p);if(ni)ni.classList.add('on');window.scrollTo(0,0);if(p==='admin'&&_adminIn)loadBookings();if(p==='home')loadHomeReviews();}
 function toggleNav(){document.getElementById('mnav').classList.toggle('open');}
-
-// TOAST
-function T(t,m,d){
-  d=d||3800;
-  document.getElementById('tttl').textContent=t;
-  document.getElementById('tmsg').textContent=m;
-  var el=document.getElementById('toast');el.classList.add('show');
-  clearTimeout(window._tt);window._tt=setTimeout(function(){el.classList.remove('show');},d);
-}
-
-// DATES
-(function(){
-  var td=new Date().toISOString().split('T')[0];
-  var ci=document.getElementById('b-cin'),co=document.getElementById('b-cout');
-  if(ci)ci.min=td;if(co)co.min=td;
-  if(ci)ci.addEventListener('change',function(){if(co){co.min=this.value;if(co.value&&co.value<=this.value)co.value='';}});
-})();
-
-// SUBMIT BOOKING
+function T(t,m,d){d=d||3800;document.getElementById('tttl').textContent=t;document.getElementById('tmsg').textContent=m;var el=document.getElementById('toast');el.classList.add('show');clearTimeout(window._tt);window._tt=setTimeout(function(){el.classList.remove('show');},d);}
+(function(){var td=new Date().toISOString().split('T')[0];var ci=document.getElementById('b-cin'),co=document.getElementById('b-cout');if(ci)ci.min=td;if(co)co.min=td;if(ci)ci.addEventListener('change',function(){if(co){co.min=this.value;if(co.value&&co.value<=this.value)co.value='';}});})();
 function submitBooking(){
   var name=document.getElementById('b-name').value.trim();
   var phone=document.getElementById('b-phone').value.trim();
@@ -754,79 +507,53 @@ function submitBooking(){
   var td=new Date().toISOString().split('T')[0];
   var ok=true;
   function ve(id,pass){var e=document.getElementById(id);if(pass){e.classList.remove('show');}else{e.classList.add('show');ok=false;}}
-  ve('en',name.length>=2);ve('ep',/^[0-9]{10,15}$/.test(phone));ve('ee',/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));
-  ve('er',!!room);ve('eci',!!cin&&cin>=td);ve('eco',!!cout&&cout>cin);
+  ve('en',name.length>=2);ve('ep',/^[0-9]{10,15}$/.test(phone));ve('ee',/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email));ve('er',!!room);ve('eci',!!cin&&cin>=td);ve('eco',!!cout&&cout>cin);
   if(!ok)return;
-  var btn=document.getElementById('bsub');
-  btn.disabled=true;btn.innerHTML='<span class="spinner"></span>Submitting…';
+  var btn=document.getElementById('bsub');btn.disabled=true;btn.innerHTML='<span class="spinner"></span>Submitting...';
   db.collection('bookings').add({name:name,phone:phone,email:email,roomType:room,checkIn:cin,checkOut:cout,status:'Pending',roomNumber:'',accessCode:'',codeStatus:'',codeExpiry:null,createdAt:firebase.firestore.FieldValue.serverTimestamp()
-  }).then(function(){
-    document.getElementById('bform').style.display='none';
-    document.getElementById('bsuccess').style.display='block';
-    T('✅ Submitted!','Booking submitted. Awaiting approval.');
-  }).catch(function(e){btn.disabled=false;btn.innerHTML='Submit Booking Request';T('❌ Error','Could not submit.',6000);console.error(e);});
+  }).then(function(){document.getElementById('bform').style.display='none';document.getElementById('bsuccess').style.display='block';T('Submitted!','Booking submitted. Awaiting approval.');
+  }).catch(function(e){btn.disabled=false;btn.innerHTML='Submit Booking Request';T('Error','Could not submit.',6000);console.error(e);});
 }
-function resetBooking(){
-  ['b-name','b-phone','b-email','b-cin','b-cout'].forEach(function(id){document.getElementById(id).value='';});
-  document.getElementById('b-room').value='';
-  document.getElementById('bform').style.display='block';
-  document.getElementById('bsuccess').style.display='none';
-  var btn=document.getElementById('bsub');btn.disabled=false;btn.innerHTML='Submit Booking Request';
-}
-
-// CODE BOX
+function resetBooking(){['b-name','b-phone','b-email','b-cin','b-cout'].forEach(function(id){document.getElementById(id).value='';});document.getElementById('b-room').value='';document.getElementById('bform').style.display='block';document.getElementById('bsuccess').style.display='none';var btn=document.getElementById('bsub');btn.disabled=false;btn.innerHTML='Submit Booking Request';}
 function ci(i){var b=document.getElementById('c'+i);b.value=b.value.replace(/[^0-9]/g,'');if(b.value&&i<5)document.getElementById('c'+(i+1)).focus();}
 function ck(e,i){if(e.key==='Backspace'&&!document.getElementById('c'+i).value&&i>0)document.getElementById('c'+(i-1)).focus();}
-
-// VERIFY
 function verifyCode(){
   var code='';for(var i=0;i<6;i++)code+=document.getElementById('c'+i).value;
-  if(code.length!==6){T('⚠️','Please enter all 6 digits.');return;}
-  var btn=document.getElementById('vbtn');
-  btn.disabled=true;btn.innerHTML='<span class="spinner"></span>Verifying…';
+  if(code.length!==6){T('Incomplete','Please enter all 6 digits.');return;}
+  var btn=document.getElementById('vbtn');btn.disabled=true;btn.innerHTML='<span class="spinner"></span>Verifying...';
   document.getElementById('arbox').style.display='none';
   db.collection('bookings').where('accessCode','==',code).get().then(function(snap){
     btn.disabled=false;btn.innerHTML='Verify Access Code';
-    if(snap.empty){showAR('denied','❌','Access Denied','This code is not recognised.\nPlease check your code and try again.');return;}
+    if(snap.empty){showAR('denied','X','Access Denied','This code is not recognised. Please check and try again.');return;}
     var d=snap.docs[0];var b=d.data();
-    if(b.codeStatus==='used'){showAR('denied','🚫','Code Already Used','This code has already been used.\nContact reception: 07080951392');return;}
-    if(b.status!=='Approved'){showAR('denied','⏳','Not Approved','Booking not approved yet.\nContact: 07080951392');return;}
-    if(b.codeExpiry){var exp=b.codeExpiry.toDate?b.codeExpiry.toDate():new Date(b.codeExpiry);if(new Date()>exp){showAR('denied','⌛','Code Expired','Your code has expired.\nCall: 07080951392');return;}}
+    if(b.codeStatus==='used'){showAR('denied','!','Code Already Used','This code has already been used. Contact reception: 07080951392');return;}
+    if(b.status!=='Approved'){showAR('denied','?','Not Approved','Booking not approved yet. Contact: 07080951392');return;}
+    if(b.codeExpiry){var exp=b.codeExpiry.toDate?b.codeExpiry.toDate():new Date(b.codeExpiry);if(new Date()>exp){showAR('denied','T','Code Expired','Your code has expired. Call: 07080951392');return;}}
     d.ref.update({codeStatus:'used'});
-    showAR('granted','✅','Access Granted','Welcome, '+b.name+'!\n\nRoom: '+(b.roomNumber||'See reception')+' ('+b.roomType+')\nCheck-in: '+b.checkIn+'\nCheck-out: '+b.checkOut+'\n\nEnjoy your stay at OCROWN Suites! 🏨');
-    T('🔓 Welcome!','Access granted for '+b.name);
-  }).catch(function(e){btn.disabled=false;btn.innerHTML='Verify Access Code';T('❌ Error','Verification failed.',5000);console.error(e);});
+    showAR('granted','OK','Access Granted','Welcome, '+b.name+'!\n\nRoom: '+(b.roomNumber||'See reception')+' ('+b.roomType+')\nCheck-in: '+b.checkIn+'\nCheck-out: '+b.checkOut+'\n\nEnjoy your stay at OCROWN Suites!');
+    T('Welcome!','Access granted for '+b.name);
+  }).catch(function(e){btn.disabled=false;btn.innerHTML='Verify Access Code';T('Error','Verification failed.',5000);console.error(e);});
 }
-function showAR(type,icon,title,body){
-  var el=document.getElementById('arbox');el.className='arbox '+type;el.style.display='block';
-  document.getElementById('arico').textContent=icon;
-  var ttl=document.getElementById('arttl');ttl.className='arttl '+(type==='granted'?'ok':'no');ttl.textContent=title;
-  document.getElementById('arbody').textContent=body;
-}
-
-// HISTORY
+function showAR(type,icon,title,body){var el=document.getElementById('arbox');el.className='arbox '+type;el.style.display='block';document.getElementById('arico').textContent=icon;var ttl=document.getElementById('arttl');ttl.className='arttl '+(type==='granted'?'ok':'no');ttl.textContent=title;document.getElementById('arbody').textContent=body;}
 function findBookings(){
   var email=document.getElementById('h-email').value.trim();
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){T('⚠️','Please enter a valid email.');return;}
-  var btn=document.getElementById('fbtn');btn.disabled=true;btn.innerHTML='<span class="spinner"></span>Searching…';
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){T('Warning','Please enter a valid email.');return;}
+  var btn=document.getElementById('fbtn');btn.disabled=true;btn.innerHTML='<span class="spinner"></span>Searching...';
   var res=document.getElementById('hresults');res.innerHTML='';
   db.collection('bookings').where('email','==',email).get().then(function(snap){
     btn.disabled=false;btn.innerHTML='Find My Bookings';
-    if(snap.empty){res.innerHTML='<div class="emst"><span class="ei">🔍</span>No bookings found.</div>';return;}
-    var html='';snap.docs.forEach(function(d){html+=renderBkCard(d.data(),d.id);});
-    res.innerHTML=html;
+    if(snap.empty){res.innerHTML='<div class="emst"><span class="ei">Search</span>No bookings found.</div>';return;}
+    var html='';snap.docs.forEach(function(d){html+=renderBkCard(d.data(),d.id);});res.innerHTML=html;
     document.getElementById('rev-form-wrap').style.display='block';
     var first=snap.docs[0].data();document.getElementById('rv-name').value=first.name||'';
-  }).catch(function(){btn.disabled=false;btn.innerHTML='Find My Bookings';T('❌ Error','Could not fetch.',5000);});
+  }).catch(function(){btn.disabled=false;btn.innerHTML='Find My Bookings';T('Error','Could not fetch.',5000);});
 }
 function renderBkCard(b,id){
   var bc=b.status==='Approved'?'bA':b.status==='Rejected'?'bR':b.status==='CheckedOut'?'bCO':'bP';
   var sl=b.status==='CheckedOut'?'Checked Out':b.status;
-  var cd=(b.status==='Approved'&&b.accessCode)?'<div class="bkcode"><div><div class="bkcl">One-Time Access Code</div><div class="bkcv">'+b.accessCode+'</div></div><div class="bkcs">Status: '+(b.codeStatus||'active')+'<br/>Valid: '+b.checkIn+' → '+b.checkOut+'</div></div>':'';
-  var rb=(b.status==='Approved'||b.status==='CheckedOut')?'<button class="ab absv" style="margin-top:.6rem;width:100%" onclick="showReceipt(\''+id+'\')">🧾 View Receipt</button>':'';
-  return '<div class="bkc"><div class="bkh"><div class="bkn">'+b.name+'</div><div class="badge '+bc+'">'+sl+'</div></div>'
-    +'<div class="bkm"><div><div class="bml">Room Type</div><div class="bmv">'+b.roomType+'</div></div><div><div class="bml">Room No.</div><div class="bmv">'+(b.roomNumber||'—')+'</div></div><div><div class="bml">Check-in</div><div class="bmv">'+b.checkIn+'</div></div><div><div class="bml">Check-out</div><div class="bmv">'+b.checkOut+'</div></div><div><div class="bml">Phone</div><div class="bmv">'+b.phone+'</div></div></div>'
-    +cd+rb+'<div class="receipt-wrap" id="receipt-'+id+'"></div></div>';
+  var cd=(b.status==='Approved'&&b.accessCode)?'<div class="bkcode"><div><div class="bkcl">One-Time Access Code</div><div class="bkcv">'+b.accessCode+'</div></div><div class="bkcs">Status: '+(b.codeStatus||'active')+'<br/>Valid: '+b.checkIn+' to '+b.checkOut+'</div></div>':'';
+  var rb=(b.status==='Approved'||b.status==='CheckedOut')?'<button class="ab absv" style="margin-top:.6rem;width:100%" onclick="showReceipt(''+id+'')">Receipt</button>':'';
+  return '<div class="bkc"><div class="bkh"><div class="bkn">'+b.name+'</div><div class="badge '+bc+'">'+sl+'</div></div><div class="bkm"><div><div class="bml">Room</div><div class="bmv">'+b.roomType+'</div></div><div><div class="bml">Room No.</div><div class="bmv">'+(b.roomNumber||'-')+'</div></div><div><div class="bml">Check-in</div><div class="bmv">'+b.checkIn+'</div></div><div><div class="bml">Check-out</div><div class="bmv">'+b.checkOut+'</div></div><div><div class="bml">Phone</div><div class="bmv">'+b.phone+'</div></div></div>'+cd+rb+'<div class="receipt-wrap" id="receipt-'+id+'"></div></div>';
 }
 function showReceipt(id){
   db.collection('bookings').doc(id).get().then(function(d){
@@ -834,45 +561,30 @@ function showReceipt(id){
     var nights=Math.max(1,Math.round((new Date(b.checkOut)-new Date(b.checkIn))/(1000*60*60*24)));
     var ppn=PRICES[b.roomType]||0;var total=ppn*nights;
     var rw=document.getElementById('receipt-'+id);rw.style.display='block';
-    rw.innerHTML='<div class="receipt-header"><div class="receipt-logo">♛ OCROWN Suites</div><div style="font-size:.78rem;color:var(--muted);margin-top:.3rem">Alakia, Ibadan, Oyo State, Nigeria</div><div style="font-size:.72rem;color:var(--muted);margin-top:.2rem">07080951392 · ocrownsuites@gmail.com</div></div>'
-      +'<div class="receipt-rows"><div class="receipt-row"><span class="receipt-label">Guest Name</span><span class="receipt-value">'+b.name+'</span></div><div class="receipt-row"><span class="receipt-label">Phone</span><span class="receipt-value">'+b.phone+'</span></div><div class="receipt-row"><span class="receipt-label">Room Type</span><span class="receipt-value">'+b.roomType+'</span></div><div class="receipt-row"><span class="receipt-label">Room Number</span><span class="receipt-value">'+(b.roomNumber||'—')+'</span></div><div class="receipt-row"><span class="receipt-label">Check-in</span><span class="receipt-value">'+b.checkIn+'</span></div><div class="receipt-row"><span class="receipt-label">Check-out</span><span class="receipt-value">'+b.checkOut+'</span></div><div class="receipt-row"><span class="receipt-label">Duration</span><span class="receipt-value">'+nights+' night'+(nights>1?'s':'')+'</span></div><div class="receipt-row"><span class="receipt-label">Rate/Night</span><span class="receipt-value">₦'+ppn.toLocaleString()+'</span></div><div class="receipt-row" style="font-weight:700"><span class="receipt-label" style="color:var(--text)">Total</span><span class="receipt-value" style="color:var(--gold)">₦'+total.toLocaleString()+'</span></div></div>'
-      +(b.accessCode?'<div class="receipt-code"><div class="receipt-code-label">Access Code</div><div class="receipt-code-val">'+b.accessCode+'</div></div>':'')
-      +'<div class="receipt-footer">Thank you for choosing OCROWN Suites! 🏨</div>';
+    rw.innerHTML='<div class="receipt-header"><div class="receipt-logo">OCROWN Suites</div><div style="font-size:.78rem;color:var(--muted);margin-top:.3rem">Alakia, Ibadan, Oyo State - 07080951392</div></div><div class="receipt-rows"><div class="receipt-row"><span class="receipt-label">Guest</span><span class="receipt-value">'+b.name+'</span></div><div class="receipt-row"><span class="receipt-label">Phone</span><span class="receipt-value">'+b.phone+'</span></div><div class="receipt-row"><span class="receipt-label">Room Type</span><span class="receipt-value">'+b.roomType+'</span></div><div class="receipt-row"><span class="receipt-label">Room No.</span><span class="receipt-value">'+(b.roomNumber||'-')+'</span></div><div class="receipt-row"><span class="receipt-label">Check-in</span><span class="receipt-value">'+b.checkIn+'</span></div><div class="receipt-row"><span class="receipt-label">Check-out</span><span class="receipt-value">'+b.checkOut+'</span></div><div class="receipt-row"><span class="receipt-label">Nights</span><span class="receipt-value">'+nights+'</span></div><div class="receipt-row"><span class="receipt-label">Rate/Night</span><span class="receipt-value">N'+ppn.toLocaleString()+'</span></div><div class="receipt-row" style="font-weight:700"><span class="receipt-label" style="color:var(--text)">Total</span><span class="receipt-value" style="color:var(--gold)">N'+total.toLocaleString()+'</span></div></div>'+(b.accessCode?'<div class="receipt-code"><div class="receipt-code-label">Access Code</div><div class="receipt-code-val">'+b.accessCode+'</div></div>':'')+'<div class="receipt-footer">Thank you for choosing OCROWN Suites!</div>';
   });
 }
-
-// REVIEWS
 function setRating(r){_rating=r;document.querySelectorAll('.star-btn').forEach(function(b,i){b.classList[i<r?'add':'remove']('lit');});}
 function submitReview(){
-  var name=document.getElementById('rv-name').value.trim();
-  var room=document.getElementById('rv-room').value;
-  var text=document.getElementById('rv-text').value.trim();
-  if(!name||!room||!text||_rating===0){T('⚠️','Please fill all fields and select a rating.');return;}
+  var name=document.getElementById('rv-name').value.trim();var room=document.getElementById('rv-room').value;var text=document.getElementById('rv-text').value.trim();
+  if(!name||!room||!text||_rating===0){T('Warning','Please fill all fields and select a rating.');return;}
   db.collection('reviews').add({name:name,room:room,text:text,rating:_rating,createdAt:firebase.firestore.FieldValue.serverTimestamp()
-  }).then(function(){
-    T('⭐ Thank you!','Your review has been submitted.');
-    document.getElementById('rv-name').value='';document.getElementById('rv-room').value='';document.getElementById('rv-text').value='';setRating(0);
-    loadHomeReviews();
-  }).catch(function(e){T('❌ Error','Could not submit review.',5000);console.error(e);});
+  }).then(function(){T('Thank you!','Your review has been submitted.');document.getElementById('rv-name').value='';document.getElementById('rv-room').value='';document.getElementById('rv-text').value='';setRating(0);loadHomeReviews();
+  }).catch(function(e){T('Error','Could not submit review.',5000);console.error(e);});
 }
 function loadHomeReviews(){
   db.collection('reviews').orderBy('createdAt','desc').limit(6).get().then(function(snap){
-    var el=document.getElementById('home-reviews');
-    var ce=document.getElementById('home-rev-count');
-    if(snap.empty){el.innerHTML='<div class="emst"><span class="ei">⭐</span>Be the first to leave a review!</div>';if(ce)ce.textContent='0';return;}
+    var el=document.getElementById('home-reviews');var ce=document.getElementById('home-rev-count');
+    if(snap.empty){el.innerHTML='<div class="emst"><span class="ei">*</span>Be the first to leave a review!</div>';if(ce)ce.textContent='0';return;}
     var total=0;var html='';
-    snap.docs.forEach(function(d){var r=d.data();total+=r.rating;var st='';for(var i=0;i<5;i++)st+=(i<r.rating?'★':'☆');
-      html+='<div class="rev-card"><div class="rev-stars">'+st+'</div><div class="rev-text">"'+r.text+'"</div><div class="rev-author">'+r.name+'</div><div class="rev-room">'+r.room+' Suite</div></div>';
-    });
-    el.innerHTML=html;
-    var avg=(total/snap.docs.length).toFixed(1);
+    snap.docs.forEach(function(d){var r=d.data();total+=r.rating;var st='';for(var i=0;i<5;i++)st+=(i<r.rating?'&#9733;':'&#9734;');
+      html+='<div class="rev-card"><div class="rev-stars">'+st+'</div><div class="rev-text">"'+r.text+'"</div><div class="rev-author">'+r.name+'</div><div class="rev-room">'+r.room+' Suite</div></div>';});
+    el.innerHTML=html;var avg=(total/snap.docs.length).toFixed(1);
     if(ce)ce.textContent=snap.docs.length+'+';
     var ae=document.getElementById('rev-avg-wrap');
-    if(ae)ae.innerHTML='<div class="rev-avg"><div class="rev-big">'+avg+'</div><div class="rev-info"><div class="rev-info-stars">'+('★'.repeat(Math.round(parseFloat(avg))))+'</div><div class="rev-info-count">Based on '+snap.docs.length+' review'+(snap.docs.length>1?'s':'')+'</div></div></div>';
+    if(ae)ae.innerHTML='<div class="rev-avg"><div class="rev-big">'+avg+'</div><div><div style="color:var(--gold);font-size:1.1rem">&#9733;&#9733;&#9733;&#9733;&#9733;</div><div style="font-size:.75rem;color:var(--muted);margin-top:.2rem">Based on '+snap.docs.length+' review(s)</div></div></div>';
   }).catch(function(e){console.error(e);});
 }
-
-// ADMIN
 function adminLogin(){
   var u=document.getElementById('au').value.trim(),p=document.getElementById('ap').value;
   document.getElementById('aerr').classList.remove('show');
@@ -895,14 +607,13 @@ function changePassword(){
   if(nw.length<4){err.textContent='New password must be at least 4 characters.';err.classList.add('show');return;}
   if(nw!==con){err.textContent='Passwords do not match.';err.classList.add('show');return;}
   _adminPwd=nw;['cp-cur','cp-new','cp-con'].forEach(function(id){document.getElementById(id).value='';});
-  T('✅ Password Changed','Admin password updated successfully.');
+  T('Password Changed','Admin password updated successfully.');
 }
 function loadBookings(){
-  var el=document.getElementById('alist');el.innerHTML='<div class="emst"><span class="ei">⏳</span>Loading…</div>';
+  var el=document.getElementById('alist');el.innerHTML='<div class="emst"><span class="ei">...</span>Loading...</div>';
   db.collection('bookings').orderBy('createdAt','desc').get().then(function(snap){
-    _allBk=snap.docs.map(function(d){return Object.assign({id:d.id},d.data());});
-    updateStats();renderAdmin(_allBk);
-  }).catch(function(e){el.innerHTML='<div class="emst"><span class="ei">❌</span>Error loading. Check Firebase.</div>';console.error(e);});
+    _allBk=snap.docs.map(function(d){return Object.assign({id:d.id},d.data());});updateStats();renderAdmin(_allBk);
+  }).catch(function(e){el.innerHTML='<div class="emst"><span class="ei">!</span>Error loading. Check Firebase.</div>';console.error(e);});
 }
 function updateStats(){
   document.getElementById('st0').textContent=_allBk.length;
@@ -911,26 +622,17 @@ function updateStats(){
   document.getElementById('st3').textContent=_allBk.filter(function(b){return b.status==='Rejected';}).length;
   document.getElementById('st4').textContent=_allBk.filter(function(b){return b.status==='CheckedOut';}).length;
 }
-function renderAdmin(list){
-  var el=document.getElementById('alist');
-  if(!list.length){el.innerHTML='<div class="emst"><span class="ei">📭</span>No bookings found.</div>';return;}
-  el.innerHTML=list.map(function(b){return renderAdminCard(b);}).join('');
-}
+function renderAdmin(list){var el=document.getElementById('alist');if(!list.length){el.innerHTML='<div class="emst"><span class="ei">!</span>No bookings found.</div>';return;}el.innerHTML=list.map(function(b){return renderAdminCard(b);}).join('');}
 function renderAdminCard(b){
   var bc=b.status==='Approved'?'bA':b.status==='Rejected'?'bR':b.status==='CheckedOut'?'bCO':'bP';
   var sl=b.status==='CheckedOut'?'Checked Out':b.status;
   var cp=b.accessCode?'<span class="cpill">'+b.accessCode+'</span>':'';
-  var ab=b.status!=='Approved'&&b.status!=='CheckedOut'?'<button class="ab abok" onclick="approveBk(\''+b.id+'\')">✅ Approve</button>':'';
-  var rb=b.status!=='Rejected'&&b.status!=='CheckedOut'?'<button class="ab abno" onclick="rejectBk(\''+b.id+'\')">❌ Reject</button>':'';
-  var cb=b.status==='Approved'?'<button class="ab abco" onclick="checkoutBk(\''+b.id+'\')">🚪 Check Out</button>':'';
-  return '<div class="adc" id="adc-'+b.id+'"><div class="adct"><div class="adcg"><h4>'+b.name+'</h4><p>'+b.email+' · '+b.phone+'</p></div><div class="adcb"><div class="badge '+bc+'">'+sl+'</div>'+cp+'</div></div>'
-    +'<div class="adcm"><div class="adcmi">🛏 '+b.roomType+'</div><div class="adcmi">📅 '+b.checkIn+' → '+b.checkOut+'</div><div class="adcmi">🚪 '+(b.roomNumber||'Unassigned')+'</div></div>'
-    +'<div class="adca">'+ab+rb+cb+'<input class="rni" id="rn-'+b.id+'" type="text" placeholder="Room No." value="'+(b.roomNumber||'')+'"/><button class="ab absv" onclick="saveRoom(\''+b.id+'\')">💾 Save</button></div></div>';
+  var ab=b.status!=='Approved'&&b.status!=='CheckedOut'?'<button class="ab abok" onclick="approveBk(''+b.id+'')">Approve</button>':'';
+  var rb=b.status!=='Rejected'&&b.status!=='CheckedOut'?'<button class="ab abno" onclick="rejectBk(''+b.id+'')">Reject</button>':'';
+  var cb=b.status==='Approved'?'<button class="ab abco" onclick="checkoutBk(''+b.id+'')">Check Out</button>':'';
+  return '<div class="adc" id="adc-'+b.id+'"><div class="adct"><div class="adcg"><h4>'+b.name+'</h4><p>'+b.email+' - '+b.phone+'</p></div><div class="adcb"><div class="badge '+bc+'">'+sl+'</div>'+cp+'</div></div><div class="adcm"><div class="adcmi">'+b.roomType+'</div><div class="adcmi">'+b.checkIn+' to '+b.checkOut+'</div><div class="adcmi">'+(b.roomNumber||'Unassigned')+'</div></div><div class="adca">'+ab+rb+cb+'<input class="rni" id="rn-'+b.id+'" type="text" placeholder="Room No." value="'+(b.roomNumber||'')+'"/><button class="ab absv" onclick="saveRoom(''+b.id+'')">Save</button></div></div>';
 }
-function saveRoom(id){
-  var rn=document.getElementById('rn-'+id).value.trim();if(!rn){T('⚠️','Enter a room number first.');return;}
-  db.collection('bookings').doc(id).update({roomNumber:rn}).then(function(){var i=_allBk.findIndex(function(b){return b.id===id;});if(i>-1)_allBk[i].roomNumber=rn;T('✅ Saved','Room number updated.');}).catch(function(){T('❌','Could not save.');});
-}
+function saveRoom(id){var rn=document.getElementById('rn-'+id).value.trim();if(!rn){T('Warning','Enter a room number first.');return;}db.collection('bookings').doc(id).update({roomNumber:rn}).then(function(){var i=_allBk.findIndex(function(b){return b.id===id;});if(i>-1)_allBk[i].roomNumber=rn;T('Saved','Room number updated.');}).catch(function(){T('Error','Could not save.');});}
 function approveBk(id){
   var code=String(Math.floor(100000+Math.random()*900000));
   var bk=_allBk.find(function(b){return b.id===id;});if(!bk)return;
@@ -938,29 +640,21 @@ function approveBk(id){
   var exp=new Date(bk.checkOut+'T23:59:59');
   db.collection('bookings').doc(id).update({status:'Approved',accessCode:code,codeStatus:'active',codeExpiry:firebase.firestore.Timestamp.fromDate(exp),roomNumber:rn}).then(function(){
     var i=_allBk.findIndex(function(b){return b.id===id;});if(i>-1)Object.assign(_allBk[i],{status:'Approved',accessCode:code,codeStatus:'active',roomNumber:rn});
-    updateStats();renderAdmin(_allBk);T('✅ Approved!','Code '+code+' for '+bk.name);
+    updateStats();renderAdmin(_allBk);T('Approved!','Code '+code+' for '+bk.name);
     sendEmail({name:bk.name,email:bk.email,roomType:bk.roomType,roomNumber:rn,checkIn:bk.checkIn,checkOut:bk.checkOut,code:code});
-  }).catch(function(e){T('❌','Could not approve.');console.error(e);});
+  }).catch(function(e){T('Error','Could not approve.');console.error(e);});
 }
-function rejectBk(id){
-  var bk=_allBk.find(function(b){return b.id===id;});if(!bk)return;
-  db.collection('bookings').doc(id).update({status:'Rejected'}).then(function(){var i=_allBk.findIndex(function(b){return b.id===id;});if(i>-1)_allBk[i].status='Rejected';updateStats();renderAdmin(_allBk);T('⚠️ Rejected','Booking for '+bk.name+' rejected.');}).catch(function(){T('❌','Could not reject.');});
-}
-function checkoutBk(id){
-  var bk=_allBk.find(function(b){return b.id===id;});if(!bk)return;
-  db.collection('bookings').doc(id).update({status:'CheckedOut',codeStatus:'used'}).then(function(){var i=_allBk.findIndex(function(b){return b.id===id;});if(i>-1)Object.assign(_allBk[i],{status:'CheckedOut',codeStatus:'used'});updateStats();renderAdmin(_allBk);T('🚪 Checked Out',bk.name+' checked out successfully.');}).catch(function(){T('❌','Could not check out.');});
-}
+function rejectBk(id){var bk=_allBk.find(function(b){return b.id===id;});if(!bk)return;db.collection('bookings').doc(id).update({status:'Rejected'}).then(function(){var i=_allBk.findIndex(function(b){return b.id===id;});if(i>-1)_allBk[i].status='Rejected';updateStats();renderAdmin(_allBk);T('Rejected','Booking for '+bk.name+' rejected.');}).catch(function(){T('Error','Could not reject.');});}
+function checkoutBk(id){var bk=_allBk.find(function(b){return b.id===id;});if(!bk)return;db.collection('bookings').doc(id).update({status:'CheckedOut',codeStatus:'used'}).then(function(){var i=_allBk.findIndex(function(b){return b.id===id;});if(i>-1)Object.assign(_allBk[i],{status:'CheckedOut',codeStatus:'used'});updateStats();renderAdmin(_allBk);T('Checked Out',bk.name+' checked out.');}).catch(function(){T('Error','Could not check out.');});}
 function filterBk(status,btn){document.querySelectorAll('.fp').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');var list=status==='all'?_allBk:_allBk.filter(function(b){return b.status===status;});renderAdmin(list);}
-
-// ANALYTICS
 var _cS=null,_cT=null;
 function buildAnalytics(){
   var approved=_allBk.filter(function(b){return b.status==='Approved'||b.status==='CheckedOut';}).length;
   var rev=_allBk.filter(function(b){return b.status==='Approved'||b.status==='CheckedOut';}).reduce(function(s,b){var n=Math.max(1,Math.round((new Date(b.checkOut)-new Date(b.checkIn))/(1000*60*60*24)));return s+(PRICES[b.roomType]||0)*n;},0);
   document.getElementById('an-total').textContent=_allBk.length;
-  document.getElementById('an-rev').textContent='₦'+rev.toLocaleString();
+  document.getElementById('an-rev').textContent='N'+rev.toLocaleString();
   document.getElementById('an-rate').textContent=_allBk.length?Math.round(approved/_allBk.length*100)+'%':'0%';
-  db.collection('reviews').get().then(function(snap){if(!snap.empty){var s=0;snap.docs.forEach(function(d){s+=d.data().rating||0;});document.getElementById('an-avg').textContent=(s/snap.docs.length).toFixed(1)+'★';}});
+  db.collection('reviews').get().then(function(snap){if(!snap.empty){var s=0;snap.docs.forEach(function(d){s+=d.data().rating||0;});document.getElementById('an-avg').textContent=(s/snap.docs.length).toFixed(1)+'*';}});
   var pend=_allBk.filter(function(b){return b.status==='Pending';}).length;
   var rej=_allBk.filter(function(b){return b.status==='Rejected';}).length;
   var co=_allBk.filter(function(b){return b.status==='CheckedOut';}).length;
@@ -975,70 +669,42 @@ function buildAnalytics(){
   _cT=new Chart(ctx2,{type:'line',data:{labels:days,datasets:[{label:'Bookings',data:counts,borderColor:'#d4af5a',backgroundColor:'rgba(212,175,90,.1)',tension:.4,fill:true,pointBackgroundColor:'#d4af5a'}]},options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1,font:{family:'Jost'}},grid:{color:'rgba(0,0,0,.05)'}},x:{ticks:{font:{family:'Jost'}},grid:{display:false}}}}});
 }
 function loadAdminReviews(){
-  var el=document.getElementById('admin-reviews-list');el.innerHTML='<div class="emst"><span class="ei">⭐</span>Loading…</div>';
+  var el=document.getElementById('admin-reviews-list');el.innerHTML='<div class="emst"><span class="ei">*</span>Loading...</div>';
   db.collection('reviews').orderBy('createdAt','desc').get().then(function(snap){
-    if(snap.empty){el.innerHTML='<div class="emst"><span class="ei">⭐</span>No reviews yet.</div>';return;}
-    var html='';snap.docs.forEach(function(d){var r=d.data();var st='';for(var i=0;i<5;i++)st+=(i<r.rating?'★':'☆');
-      html+='<div class="adc"><div class="adct"><div class="adcg"><h4>'+r.name+'</h4><p>'
-// IMAGE MANAGER
-var ROOM_IMGS={
-  Single:"https://i.postimg.cc/gXBfj3pM/image.jpg",
-  Double:"https://i.postimg.cc/mzrvT8v7/image.jpg",
-  VIP:"https://i.postimg.cc/YGS5tb53/image.jpg",
-  Deluxe:"https://i.postimg.cc/HcLqTBq6/image.jpg",
-  Executive:"https://i.postimg.cc/zbfsq0s2/image.jpg",
-  Family:"https://i.postimg.cc/DJz97B9t/image.jpg",
-  Honeymoon:"https://i.postimg.cc/gX0CGg99/image.jpg"
-};
-
+    if(snap.empty){el.innerHTML='<div class="emst"><span class="ei">*</span>No reviews yet.</div>';return;}
+    var html='';snap.docs.forEach(function(d){var r=d.data();var st='';for(var i=0;i<5;i++)st+=(i<r.rating?'&#9733;':'&#9734;');
+      html+='<div class="adc"><div class="adct"><div class="adcg"><h4>'+r.name+'</h4><p>'+r.room+' Suite</p></div><div style="color:var(--gold);font-size:1.1rem">'+st+'</div></div><p style="font-size:.8rem;color:var(--muted);margin-top:.6rem;font-style:italic">"'+r.text+'"</p><div style="margin-top:.6rem"><button class="ab abno" style="font-size:.68rem" onclick="deleteReview(''+d.id+'')">Delete</button></div></div>';});
+    el.innerHTML=html;
+  });
+}
+function deleteReview(id){db.collection('reviews').doc(id).delete().then(function(){T('Deleted','Review removed.');loadAdminReviews();loadHomeReviews();}).catch(function(){T('Error','Could not delete.');});}
 function loadImageManager(){
-  var rooms=["Single","Double","VIP","Deluxe","Executive","Family","Honeymoon"];
+  var rooms=['Single','Double','VIP','Deluxe','Executive','Family','Honeymoon'];
   var html='';
   rooms.forEach(function(r){
     var url=ROOM_IMGS[r]||'';
-    html+='<div style="margin-bottom:1.1rem;padding:1rem;background:var(--surface2);border-radius:10px;border:1px solid var(--border)">';
-    html+='<div style="display:flex;align-items:center;gap:.85rem;flex-wrap:wrap">';
-    html+='<div style="width:80px;height:60px;border-radius:8px;overflow:hidden;background:#eee;flex-shrink:0"><img id="prev-'+r+'" src="'+url+'" style="width:100%;height:100%;object-fit:cover" onerror="this.src=\'https://via.placeholder.com/80x60/f8f4ed/b5a990?text='+r+'\'"/></div>';
-    html+='<div style="flex:1;min-width:200px"><label style="font-size:.68rem;font-weight:600;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:.35rem">'+r+' Suite Image URL</label>';
-    html+='<input type="text" id="img-'+r+'" value="'+url+'" placeholder="Paste direct image URL (.jpg or .png)..." style="width:100%;background:var(--surface);border:1.5px solid var(--border);border-radius:8px;padding:.62rem .85rem;font-family:Jost,sans-serif;font-size:.78rem;color:var(--text);outline:none" oninput="previewImg(this,\''+r+'\')" onfocus="this.style.borderColor=\'var(--gold)\'" onblur="this.style.borderColor=\'var(--border)\'"/></div>';
+    html+='<div class="img-mgr-row"><div class="img-mgr-inner">';
+    html+='<div class="img-mgr-thumb"><img id="prev-'+r+'" src="'+url+'" onerror="this.src=''"/></div>';
+    html+='<div class="img-mgr-field"><span class="img-mgr-label">'+r+' Suite - Image URL</span>';
+    html+='<input class="img-mgr-input" id="img-'+r+'" type="text" value="'+url+'" placeholder="Paste direct image URL (.jpg or .png)..." oninput="previewImg(this,''+r+'')" /></div>';
     html+='</div></div>';
   });
   document.getElementById('img-manager-list').innerHTML=html;
 }
-
-function previewImg(input,room){
-  var prev=document.getElementById('prev-'+room);
-  if(prev)prev.src=input.value;
-}
-
+function previewImg(input,room){var prev=document.getElementById('prev-'+room);if(prev)prev.src=input.value;}
 function saveRoomImages(){
-  var rooms=["Single","Double","VIP","Deluxe","Executive","Family","Honeymoon"];
-  rooms.forEach(function(r){
-    var inp=document.getElementById('img-'+r);
-    if(inp&&inp.value.trim())ROOM_IMGS[r]=inp.value.trim();
-  });
-  db.collection('settings').doc('roomImages').set(ROOM_IMGS).then(function(){
-    applyRoomImages();
-    T('✅ Images Saved!','Room images updated on the website.');
-  }).catch(function(){
-    applyRoomImages();
-    T('✅ Images Updated','Images updated for this session.');
-  });
+  var rooms=['Single','Double','VIP','Deluxe','Executive','Family','Honeymoon'];
+  rooms.forEach(function(r){var inp=document.getElementById('img-'+r);if(inp&&inp.value.trim())ROOM_IMGS[r]=inp.value.trim();});
+  db.collection('settings').doc('roomImages').set(ROOM_IMGS).then(function(){applyRoomImages();T('Images Saved!','Room images updated on the website.');}).catch(function(){applyRoomImages();T('Images Updated','Images updated for this session.');});
 }
-
 function applyRoomImages(){
-  var rooms=["Single","Double","VIP","Deluxe","Executive","Family","Honeymoon"];
-  rooms.forEach(function(r){
-    document.querySelectorAll('img[alt="'+r+'"]').forEach(function(img){img.src=ROOM_IMGS[r];});
-  });
+  var rooms=['Single','Double','VIP','Deluxe','Executive','Family','Honeymoon'];
+  rooms.forEach(function(r){document.querySelectorAll('img[alt="'+r+'"]').forEach(function(img){img.src=ROOM_IMGS[r];});});
 }
-
 function loadSavedImages(){
-  db.collection('settings').doc('roomImages').get().then(function(doc){
-    if(doc.exists){var data=doc.data();Object.keys(data).forEach(function(r){if(data[r])ROOM_IMGS[r]=data[r];});applyRoomImages();}
-  }).catch(function(){});
+  db.collection('settings').doc('roomImages').get().then(function(doc){if(doc.exists){var data=doc.data();Object.keys(data).forEach(function(r){if(data[r])ROOM_IMGS[r]=data[r];});applyRoomImages();}}).catch(function(){});
 }
-
+function sendEmail(d){emailjs.send(EJS_SVC,EJS_TPL,{to_name:d.name,to_email:d.email,room_type:d.roomType,room_number:d.roomNumber,check_in:d.checkIn,check_out:d.checkOut,access_code:d.code,hotel_name:'OCROWN Suites',hotel_phone:'07080951392',hotel_email:'ocrownsuites@gmail.com',hotel_address:'Alakia, Ibadan, Oyo State, Nigeria'}).then(function(){T('Email Sent','Sent to '+d.email);}).catch(function(e){console.warn('EmailJS:',e);});}
 loadHomeReviews();
 loadSavedImages();
 </script>
