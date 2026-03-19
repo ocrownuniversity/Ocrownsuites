@@ -994,7 +994,7 @@ function showReceipt(id) {
       '<div class="receipt-row"><span class="receipt-lbl">Nights</span><span class="receipt-val">' + nights + '</span></div>' +
       '<div class="receipt-row"><span class="receipt-lbl">Rate/Night</span><span class="receipt-val">&#x20A6;' + ppn.toLocaleString() + '</span></div>' +
       '<div class="receipt-row" style="font-weight:700"><span class="receipt-lbl" style="color:var(--text)">Total</span><span class="receipt-val" style="color:var(--gold)">&#x20A6;' + total.toLocaleString() + '</span></div></div>' +
-      (b.accessCode ? '<div class="receipt-code"><div class="receipt-code-lbl">Access Code</div><div class="receipt-code-val">' + b.accessCode + '</div></div>' : '') +
+      (b.accessCode ? '<div class="receipt-code"><div class="receipt-code-lbl">Access Code</div><div class="receipt-code-val">' + b.accessCode + '</div></div>' : "") +
       '<div class="receipt-footer">Thank you for choosing OCROWN Suites!</div>';
   });
 }
@@ -1276,18 +1276,47 @@ function deleteReview(id) {
 }
 function loadImageManager() {
   var rooms = ["Single","Double","VIP","Deluxe","Executive","Family","Honeymoon"];
-  var emojis = {Single:"[Bed]",Double:"[2 Beds]",VIP:"[VIP]",Deluxe:"[Deluxe]",Executive:"[Exec]",Family:"[Family]",Honeymoon:"[Honey]"};
-  var html = "";
+  var el = document.getElementById("img-manager-list");
+  el.innerHTML = "";
   rooms.forEach(function(r) {
     var url = ROOM_IMGS[r] || "";
-    var thumbHtml = url ? "<img src='" + url + "' style='width:100%;height:100%;object-fit:cover;display:block'/>" : "<span>" + emojis[r] + "</span>";
-    html += "<div class='img-row'><div class='img-inner'>";
-    html += "<div class='img-thumb' id='prev-" + r + "'>" + thumbHtml + "</div>";
-    html += "<div class='img-field'><span class='img-label'>" + r + " Suite Image URL</span>";
-    html += "<input class='img-input' id='img-" + r + "' type='text' value='" + url + "' placeholder='Paste direct image URL...' oninput='previewImg(this,"" + r + "")' /></div>";
-    html += "</div></div>";
+    var row = document.createElement("div");
+    row.className = "img-row";
+    var inner = document.createElement("div");
+    inner.className = "img-inner";
+    var thumb = document.createElement("div");
+    thumb.className = "img-thumb";
+    thumb.id = "prev-" + r;
+    if (url) {
+      var timg = document.createElement("img");
+      timg.src = url;
+      timg.style.cssText = "width:100%;height:100%;object-fit:cover;display:block";
+      thumb.appendChild(timg);
+    } else {
+      thumb.textContent = "[" + r + "]";
+    }
+    var field = document.createElement("div");
+    field.className = "img-field";
+    var lbl = document.createElement("span");
+    lbl.className = "img-label";
+    lbl.textContent = r + " Suite Image URL";
+    var inp = document.createElement("input");
+    inp.className = "img-input";
+    inp.id = "img-" + r;
+    inp.type = "text";
+    inp.value = url;
+    inp.placeholder = "Paste direct image URL (.jpg or .png)...";
+    inp.dataset.room = r;
+    inp.addEventListener("input", function() {
+      previewImg(this, this.dataset.room);
+    });
+    field.appendChild(lbl);
+    field.appendChild(inp);
+    inner.appendChild(thumb);
+    inner.appendChild(field);
+    row.appendChild(inner);
+    el.appendChild(row);
   });
-  document.getElementById("img-manager-list").innerHTML = html;
 }
 function previewImg(input, room) {
   var thumb = document.getElementById("prev-" + room);
