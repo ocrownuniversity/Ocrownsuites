@@ -1203,6 +1203,30 @@ window.filterAdmin = function(status, btn) {
   renderAdminList(filtered);
 };
 
+// ══ INIT — hide loader + set dates ══
+(function(){
+  function hideLoader(){
+    const ld=document.getElementById('loader');
+    if(!ld)return;
+    ld.style.transition='opacity 0.6s ease';
+    ld.style.opacity='0';
+    setTimeout(()=>{ld.style.display='none';},700);
+  }
+  // Hide immediately and also on load as fallback
+  hideLoader();
+  window.addEventListener('load', hideLoader);
+  document.addEventListener('DOMContentLoaded',function(){
+    const today=new Date().toISOString().split('T')[0];
+    const ci=document.getElementById('b-checkin');
+    const co=document.getElementById('b-checkout');
+    if(ci) ci.min=today;
+    if(co) co.min=today;
+    if(ci) ci.addEventListener('change',function(){
+      if(co){co.min=this.value;if(co.value<=this.value)co.value='';}
+    });
+  });
+})();
+
 // ══ EMAILJS ══
 function sendEmail(data) {
   if(typeof emailjs==='undefined'||EMAILJS_SERVICE_ID==="PASTE_YOUR_SERVICE_ID_HERE") {
