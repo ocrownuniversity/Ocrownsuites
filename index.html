@@ -507,6 +507,20 @@ footer{background:var(--ink);color:rgba(250,247,242,.5);padding:2.8rem 1.5rem;te
               <div class="fg"><label>Check-in Date</label><input type="date" id="b-cin"/><div class="eferr" id="eci">Select a valid check-in date.</div></div>
               <div class="fg"><label>Check-out Date</label><input type="date" id="b-cout"/><div class="eferr" id="eco">Check-out must be after check-in.</div></div>
             </div>
+            <div class="fg">
+              <label>Promo Code (optional)</label>
+              <div style="display:flex;gap:.5rem">
+                <input type="text" id="b-promo" placeholder="Enter promo code if you have one" style="text-transform:uppercase"/>
+                <button type="button" onclick="applyPromo()" style="white-space:nowrap;padding:.72rem 1rem;background:var(--gold-dim);border:1.5px solid var(--gold-border);border-radius:8px;color:var(--gold);font-family:Jost,sans-serif;font-size:.82rem;font-weight:600;cursor:pointer">Apply</button>
+              </div>
+              <div id="promo-msg" style="font-size:.72rem;margin-top:.3rem;display:none"></div>
+            </div>
+            <div class="fg" id="price-preview" style="display:none">
+              <div style="background:var(--green-bg);border:1px solid var(--green-bd);border-radius:8px;padding:.75rem 1rem">
+                <div style="font-size:.75rem;color:var(--green);font-weight:600">Estimated Total</div>
+                <div id="price-preview-val" style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--green)"></div>
+              </div>
+            </div>
             <button class="fsub" id="bsub" onclick="submitBooking()">Submit Booking Request</button>
           </div>
           <div class="sstate" id="bsuccess">
@@ -667,6 +681,10 @@ footer{background:var(--ink);color:rgba(250,247,242,.5);padding:2.8rem 1.5rem;te
       <div class="dtw">
         <div class="dth">
           <div class="dtt">All Bookings</div>
+          <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap">
+          <button class="ab absv" onclick="exportCSV()" style="font-size:.7rem">&#128190; Export CSV</button>
+          <button class="ab" style="border-color:var(--red-bd);color:var(--red);background:var(--red-bg);font-size:.7rem" onclick="autoRejectExpired()">&#128465; Auto-Reject Expired</button>
+          </div>
           <div class="fpills">
             <button class="fp on" onclick="filterBk('all',this)">All</button>
             <button class="fp" onclick="filterBk('Pending',this)">Pending</button>
@@ -707,6 +725,51 @@ footer{background:var(--ink);color:rgba(250,247,242,.5);padding:2.8rem 1.5rem;te
         <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.5rem;line-height:1.6">Paste any direct image URL (.jpg or .png) for each room. The image updates instantly. Works with Cloudinary or any direct link.</p>
         <div id="img-manager-list"></div>
         <button class="fsub" onclick="saveRoomImages()" style="margin-top:1rem">&#128190; Save All Images</button>
+      </div>
+    </div>
+    <div class="atab-panel" id="tab-calendar">
+      <div class="cpw-card" style="max-width:100%">
+        <div class="fst">&#128197; Booking Calendar</div>
+        <p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem">Visual overview of all bookings by month</p>
+        <div style="display:flex;gap:.75rem;align-items:center;margin-bottom:1.25rem;flex-wrap:wrap">
+          <button class="ab absv" onclick="calPrev()">&#8592; Prev</button>
+          <div id="cal-month-label" style="font-family:'Playfair Display',serif;font-size:1.1rem;min-width:140px;text-align:center"></div>
+          <button class="ab absv" onclick="calNext()">Next &#8594;</button>
+        </div>
+        <div id="cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:1rem"></div>
+        <div id="cal-legend" style="display:flex;gap:1rem;flex-wrap:wrap;font-size:.72rem;margin-top:.5rem">
+          <span><span style="display:inline-block;width:10px;height:10px;background:var(--green);border-radius:2px;margin-right:3px"></span>Approved</span>
+          <span><span style="display:inline-block;width:10px;height:10px;background:#b8952a;border-radius:2px;margin-right:3px"></span>Pending</span>
+          <span><span style="display:inline-block;width:10px;height:10px;background:var(--red);border-radius:2px;margin-right:3px"></span>Rejected</span>
+        </div>
+        <div id="cal-detail" style="margin-top:1rem"></div>
+      </div>
+    </div>
+    <div class="atab-panel" id="tab-promo">
+      <div class="cpw-card" style="max-width:100%">
+        <div class="fst">&#127991; Promo / Discount Codes</div>
+        <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.25rem">Create discount codes for guests to use at booking</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem;margin-bottom:1rem">
+          <div class="fg" style="margin-bottom:0"><label>Promo Code</label><input type="text" id="promo-code" placeholder="e.g. WELCOME10" style="text-transform:uppercase"/></div>
+          <div class="fg" style="margin-bottom:0"><label>Discount (%)</label><input type="number" id="promo-pct" placeholder="e.g. 10" min="1" max="100"/></div>
+          <div class="fg" style="margin-bottom:0"><label>Expiry Date</label><input type="date" id="promo-exp"/></div>
+        </div>
+        <button class="fsub" onclick="addPromo()" style="margin-bottom:1.5rem">&#43; Add Promo Code</button>
+        <div class="fst">Active Promo Codes</div>
+        <div id="promo-list"><div class="emst"><span class="ei">&#127991;</span>Loading...</div></div>
+      </div>
+    </div>
+    <div class="atab-panel" id="tab-blacklist">
+      <div class="cpw-card" style="max-width:100%">
+        <div class="fst">&#128683; Guest Blacklist</div>
+        <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.25rem">Blocked guests cannot submit new bookings</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:1rem">
+          <div class="fg" style="margin-bottom:0"><label>Email Address</label><input type="email" id="bl-email" placeholder="guest@email.com"/></div>
+          <div class="fg" style="margin-bottom:0"><label>Reason (optional)</label><input type="text" id="bl-reason" placeholder="e.g. No-show"/></div>
+        </div>
+        <button class="fsub" onclick="addBlacklist()" style="margin-bottom:1.5rem">&#128683; Add to Blacklist</button>
+        <div class="fst">Blacklisted Guests</div>
+        <div id="blacklist-list"><div class="emst"><span class="ei">&#128683;</span>Loading...</div></div>
       </div>
     </div>
     <div class="atab-panel" id="tab-settings">
@@ -830,11 +893,15 @@ function T(t, m, d) {
   var td = new Date().toISOString().split("T")[0];
   var ci = document.getElementById("b-cin");
   var co = document.getElementById("b-cout");
+  var rm = document.getElementById("b-room");
   if (ci) ci.min = td;
   if (co) co.min = td;
   if (ci) ci.addEventListener("change", function() {
     if (co) { co.min = this.value; if (co.value && co.value <= this.value) co.value = ""; }
+    updatePricePreview();
   });
+  if (co) co.addEventListener("change", function() { updatePricePreview(); });
+  if (rm) rm.addEventListener("change", function() { updatePricePreview(); });
 })();
 
 // SUBMIT BOOKING
@@ -861,20 +928,36 @@ function submitBooking() {
   var btn = document.getElementById("bsub");
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span>Submitting...';
-  db.collection("bookings").add({
-    name:name, phone:phone, email:email, roomType:room,
-    checkIn:cin, checkOut:cout, status:"Pending",
-    roomNumber:"", accessCode:"", codeStatus:"", codeExpiry:null,
-    createdAt:firebase.firestore.FieldValue.serverTimestamp()
-  }).then(function() {
-    document.getElementById("bform").style.display = "none";
-    document.getElementById("bsuccess").style.display = "block";
-    T("Submitted!", "Booking submitted. Awaiting approval.");
-  }).catch(function(e) {
+  // Check blacklist first
+  db.collection("blacklist").where("email","==",email).get().then(function(blSnap) {
+    if (!blSnap.empty) {
+      btn.disabled=false; btn.innerHTML="Submit Booking Request";
+      T("Booking Declined","Sorry, this email is not eligible to make bookings. Please contact us directly.");
+      return;
+    }
+    var promoCode = _appliedPromo ? _appliedPromo.code : "";
+    var promoDisc = _appliedPromo ? _appliedPromo.pct : 0;
+    db.collection("bookings").add({
+      name:name, phone:phone, email:email, roomType:room,
+      checkIn:cin, checkOut:cout, status:"Pending",
+      roomNumber:"", accessCode:"", codeStatus:"", codeExpiry:null,
+      promoCode:promoCode, promoDiscount:promoDisc,
+      createdAt:firebase.firestore.FieldValue.serverTimestamp()
+    }).then(function() {
+      document.getElementById("bform").style.display = "none";
+      document.getElementById("bsuccess").style.display = "block";
+      T("Submitted!", "Booking submitted. Awaiting approval.");
+      _appliedPromo = null;
+    }).catch(function(e) {
+      btn.disabled = false;
+      btn.innerHTML = "Submit Booking Request";
+      T("Error", "Could not submit.", 6000);
+      console.error(e);
+    });
+  }).catch(function() {
     btn.disabled = false;
     btn.innerHTML = "Submit Booking Request";
-    T("Error", "Could not submit.", 6000);
-    console.error(e);
+    T("Error", "Could not verify eligibility.", 6000);
   });
 }
 function resetBooking() {
@@ -1080,6 +1163,11 @@ function loginSuccess() {
   document.getElementById("adash").style.display = "block";
   // Show/hide tabs based on role
   var superOnlyTabs = ["tab-btn-analytics","tab-btn-reviews","tab-btn-images","tab-btn-subadmin"];
+  // Also hide calendar, promo, blacklist tabs for sub-admins
+  ["tab-btn-calendar","tab-btn-promo","tab-btn-blacklist"].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) el.style.display = _isSuperAdmin ? "" : "none";
+  });
   superOnlyTabs.forEach(function(id) {
     var el = document.getElementById(id);
     if (el) el.style.display = _isSuperAdmin ? "" : "none";
@@ -1104,6 +1192,9 @@ function switchTab(name, btn) {
   if (name === "reviews") loadAdminReviews();
   if (name === "images") loadImageManager();
   if (name === "subadmin") loadSubAdmins();
+  if (name === "calendar") loadCalendar();
+  if (name === "promo") loadPromos();
+  if (name === "blacklist") loadBlacklist();
   // Hide sub-admin tab from sub-admins
   var saBtn = document.getElementById("tab-btn-subadmin");
   if (saBtn) saBtn.style.display = _isSuperAdmin ? "" : "none";
@@ -1507,6 +1598,238 @@ function deleteSubAdmin(id, name) {
     loadSubAdmins();
   }).catch(function() { T("Error", "Could not delete."); });
 }
+
+// ═══════════════════════════════════════════
+// PROMO CODES
+// ═══════════════════════════════════════════
+var _appliedPromo = null;
+
+function applyPromo() {
+  var code = document.getElementById("b-promo").value.trim().toUpperCase();
+  var msgEl = document.getElementById("promo-msg");
+  if (!code) { msgEl.style.display="none"; return; }
+  db.collection("promos").where("code","==",code).get().then(function(snap) {
+    if (snap.empty) {
+      msgEl.style.display="block"; msgEl.style.color="var(--red)"; msgEl.textContent="Invalid promo code.";
+      _appliedPromo = null; updatePricePreview(); return;
+    }
+    var pr = snap.docs[0].data();
+    var today = new Date().toISOString().split("T")[0];
+    if (pr.expiry && pr.expiry < today) {
+      msgEl.style.display="block"; msgEl.style.color="var(--red)"; msgEl.textContent="This promo code has expired.";
+      _appliedPromo = null; updatePricePreview(); return;
+    }
+    _appliedPromo = {code:code, pct:pr.discount};
+    msgEl.style.display="block"; msgEl.style.color="var(--green)";
+    msgEl.textContent="Promo applied! " + pr.discount + "% discount";
+    updatePricePreview();
+  }).catch(function() { msgEl.style.display="block"; msgEl.style.color="var(--red)"; msgEl.textContent="Error checking code."; });
+}
+
+function updatePricePreview() {
+  var room = document.getElementById("b-room").value;
+  var cin = document.getElementById("b-cin").value;
+  var cout = document.getElementById("b-cout").value;
+  var prev = document.getElementById("price-preview");
+  var prevVal = document.getElementById("price-preview-val");
+  if (!room || !cin || !cout || cout <= cin) { prev.style.display="none"; return; }
+  var nights = Math.max(1, Math.round((new Date(cout) - new Date(cin)) / (1000*60*60*24)));
+  var ppn = PRICES[room] || 0;
+  var total = ppn * nights;
+  var disc = _appliedPromo ? Math.round(total * _appliedPromo.pct / 100) : 0;
+  var final = total - disc;
+  prev.style.display="block";
+  prevVal.innerHTML = disc > 0
+    ? "<span style='text-decoration:line-through;color:var(--muted);font-size:.9rem'>N" + total.toLocaleString() + "</span> N" + final.toLocaleString() + " <span style='font-size:.75rem;color:var(--green)'>(" + _appliedPromo.pct + "% off)</span>"
+    : "N" + total.toLocaleString();
+}
+
+function addPromo() {
+  var code = document.getElementById("promo-code").value.trim().toUpperCase();
+  var pct = parseInt(document.getElementById("promo-pct").value);
+  var exp = document.getElementById("promo-exp").value;
+  if (!code || !pct || pct < 1 || pct > 100) { T("Warning","Enter a valid code and discount percentage."); return; }
+  db.collection("promos").where("code","==",code).get().then(function(snap) {
+    if (!snap.empty) { T("Warning","Promo code already exists."); return; }
+    db.collection("promos").add({code:code, discount:pct, expiry:exp||"", createdAt:firebase.firestore.FieldValue.serverTimestamp()
+    }).then(function() {
+      T("Added!","Promo code " + code + " created.");
+      document.getElementById("promo-code").value="";
+      document.getElementById("promo-pct").value="";
+      document.getElementById("promo-exp").value="";
+      loadPromos();
+    }).catch(function() { T("Error","Could not add promo."); });
+  });
+}
+
+function loadPromos() {
+  var el = document.getElementById("promo-list");
+  el.innerHTML = '<div class="emst"><span class="ei">&#127991;</span>Loading...</div>';
+  db.collection("promos").orderBy("createdAt","desc").get().then(function(snap) {
+    if (snap.empty) { el.innerHTML='<div class="emst"><span class="ei">&#127991;</span>No promo codes yet.</div>'; return; }
+    var html = '<table style="width:100%;border-collapse:collapse;font-size:.82rem">';
+    html += '<tr style="border-bottom:2px solid var(--border)"><th style="text-align:left;padding:.5rem;font-size:.7rem;color:var(--muted);text-transform:uppercase">Code</th><th style="text-align:center;padding:.5rem;font-size:.7rem;color:var(--muted);text-transform:uppercase">Discount</th><th style="text-align:center;padding:.5rem;font-size:.7rem;color:var(--muted);text-transform:uppercase">Expiry</th><th style="padding:.5rem"></th></tr>';
+    snap.docs.forEach(function(d) {
+      var r = d.data();
+      var today = new Date().toISOString().split("T")[0];
+      var expired = r.expiry && r.expiry < today;
+      html += '<tr style="border-bottom:1px solid var(--border)' + (expired?";opacity:.5":"") + '">';
+      html += '<td style="padding:.55rem .5rem;font-weight:600;font-family:monospace">' + r.code + (expired?' <span style="color:var(--red);font-size:.65rem">Expired</span>':'') + '</td>';
+      html += '<td style="padding:.55rem .5rem;text-align:center;color:var(--green);font-weight:600">' + r.discount + '%</td>';
+      html += '<td style="padding:.55rem .5rem;text-align:center;color:var(--muted);font-size:.78rem">' + (r.expiry||"No expiry") + '</td>';
+      html += '<td style="padding:.55rem .5rem"><button class="ab abno" style="font-size:.65rem" data-id="' + d.id + '" onclick="deletePromo(this.dataset.id)">Delete</button></td>';
+      html += '</tr>';
+    });
+    html += '</table>';
+    el.innerHTML = html;
+  }).catch(function() { el.innerHTML='<div class="emst"><span class="ei">!</span>Error loading.</div>'; });
+}
+
+function deletePromo(id) {
+  db.collection("promos").doc(id).delete().then(function() { T("Deleted","Promo code removed."); loadPromos(); }).catch(function() { T("Error","Could not delete."); });
+}
+
+// ═══════════════════════════════════════════
+// BLACKLIST
+// ═══════════════════════════════════════════
+function addBlacklist() {
+  var email = document.getElementById("bl-email").value.trim().toLowerCase();
+  var reason = document.getElementById("bl-reason").value.trim();
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { T("Warning","Enter a valid email address."); return; }
+  db.collection("blacklist").where("email","==",email).get().then(function(snap) {
+    if (!snap.empty) { T("Warning","This email is already blacklisted."); return; }
+    db.collection("blacklist").add({email:email, reason:reason||"No reason given", createdAt:firebase.firestore.FieldValue.serverTimestamp()
+    }).then(function() {
+      T("Blacklisted!",email + " has been blocked.");
+      document.getElementById("bl-email").value="";
+      document.getElementById("bl-reason").value="";
+      loadBlacklist();
+    }).catch(function() { T("Error","Could not blacklist."); });
+  });
+}
+
+function loadBlacklist() {
+  var el = document.getElementById("blacklist-list");
+  el.innerHTML = '<div class="emst"><span class="ei">&#128683;</span>Loading...</div>';
+  db.collection("blacklist").orderBy("createdAt","desc").get().then(function(snap) {
+    if (snap.empty) { el.innerHTML='<div class="emst"><span class="ei">&#128683;</span>No blacklisted guests.</div>'; return; }
+    var html = "";
+    snap.docs.forEach(function(d) {
+      var r = d.data();
+      html += '<div class="adc" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem">';
+      html += '<div><div style="font-weight:600;font-size:.88rem">&#128683; ' + r.email + '</div>';
+      html += '<div style="font-size:.75rem;color:var(--muted)">Reason: ' + r.reason + '</div></div>';
+      html += '<button class="ab abok" data-id="' + d.id + '" onclick="removeBlacklist(this.dataset.id)">Unblock</button>';
+      html += '</div>';
+    });
+    el.innerHTML = html;
+  }).catch(function() { el.innerHTML='<div class="emst"><span class="ei">!</span>Error loading.</div>'; });
+}
+
+function removeBlacklist(id) {
+  db.collection("blacklist").doc(id).delete().then(function() { T("Unblocked","Guest removed from blacklist."); loadBlacklist(); }).catch(function() { T("Error","Could not remove."); });
+}
+
+// ═══════════════════════════════════════════
+// EXPORT CSV
+// ═══════════════════════════════════════════
+function exportCSV() {
+  if (!_allBk.length) { T("Warning","No bookings to export."); return; }
+  var rows = [["Name","Email","Phone","Room Type","Room No","Check-in","Check-out","Status","Access Code","Created"]];
+  _allBk.forEach(function(b) {
+    rows.push([
+      b.name, b.email, b.phone, b.roomType, b.roomNumber||"",
+      b.checkIn, b.checkOut, b.status, b.accessCode||"",
+      b.createdAt&&b.createdAt.toDate ? b.createdAt.toDate().toLocaleDateString() : ""
+    ]);
+  });
+  var csv = rows.map(function(r) { return r.map(function(v) { return '"' + String(v).replace(/"/g,'""') + '"'; }).join(","); }).join("\n");
+  var blob = new Blob([csv], {type:"text/csv"});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url;
+  a.download = "OCROWN_Bookings_" + new Date().toISOString().split("T")[0] + ".csv";
+  a.click();
+  URL.revokeObjectURL(url);
+  T("Exported!","Bookings downloaded as CSV.");
+}
+
+// ═══════════════════════════════════════════
+// AUTO REJECT EXPIRED
+// ═══════════════════════════════════════════
+function autoRejectExpired() {
+  var today = new Date().toISOString().split("T")[0];
+  var expired = _allBk.filter(function(b) { return b.status === "Pending" && b.checkIn < today; });
+  if (!expired.length) { T("Info","No expired pending bookings found."); return; }
+  var count = 0;
+  expired.forEach(function(b) {
+    db.collection("bookings").doc(b.id).update({status:"Rejected"}).then(function() {
+      count++;
+      if (count === expired.length) { T("Done!",count + " expired bookings auto-rejected."); loadBookings(); }
+    });
+  });
+}
+
+// ═══════════════════════════════════════════
+// BOOKING CALENDAR
+// ═══════════════════════════════════════════
+var _calYear, _calMonth;
+
+function loadCalendar() {
+  var now = new Date();
+  _calYear = now.getFullYear();
+  _calMonth = now.getMonth();
+  renderCalendar();
+}
+
+function calPrev() { _calMonth--; if (_calMonth < 0) { _calMonth=11; _calYear--; } renderCalendar(); }
+function calNext() { _calMonth++; if (_calMonth > 11) { _calMonth=0; _calYear++; } renderCalendar(); }
+
+function renderCalendar() {
+  var months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  document.getElementById("cal-month-label").textContent = months[_calMonth] + " " + _calYear;
+  var grid = document.getElementById("cal-grid");
+  var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  var html = "";
+  days.forEach(function(d) {
+    html += '<div style="text-align:center;font-size:.65rem;font-weight:600;color:var(--muted);padding:.3rem 0">' + d + '</div>';
+  });
+  var first = new Date(_calYear, _calMonth, 1).getDay();
+  var total = new Date(_calYear, _calMonth+1, 0).getDate();
+  for (var i=0; i<first; i++) html += '<div></div>';
+  for (var day=1; day<=total; day++) {
+    var dateStr = _calYear + "-" + String(_calMonth+1).padStart(2,"0") + "-" + String(day).padStart(2,"0");
+    var dayBks = _allBk.filter(function(b) { return b.checkIn <= dateStr && b.checkOut > dateStr; });
+    var bg = "var(--surface2)"; var color = "var(--text)"; var title = "";
+    if (dayBks.length) {
+      var hasApproved = dayBks.some(function(b) { return b.status==="Approved"||b.status==="CheckedOut"; });
+      var hasPending = dayBks.some(function(b) { return b.status==="Pending"; });
+      bg = hasApproved ? "var(--green)" : hasPending ? "#b8952a" : "var(--red)";
+      color = "#fff";
+      title = dayBks.length + " booking(s)";
+    }
+    var today = new Date().toISOString().split("T")[0];
+    var border = dateStr===today ? "2px solid var(--gold)" : "1px solid var(--border)";
+    html += '<div style="text-align:center;padding:.4rem .2rem;border-radius:6px;background:' + bg + ';color:' + color + ';border:' + border + ';cursor:' + (dayBks.length?"pointer":"default") + ';font-size:.8rem;min-height:32px;display:flex;align-items:center;justify-content:center;flex-direction:column" data-date="' + dateStr + '" onclick="showCalDay(\'' + dateStr + '\')" title="' + title + '">';
+    html += '<span>' + day + '</span>';
+    if (dayBks.length) html += '<span style="font-size:.55rem;line-height:1">' + dayBks.length + '</span>';
+    html += '</div>';
+  }
+  grid.innerHTML = html;
+}
+
+function showCalDay(dateStr) {
+  var dayBks = _allBk.filter(function(b) { return b.checkIn <= dateStr && b.checkOut > dateStr; });
+  var detail = document.getElementById("cal-detail");
+  if (!dayBks.length) { detail.innerHTML=""; return; }
+  var html = '<div style="font-weight:600;margin-bottom:.5rem;font-size:.85rem">Bookings on ' + dateStr + ':</div>';
+  dayBks.forEach(function(b) {
+    var bc = b.status==="Approved"?"bA":b.status==="Rejected"?"bR":b.status==="CheckedOut"?"bCO":"bP";
+    html += '<div class="adc" style="margin-bottom:.4rem"><b>' + b.name + '</b> &mdash; ' + b.roomType + ' <span class="badge ' + bc + '" style="margin-left:.5rem">' + b.status + '</span><br/><span style="font-size:.75rem;color:var(--muted)">' + b.checkIn + ' &rarr; ' + b.checkOut + '</span></div>';
+  });
+  detail.innerHTML = html;
+}
+
 function sendEmail(d) {
   emailjs.send(EJS_SVC, EJS_TPL, {
     to_name:d.name, to_email:d.email, room_type:d.roomType, room_number:d.roomNumber,
