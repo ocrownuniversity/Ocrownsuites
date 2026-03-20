@@ -684,12 +684,19 @@ footer{background:var(--ink);color:rgba(250,247,242,.5);padding:2.8rem 1.5rem;te
         <div class="dsc"><div class="rev-lbl">Est. Revenue</div><div class="rev-total" id="an-rev">&#x20A6;0</div></div>
         <div class="dsc"><div class="dsn" id="an-rate" style="color:var(--green)">0%</div><div class="dsl">Approval Rate</div></div>
         <div class="dsc"><div class="dsn" id="an-avg" style="color:var(--gold)">--</div><div class="dsl">Avg Rating</div></div>
+      <div class="dsc"><div class="rev-lbl">This Month</div><div class="rev-total" id="an-monthly">&#x20A6;0</div></div>
+      <div class="dsc"><div class="rev-lbl">Last Month</div><div class="rev-total" id="an-lastmonth" style="font-size:1.4rem;color:var(--muted)">&#x20A6;0</div></div>
       </div>
       <div class="analytics-grid">
         <div class="chart-card"><div class="chart-title">Bookings by Status</div><canvas id="statusChart" height="200"></canvas></div>
         <div class="chart-card"><div class="chart-title">Most Booked Rooms</div><div class="top-rooms" id="top-rooms-list"></div></div>
       </div>
       <div class="chart-card"><div class="chart-title">Booking Trend (Last 7 Days)</div><canvas id="trendChart" height="120"></canvas></div>
+      <div class="chart-card" style="margin-top:1rem"><div class="chart-title">&#x1F4C5; Monthly Revenue (Last 6 Months)</div><canvas id="monthlyChart" height="130"></canvas></div>
+      <div class="chart-card" style="margin-top:1rem">
+        <div class="chart-title">&#x1F4CB; Monthly Booking Summary</div>
+        <div id="monthly-table"></div>
+      </div>
     </div>
     <div class="atab-panel" id="tab-reviews">
       <div id="admin-reviews-list"><div class="emst"><span class="ei">&#11088;</span>Loading reviews...</div></div>
@@ -1275,6 +1282,84 @@ function buildAnalytics() {
   var ctx2 = document.getElementById("trendChart");
   if (_cT) _cT.destroy();
   _cT = new Chart(ctx2, {type:"line", data:{labels:days, datasets:[{label:"Bookings", data:counts, borderColor:"#d4af5a", backgroundColor:"rgba(212,175,90,.1)", tension:.4, fill:true, pointBackgroundColor:"#d4af5a"}]}, options:{plugins:{legend:{display:false}}, scales:{y:{beginAtZero:true, ticks:{stepSize:1, font:{family:"Jost"}}, grid:{color:"rgba(0,0,0,.05)"}}, x:{ticks:{font:{family:"Jost"}}, grid:{display:false}}}}});
+
+  // Monthly sales calculation
+  var now = new Date();
+  var thisMonth = now.getMonth();
+  var thisYear = now.getFullYear();
+
+  // Build last 6 months data
+  var monthLabels = [];
+  var monthRevenues = [];
+  var monthBookings = [];
+  var monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+
+  for (var m = 5; m >= 0; m--) {
+    var d2 = new Date(thisYear, thisMonth - m, 1);
+    var mo = d2.getMonth();
+    var yr = d2.getFullYear();
+    monthLabels.push(monthNames[mo] + " " + yr.toString().slice(2));
+    var mRev = 0; var mCount = 0;
+    _allBk.forEach(function(b) {
+      if (b.status === "Approved" || b.status === "CheckedOut") {
+        if (b.createdAt && b.createdAt.toDate) {
+          var bd = b.createdAt.toDate();
+          if (bd.getMonth() === mo && bd.getFullYear() === yr) {
+            var nights = Math.max(1, Math.round((new Date(b.checkOut) - new Date(b.checkIn)) / (1000*60*60*24)));
+            mRev += (PRICES[b.roomType] || 0) * nights;
+            mCount++;
+          }
+        }
+      }
+    });
+    monthRevenues.push(mRev);
+    monthBookings.push(mCount);
+  }
+
+  // This month and last month totals
+  var thisMonthRev = monthRevenues[5] || 0;
+  var lastMonthRev = monthRevenues[4] || 0;
+  document.getElementById("an-monthly").textContent = "N" + thisMonthRev.toLocaleString();
+  document.getElementById("an-lastmonth").textContent = "N" + lastMonthRev.toLocaleString();
+
+  // Monthly revenue chart
+  var ctx3 = document.getElementById("monthlyChart");
+  if (window._cM) window._cM.destroy();
+  window._cM = new Chart(ctx3, {
+    type: "bar",
+    data: {
+      labels: monthLabels,
+      datasets: [{
+        label: "Revenue (N)",
+        data: monthRevenues,
+        backgroundColor: "rgba(184,149,42,.6)",
+        borderColor: "#b8952a",
+        borderWidth: 1,
+        borderRadius: 6
+      }]
+    },
+    options: {
+      plugins: {legend:{display:false}},
+      scales: {
+        y: {beginAtZero:true, ticks:{font:{family:"Jost"}, callback:function(v){return "N"+v.toLocaleString();}}, grid:{color:"rgba(0,0,0,.05)"}},
+        x: {ticks:{font:{family:"Jost"}}, grid:{display:false}}
+      }
+    }
+  });
+
+  // Monthly table
+  var tableHtml = '<table style="width:100%;border-collapse:collapse;font-size:.82rem">';
+  tableHtml += '<tr style="border-bottom:2px solid var(--border)"><th style="text-align:left;padding:.5rem;color:var(--muted);font-weight:600;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase">Month</th><th style="text-align:right;padding:.5rem;color:var(--muted);font-weight:600;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase">Bookings</th><th style="text-align:right;padding:.5rem;color:var(--muted);font-weight:600;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase">Revenue</th></tr>';
+  for (var mx = 5; mx >= 0; mx--) {
+    var isThis = mx === 5;
+    tableHtml += '<tr style="border-bottom:1px solid var(--border)' + (isThis ? ";background:rgba(184,149,42,.06)" : "") + '">';
+    tableHtml += '<td style="padding:.55rem .5rem;font-weight:' + (isThis ? "600" : "400") + '">' + monthLabels[mx] + (isThis ? ' <span style="font-size:.65rem;color:var(--gold);font-weight:600">Current</span>' : "") + '</td>';
+    tableHtml += '<td style="padding:.55rem .5rem;text-align:right">' + monthBookings[mx] + '</td>';
+    tableHtml += '<td style="padding:.55rem .5rem;text-align:right;color:var(--gold);font-weight:600">N' + monthRevenues[mx].toLocaleString() + '</td>';
+    tableHtml += '</tr>';
+  }
+  tableHtml += '</table>';
+  document.getElementById("monthly-table").innerHTML = tableHtml;
 }
 function loadAdminReviews() {
   var el = document.getElementById("admin-reviews-list");
